@@ -1,7 +1,29 @@
-
-
-div {
-    background-color: red;
-    width: 200px;
-    height: 200px;
+html, body, #root, .App {
+    background-color: rgb(40, 40, 40);
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
+
+#Workspace {
+    background-color: rgb(60,60,70);
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+
+.Note {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    height: 5rem;
+    width: 5rem;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+
+
+

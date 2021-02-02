@@ -1,11 +1,12 @@
 
 import './style/App.css';
-import Example from './components/test';
+import Workspace from "./components/Workspace";
+
 
 function App() {
   return (
     <div className="App">
-      <Example />
+        <Workspace />
     </div>
   );
 }
