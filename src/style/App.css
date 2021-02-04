@@ -7,6 +7,11 @@ html, body, #root, .App {
     margin: 0;
 }
 
+.topBar {
+    width: 100%;
+    background-color: darkgray;
+}
+
 #Workspace {
     background-color: rgb(60,60,70);
     height:100%;
