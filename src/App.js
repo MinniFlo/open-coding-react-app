@@ -1,4 +1,3 @@
-
 import './style/App.css';
 import Workspace from "./components/Workspace";
 
@@ -6,7 +5,7 @@ import Workspace from "./components/Workspace";
 function App() {
   return (
     <div className="App">
-        <Workspace />
+      <Workspace/>
     </div>
   );
 }
