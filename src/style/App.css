@@ -30,6 +30,17 @@ html, body, #root, .App {
     overflow: hidden;
 }
 
+.DetailNote {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    height: 10rem;
+    width: 10rem;
+    font-size: 1rem;
+    margin: 1rem;
+    overflow: auto;
+}
+
 
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import '../style/App.css'
 import Draggable from 'react-draggable'
+import DetailNote from "./DetailNote";
 
 export default class Note extends React.Component{
 
@@ -8,15 +9,29 @@ export default class Note extends React.Component{
     super(props);
 
     this.state = {
-      content: props.content
+      content: props.content,
+      detail: false
     }
+
+    this.toggleDetail = this.toggleDetail.bind(this)
+  }
+
+  toggleDetail() {
+    this.setState({detail: !this.state.detail});
   }
 
   render() {
     return (
-      <Draggable>
-        <div className='Note'>{this.state.content}</div>
-      </Draggable>
+      <>
+        {this.state.detail ? <DetailNote content={this.state.content} toggleDetail={this.toggleDetail} /> :
+          <Draggable>
+            <div className='Note'>
+              <button onClick={this.toggleDetail}>detail</button>
+              <p>{this.state.content}</p>
+            </div>
+          </Draggable>
+        }
+      </>
     );
   }
 }
