@@ -1,9 +1,9 @@
+import React from "react";
 import './style/App.css';
 import Workspace from './components/Workspace';
 import DataImporter from './components/DataImporter'
-import React from "react";
-import Note from "./components/Note";
-
+import Note from './components/Note';
+import NewNote from './components/NewNote'
 
 class App extends React.Component{
 
@@ -12,7 +12,9 @@ class App extends React.Component{
     this.state = {
       notes: []
     };
+
     this.handleData = this.handleData.bind(this);
+    this.createSingleNote = this.createSingleNote.bind(this);
   }
 
   // converts Data from DataImporter into Array and calls function createNotes
@@ -23,11 +25,17 @@ class App extends React.Component{
   }
 
   // creates all Note Components and writes it to state
-  createNotes(textList) {
-    const notesList = textList.map((text) =>
-      <Note key={text} content = {text} />
+  createNotes(contentList) {
+    const notesList = contentList.map((content) =>
+      <Note key={content} content = {content} />
     );
-    this.setState({notes: notesList})
+    this.setState({notes: notesList});
+  }
+
+  // creates a single new Note
+  createSingleNote(content) {
+    const note = <Note content = {content} />;
+    this.setState((state) => ({notes: state.notes.push(note)}));
   }
 
   render() {
@@ -35,6 +43,7 @@ class App extends React.Component{
       <div className="App">
         <div className='topBar'>
           <DataImporter handleFunction={this.handleData}/>
+          <NewNote createSingleNote = {this.createSingleNote}/>
         </div>
         <Workspace notes={this.state.notes}/>
       </div>
