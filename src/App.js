@@ -1,6 +1,8 @@
 import './style/App.css';
 import Workspace from './components/Workspace';
+import DataImporter from './components/DataImporter'
 import React from "react";
+import Note from "./components/Note";
 
 
 class App extends React.Component{
@@ -8,36 +10,31 @@ class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      notes: ['A', 'List', 'of', 'words']
+      notes: []
     };
-
-    this.fileInput = React.createRef();
-
-    this.showFile = this.showFile.bind(this);
+    this.handleData = this.handleData.bind(this);
   }
 
-  handleData = (e) => {
+  // converts Data from DataImporter into Array and calls function createNotes
+  handleData(e) {
     const data = e.target.result.split('\n');
     console.log(data);
-    this.setState({notes: data});
+    this.createNotes(data);
   }
 
-  showFile() {
-    let file = this.fileInput.current.files[0];
-    let reader = new FileReader();
-
-    reader.onloadend = this.handleData;
-
-    reader.readAsText(file);
+  // creates all Note Components and writes it to state
+  createNotes(textList) {
+    const notesList = textList.map((text) =>
+      <Note key={text} content = {text} />
+    );
+    this.setState({notes: notesList})
   }
-
-
 
   render() {
     return (
       <div className="App">
         <div className='topBar'>
-          <input type='file' ref={this.fileInput} onChange={this.showFile} />
+          <DataImporter handleFunction={this.handleData}/>
         </div>
         <Workspace notes={this.state.notes}/>
       </div>
