@@ -3,7 +3,7 @@ import './style/App.css';
 import Workspace from './components/Workspace';
 import DataImporter from './components/DataImporter'
 import Note from './components/Note';
-import NewNote from './components/NewNote'
+import CreateNoteButton from "./components/CreateNoteButton";
 
 class App extends React.Component{
 
@@ -34,8 +34,12 @@ class App extends React.Component{
 
   // creates a single new Note
   createSingleNote(content) {
-    const note = <Note content = {content} />;
-    this.setState((state) => ({notes: state.notes.push(note)}));
+    console.log("note created: " + content);
+    const note = <Note key={content} content={content} />;
+    const newList = this.state.notes;
+    newList.push(note);
+    this.setState((state) => ({notes: newList}));
+    console.log(this.state.notes);
   }
 
   render() {
@@ -43,7 +47,7 @@ class App extends React.Component{
       <div className="App">
         <div className='topBar'>
           <DataImporter handleFunction={this.handleData}/>
-          <NewNote createSingleNote = {this.createSingleNote}/>
+          <CreateNoteButton createSingleNote = {this.createSingleNote}/>
         </div>
         <Workspace notes={this.state.notes}/>
       </div>

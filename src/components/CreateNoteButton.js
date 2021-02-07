@@ -1,7 +1,7 @@
 import React from "react";
 import '../style/App.css'
 
-export default class NewNote extends React.Component {
+export default class CreateNoteButton extends React.Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +24,8 @@ export default class NewNote extends React.Component {
   }
 
   onSubmit() {
-    console.log('submit!')
+    console.log('submit!');
+    this.toggleOpen();
     this.props.createSingleNote(this.state.content);
   }
 
