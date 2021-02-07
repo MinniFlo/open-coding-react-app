@@ -46,8 +46,8 @@ class App extends React.Component{
     return (
       <div className="App">
         <div className='topBar'>
-          <DataImporter handleFunction={this.handleData}/>
-          <CreateNoteButton createSingleNote = {this.createSingleNote}/>
+          <DataImporter handleData={this.handleData}/>
+          <CreateNoteButton createSingleNote={this.createSingleNote}/>
         </div>
         <Workspace notes={this.state.notes}/>
       </div>

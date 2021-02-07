@@ -33,13 +33,16 @@ export default class CreateNoteButton extends React.Component {
     return (
       <>
         {this.state.open ?
-          <form onSubmit={this.onSubmit}>
-            <label>
-              Content:
-              <input type='text' value={this.state.content} onChange={this.handleChange}/>
-            </label>
-            <input type='submit' value='create'/>
-          </form> :
+          <div className='Dim' onClick={this.toggleOpen}>
+            <form onSubmit={this.onSubmit}>
+              <label>
+                Content:
+                <input type='text' value={this.state.content} onChange={this.handleChange}/>
+              </label>
+              <input type='submit' value='create'/>
+            </form>
+          </div>
+          :
           <button onClick={this.toggleOpen}>new Note</button>
         }
       </>

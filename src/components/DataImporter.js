@@ -6,7 +6,7 @@ export default class DataImporter extends React.Component {
 
     this.fileInput = React.createRef();
     this.readFile = this.readFile.bind(this);
-    this.handleFunction = props.handleFunction;
+
   }
 
   // reads Data from File and calls the handleFunction from the App Component
@@ -14,7 +14,7 @@ export default class DataImporter extends React.Component {
     let file = this.fileInput.current.files[0];
     let reader = new FileReader();
 
-    reader.onloadend = this.handleFunction;
+    reader.onloadend = (e) => this.props.handleData(e);
 
     reader.readAsText(file);
   }

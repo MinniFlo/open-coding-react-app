@@ -10,14 +10,19 @@ export default class DetailNote extends React.Component{
       content: props.content
     }
 
-    this.toggleDetail = props.toggleDetail;
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.toggleDetail();
   }
 
   render() {
     return (
-      <div className='DetailNote'>
-        <button onClick={this.toggleDetail}>close</button>
-        <p>{this.state.content}</p>
+      <div className='Dim' onClick={this.handleClick}>
+        <div className='DetailNote'>
+          <p>{this.state.content}</p>
+        </div>
       </div>
     );
   }
