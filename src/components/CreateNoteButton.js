@@ -1,5 +1,6 @@
 import React from "react";
 import '../style/App.css'
+import Button from '@material-ui/core/Button'
 
 export default class CreateNoteButton extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class CreateNoteButton extends React.Component {
             </form>
           </div>
           :
-          <button onClick={this.toggleOpen}>new Note</button>
+          <Button variant='contained' onClick={this.toggleOpen}>new Note</Button>
         }
       </>
     );

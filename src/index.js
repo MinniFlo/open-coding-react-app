@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style/index.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import 'fontsource-roboto';
 import App from './App';
+import theme from "./theme";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
     <App/>
-  </React.StrictMode>,
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
