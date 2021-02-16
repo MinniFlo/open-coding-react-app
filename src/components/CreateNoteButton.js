@@ -33,7 +33,7 @@ export default class CreateNoteButton extends React.Component {
     return (
       <>
         {this.state.open ?
-          <div className='Dim' onClick={this.toggleOpen}>
+          <div className='Dim'>
             <form onSubmit={this.onSubmit}>
               <label>
                 Content:

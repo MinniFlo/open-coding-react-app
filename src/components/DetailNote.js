@@ -19,9 +19,10 @@ export default class DetailNote extends React.Component{
 
   render() {
     return (
-      <div className='Dim' onClick={this.handleClick}>
+      <div className='Dim'>
         <div className='DetailNote'>
           <p>{this.state.content}</p>
+          <button onClick={this.handleClick}>close</button>
         </div>
       </div>
     );
