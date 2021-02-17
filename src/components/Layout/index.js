@@ -2,7 +2,8 @@ import CreateNoteButton from "./CreateNoteButton";
 import DataImporter from "./DataImporter";
 import Note from "./Note";
 import Workspace from "./Workspace";
+import Header from "./Header";
 
 export {
-  CreateNoteButton, DataImporter, Note, Workspace
+  Header, CreateNoteButton, DataImporter, Note, Workspace
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import '../../style/App.css'
-import Button from '@material-ui/core/Button'
+import {IconButton} from "@material-ui/core";
+import {AddCircle} from "@material-ui/icons";
 
 export default class CreateNoteButton extends React.Component {
   constructor(props) {
@@ -44,10 +45,11 @@ export default class CreateNoteButton extends React.Component {
             </form>
           </div>
           :
-          <Button variant='contained' onClick={this.toggleOpen}>new Note</Button>
+          <IconButton size='medium' aria-label='add Note' color="primary" onClick={this.toggleOpen}>
+            <AddCircle style={{ fontSize: 40 }} />
+          </IconButton>
         }
       </>
     );
   }
-
 }

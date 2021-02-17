@@ -1,13 +1,15 @@
 import React from "react";
 import '../style/App.css';
-import {Workspace, DataImporter, Note, CreateNoteButton} from "./Layout"
+import {Workspace, DataImporter, Note, CreateNoteButton, Header} from "./Layout"
 
 class App extends React.Component{
 
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      notes: [],
+      fileName: "current-file",
+      zoom: 1
     };
 
     this.handleData = this.handleData.bind(this);
@@ -42,11 +44,11 @@ class App extends React.Component{
   render() {
     return (
       <div className="App">
-        <div className='topBar'>
-          <DataImporter handleData={this.handleData}/>
+        <Header fileName = {this.state.fileName} zoom = {this.state.zoom}/>
+        {/*<DataImporter handleData={this.handleData}/>*/}
+        <Workspace notes={this.state.notes}>
           <CreateNoteButton createSingleNote={this.createSingleNote}/>
-        </div>
-        <Workspace notes={this.state.notes}/>
+        </Workspace>
       </div>
     );
   }
