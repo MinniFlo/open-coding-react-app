@@ -1,5 +1,5 @@
 import React from "react";
-import '../style/App.css'
+import '../../style/App.css'
 import Draggable from 'react-draggable'
 import DetailNote from "./DetailNote";
 

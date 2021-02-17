@@ -1,9 +1,6 @@
 import React from "react";
-import './style/App.css';
-import Workspace from './components/Workspace';
-import DataImporter from './components/DataImporter'
-import Note from './components/Note';
-import CreateNoteButton from "./components/CreateNoteButton";
+import '../style/App.css';
+import {Workspace, DataImporter, Note, CreateNoteButton} from "./Layout"
 
 class App extends React.Component{
 

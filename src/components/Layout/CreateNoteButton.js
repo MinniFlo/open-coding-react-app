@@ -1,5 +1,5 @@
 import React from "react";
-import '../style/App.css'
+import '../../style/App.css'
 import Button from '@material-ui/core/Button'
 
 export default class CreateNoteButton extends React.Component {
