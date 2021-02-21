@@ -2,8 +2,10 @@ import React from "react";
 import '../../style/App.css'
 import Draggable from 'react-draggable'
 import DetailNote from "./DetailNote";
+import NoteObj from "./NoteObj";
 
-export default class Note extends React.Component{
+
+export default class Note extends React.Component {
 
   constructor(props) {
     super(props);
@@ -23,12 +25,17 @@ export default class Note extends React.Component{
   render() {
     return (
       <>
-        {this.state.detail ? <DetailNote content={this.state.content} toggleDetail={this.toggleDetail} /> :
+        {this.state.detail ? <DetailNote content={this.state.content} toggleDetail={this.toggleDetail}/> :
+          // <Draggable>
+          //   <NotePaper>
+          //     <IconButton onClick={this.toggleDetail}>
+          //       <MoreHoriz />
+          //     </IconButton>
+          //     <p>{this.state.content}</p>
+          //   </NotePaper>
+          // </Draggable>
           <Draggable>
-            <div className='Note'>
-              <button onClick={this.toggleDetail}>detail</button>
-              <p>{this.state.content}</p>
-            </div>
+            <NoteObj content={this.state.content}/>
           </Draggable>
         }
       </>

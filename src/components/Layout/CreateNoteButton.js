@@ -1,55 +1,28 @@
 import React from "react";
-import '../../style/App.css'
-import {IconButton} from "@material-ui/core";
-import {AddCircle} from "@material-ui/icons";
+import {IconButton, makeStyles} from "@material-ui/core";
+import {Add} from "@material-ui/icons";
 
-export default class CreateNoteButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      open: false,
-      content: ''
-    }
-
-    this.toggleOpen = this.toggleOpen.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+const useStyles = makeStyles({
+  root: {
+    position: "fixed",
+    zIndex: 1,
+  },
+  label: {
+    borderRadius: 60,
+    backgroundColor: "#eee",
+    boxShadow: "0 0 3px #333",
+    color: "primary",
+    height: 40,
+    width: 40,
   }
+})
 
-  toggleOpen() {
-    this.setState({open: !this.state.open});
-  }
+export default function CreateNoteButton(props) {
+  const classes = useStyles();
 
-  handleChange(e) {
-    this.setState({content: e.target.value});
-  }
-
-  onSubmit() {
-    console.log('submit!');
-    this.toggleOpen();
-    this.props.createSingleNote(this.state.content);
-  }
-
-  render() {
-    return (
-      <>
-        {this.state.open ?
-          <div className='Dim'>
-            <form onSubmit={this.onSubmit}>
-              <label>
-                Content:
-                <input type='text' value={this.state.content} onChange={this.handleChange}/>
-              </label>
-              <input type='submit' value='create'/>
-            </form>
-          </div>
-          :
-          <IconButton size='medium' aria-label='add Note' color="primary" onClick={this.toggleOpen}>
-            <AddCircle style={{ fontSize: 40 }} />
-          </IconButton>
-        }
-      </>
-    );
-  }
+  return (
+    <IconButton className={classes.root} aria-label='add Note' onClick={props.toggleOpen}>
+      <Add  className={classes.label} style={{fontSize: 30}}/>
+    </IconButton>
+  );
 }

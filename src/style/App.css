@@ -1,22 +1,38 @@
 html, body, #root, .App {
-    background-color: rgb(40, 40, 40);
-    overflow: hidden;
+    background-color: #555;
     height: 100%;
     width: 100%;
     padding: 0;
     margin: 0;
-}
-
-.topBar {
-    width: 100%;
-    background-color: darkgray;
+    overflow: auto;
 }
 
 #Workspace {
-    background-color: rgb(60,60,70);
+    background-color: #555;
+    height:2000px;
+    width:2000px;
+    position: absolute;
+    top: 50px;
+    left: 150px;
+}
+
+#NoteWrapper {
     height:100%;
     width:100%;
-    overflow:hidden;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.overlay {
+    position: fixed;
+    z-index: 1;
+}
+
+.overlayButton {
+    border-radius: 60px;
+    background-color: #eee;
+    box-shadow: 0 0 3px #999;
 }
 
 .Note {
@@ -28,15 +44,8 @@ html, body, #root, .App {
     font-size: 1rem;
     margin: 1rem;
     overflow: hidden;
-    position: fixed;
-}
-
-.Dim {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.25);
-    z-index: 1;
+    position: static;
+    z-index: 0;
 }
 
 .DetailNote {
@@ -51,6 +60,8 @@ html, body, #root, .App {
     position: absolute;
 }
 
-
+.test {
+    display: flex;
+}
 
 

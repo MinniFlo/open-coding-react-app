@@ -1,6 +1,7 @@
 import React from "react";
 import '../style/App.css';
-import {Workspace, DataImporter, Note, CreateNoteButton, Header} from "./Layout"
+import {Workspace, Note, Header} from "./Layout"
+import Sidebar from "./Layout/SideBar";
 
 class App extends React.Component{
 
@@ -44,11 +45,14 @@ class App extends React.Component{
   render() {
     return (
       <div className="App">
-        <Header fileName = {this.state.fileName} zoom = {this.state.zoom}/>
+        <div className="test">
+          <Header fileName = {this.state.fileName} zoom = {this.state.zoom}/>
+          <Sidebar />
+        </div>
+
+        {/*<CreateNoteButton createSingleNote={this.createSingleNote}/>*/}
         {/*<DataImporter handleData={this.handleData}/>*/}
-        <Workspace notes={this.state.notes}>
-          <CreateNoteButton createSingleNote={this.createSingleNote}/>
-        </Workspace>
+        <Workspace notes={this.state.notes} createSingleNote={this.createSingleNote}/>
       </div>
     );
   }

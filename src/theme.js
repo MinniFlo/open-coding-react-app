@@ -5,10 +5,14 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#eeeeee',
+      main: '#558855',
+      light: '#eee'
     },
     secondary: {
-      main: '#212121',
+      main: '#666',
+    },
+    text: {
+      main: '#333',
     },
     error: {
       main: red.A400,
@@ -17,6 +21,42 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  spacing: 4,
+  props: {
+    MuiPaper: {
+      square: true,
+    },
+    MuiAppBar: {
+      position: "fixed",
+    },
+    MuiDrawer: {
+      anchor: "left",
+      variant: "permanent",
+    }
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: 0,
+        textTransform: "capitalize",
+      },
+      text: {
+        fontSize: 18,
+      }
+    },
+    MuiIconButton: {
+      root: {
+        float: "right"
+      }
+    },
+    MuiAppBar: {
+      root: {
+        zIndex: 1201,
+        height: 50,
+      },
+    }
+
+  }
 });
 
 export default theme;

@@ -4,8 +4,10 @@ import DropDownMenu from "./DropDownMenu";
 
 
 export default function Header(props) {
+
+
   return (
-    <AppBar position="static">
+    <AppBar>
       <Toolbar variant="dense">
         <Grid
           container

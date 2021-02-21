@@ -1,11 +1,16 @@
 import React from "react";
 import '../../style/App.css'
+import NoteCreator from "../NoteCreator";
 
 export default function Workspace(props) {
+
+
   return (
     <div id='Workspace'>
-      {props.children}
-      {props.notes}
+      <NoteCreator createSingleNote={props.createSingleNote}/>
+      <div id='NoteWrapper'>
+        {props.notes}
+      </div>
     </div>
   );
 }
