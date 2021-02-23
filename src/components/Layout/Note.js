@@ -1,8 +1,8 @@
 import React from "react";
 import '../../style/App.css'
-import Draggable from 'react-draggable'
 import DetailNote from "./DetailNote";
-import NoteObj from "./NoteObj";
+import Draggable from 'react-draggable'
+
 
 
 export default class Note extends React.Component {
@@ -26,16 +26,10 @@ export default class Note extends React.Component {
     return (
       <>
         {this.state.detail ? <DetailNote content={this.state.content} toggleDetail={this.toggleDetail}/> :
-          // <Draggable>
-          //   <NotePaper>
-          //     <IconButton onClick={this.toggleDetail}>
-          //       <MoreHoriz />
-          //     </IconButton>
-          //     <p>{this.state.content}</p>
-          //   </NotePaper>
-          // </Draggable>
           <Draggable>
-            <NoteObj content={this.state.content}/>
+            <div>
+              <p>{this.state.content}</p>
+            </div>
           </Draggable>
         }
       </>

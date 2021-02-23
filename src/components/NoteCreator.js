@@ -1,10 +1,5 @@
 import React from "react";
 import '../style/App.css'
-import CreateNoteButton from "./Layout/CreateNoteButton"
-import StyledTextField from "./Layout/StyledTextField";
-import StyledButton from "./Layout/StyledButton";
-import StyledPaper from "./Layout/StyledPaper"
-
 
 export default class NoteCreator extends React.Component {
   constructor(props) {
@@ -39,21 +34,17 @@ export default class NoteCreator extends React.Component {
     return (
       <>
         {this.state.open ?
-          <StyledPaper>
+          <div>
             <form onSubmit={this.onSubmit}>
-              <StyledTextField
-                label="Content"
-                rows={5}
-                value={this.state.content}
-                onChange={this.handleChange}
-              />
-              <StyledButton type='submit' value='submit'>
-              </StyledButton>
+              <input type="text"/>
+              <button type='submit'>
+                submit
+              </button>
             </form>
-          </StyledPaper>
+          </div>
 
           :
-          <CreateNoteButton toggleOpen={this.toggleOpen}/>
+          <button onClick={this.toggleOpen}>add</button>
         }
       </>
     );

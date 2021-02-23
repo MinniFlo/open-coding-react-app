@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
 import 'fontsource-roboto';
 import App from './components/App';
-import theme from "./theme";
+import 'materialize-css/dist/css/materialize.min.css'
+
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
+  <React.StrictMode>
     <App/>
-  </ThemeProvider>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
