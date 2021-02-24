@@ -1,6 +1,8 @@
 import React from "react";
 import '../style/App.css';
 import {Workspace, Note} from "./Layout"
+import Header from "./Layout/Header";
+import SideBar from "./Layout/SideBar";
 
 
 class App extends React.Component{
@@ -45,6 +47,8 @@ class App extends React.Component{
   render() {
     return (
       <div className="App">
+        <Header />
+        <SideBar />
         <Workspace notes={this.state.notes} createSingleNote={this.createSingleNote}/>
       </div>
     );

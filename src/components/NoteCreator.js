@@ -1,5 +1,24 @@
 import React from "react";
 import '../style/App.css'
+import AddButton from "./Layout/AddButton";
+import {colors, spacing} from "../style/style";
+
+
+const menuStyle = {
+  margin: spacing["3"],
+  paddingTop: spacing["3"],
+  width: "300px",
+  position: "fixed",
+}
+
+const textFieldStyle = {
+  margin: spacing["2"],
+  color: "#333"
+}
+
+const buttonStyle = {
+  margin: spacing["2"],
+}
 
 export default class NoteCreator extends React.Component {
   constructor(props) {
@@ -34,17 +53,21 @@ export default class NoteCreator extends React.Component {
     return (
       <>
         {this.state.open ?
-          <div>
+          <div className={"card " + colors.background + colors.text} style={menuStyle}>
+            <h6 style={buttonStyle}>Notizzettel erstellen</h6>
             <form onSubmit={this.onSubmit}>
-              <input type="text"/>
-              <button type='submit'>
+              <div className="input-field" style={textFieldStyle}>
+                <textarea id="content" className="materialize-textarea"/>
+                <label htmlFor="content">Content</label>
+              </div>
+              <button className="btn waves-effect waves-light" style={buttonStyle} type='submit'>
                 submit
               </button>
             </form>
           </div>
 
           :
-          <button onClick={this.toggleOpen}>add</button>
+          <AddButton onClick={this.toggleOpen}/>
         }
       </>
     );
