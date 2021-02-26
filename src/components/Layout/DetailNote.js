@@ -11,7 +11,7 @@ export default class DetailNote extends React.Component{
     super(props);
 
     this.state = {
-      content: props.content
+
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -25,7 +25,9 @@ export default class DetailNote extends React.Component{
     return (
       <div className={"card " + colors.background + colors.text} style={backgroundStyle}>
         <span style={labelStyle}>Content:</span>
-        <p style={textStyle}>{this.state.content}</p>
+        <p style={textStyle}>{this.props.content}</p>
+        <span style={labelStyle}>Comment:</span>
+        <p style={textStyle}>{this.props.comment}</p>
         <button className="btn waves-effect waves-light" onClick={this.handleClick} style={labelStyle}>close</button>
       </div>
     );

@@ -2,50 +2,12 @@ import React from "react";
 import '../../style/App.css'
 import DetailNote from "./DetailNote";
 import Draggable from 'react-draggable'
-import {colors, spacing, uiSpacing} from "../../style/style";
+import {colors} from "../../style/style";
 import {MoreHoriz} from "@material-ui/icons";
+import {noteStyle} from "../../style/style";
 
-const noteStyle = {
-  minHeight: uiSpacing.noteMinHeight,
-  maxHeight: uiSpacing.noteMaxHeight,
-  width: uiSpacing.noteWidth,
-  margin: 0,
-  zIndex: 0,
-  overflow: "hidden",
-  cursor: "pointer",
-}
 
-const contentStyle = {
-  margin: 0,
-  fontSize: 12,
-  padding: spacing["2"],
-  paddingTop: spacing["4"],
-  lineHeight: "15px",
-}
-
-const iconStyle = {
-  margin: spacing["1"],
-}
-
-const tagUlStyle = {
-  margin: 0,
-  marginLeft: spacing["2"],
-}
-
-const tagLiStyle = {
-  display: "inline-block",
-  listStyleType: "none",
-  marginRight: spacing["2"],
-}
-
-const tagStyle = {
-  height: spacing["4"],
-  width: spacing["4"],
-  padding: 0,
-  margin: 0,
-  borderRadius: 1,
-  boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
-}
+const {elementStyle, backgroundStyle, contentStyle, iconStyle, tagLiStyle, tagStyle, tagUlStyle} = noteStyle;
 
 export default class Note extends React.Component {
 
@@ -53,7 +15,6 @@ export default class Note extends React.Component {
     super(props);
 
     this.state = {
-      content: props.content,
       detail: false
     }
 
@@ -67,16 +28,16 @@ export default class Note extends React.Component {
   render() {
     return (
       <>
-        {this.state.detail ? <DetailNote content={this.state.content} toggleDetail={this.toggleDetail}/> :
+        {this.state.detail ? <DetailNote content={this.props.content} comment={this.props.comment} toggleDetail={this.toggleDetail}/> :
           <Draggable>
-            <div style={{width:uiSpacing.noteWidth}}>
-              <div className={"card" + colors.background + colors.text} style={noteStyle}>
+            <div style={elementStyle}>
+              <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
                 <MoreHoriz
                   className="right"
                   style={iconStyle}
                   onClick={this.toggleDetail}
                 />
-                <p style={contentStyle}>{this.state.content}</p>
+                <p style={contentStyle}>{this.props.content}</p>
               </div>
               <ul style={tagUlStyle}>
                 <li style={tagLiStyle}><div className="green lighten-2" style={tagStyle}/></li>

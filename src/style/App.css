@@ -7,36 +7,3 @@ html, body, #root, .App {
     background-color: #555;
 }
 
-#Workspace {
-    height:2000px;
-    width:2000px;
-    position: absolute;
-    top: 50px;
-    left: 150px;
-}
-
-#NoteWrapper {
-    height:100%;
-    width:100%;
-    position: absolute;
-    top: 65px;
-}
-
-
-.DetailNote {
-    background-color: lightgray;
-    color: black;
-    text-align: center;
-    height: 10rem;
-    width: 15rem;
-    font-size: 1rem;
-    margin: 1rem;
-    overflow: auto;
-    position: absolute;
-}
-
-.test {
-    display: flex;
-}
-
-

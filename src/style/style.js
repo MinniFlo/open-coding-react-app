@@ -21,7 +21,7 @@ export const {uiSpacing, colors, spacing} = {
   }
 }
 
-export const {headerStyle, sideBarStyle, addButtonStyle, addMenuStyle, detailStyle} = {
+export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenuStyle, noteStyle, detailStyle} = {
   headerStyle: {
     lineHeight: uiSpacing.topBarHeight,
     height: uiSpacing.topBarHeight,
@@ -29,12 +29,36 @@ export const {headerStyle, sideBarStyle, addButtonStyle, addMenuStyle, detailSty
   },
 
   sideBarStyle: {
-    width: uiSpacing.sideBarWidth,
-    paddingTop: uiSpacing.topBarHeight,
-    height: "100%",
-    position: "fixed",
-    top: 0,
-    zIndex: 2,
+    backgroundStyle: {
+      width: uiSpacing.sideBarWidth,
+      paddingTop: uiSpacing.topBarHeight,
+      height: "100%",
+      position: "fixed",
+      top: 0,
+      zIndex: 2,
+    },
+
+    liStyle: {
+      marginLeft: spacing["5"],
+      marginBottom: spacing["2"],
+    },
+
+  },
+
+  workSpaceStyle: {
+    canvasStyle: {
+      height: "2000px",
+      width: "2000px",
+      position: "absolute",
+      top: uiSpacing.topBarHeight,
+      left: uiSpacing.sideBarWidth,
+    },
+    noteWrapperStyle: {
+      height: "100%",
+      width: "100%",
+      position: "absolute",
+      top: "65px",
+    }
   },
 
   addButtonStyle: {
@@ -54,7 +78,6 @@ export const {headerStyle, sideBarStyle, addButtonStyle, addMenuStyle, detailSty
   addMenuStyle: {
     backgroundStyle: {
       margin: spacing["3"],
-      paddingTop: spacing["3"],
       width: "300px",
       position: "fixed",
       zIndex: 2,
@@ -66,10 +89,56 @@ export const {headerStyle, sideBarStyle, addButtonStyle, addMenuStyle, detailSty
     elementStyle: {
       margin: spacing["2"]
     },
+    tabStyle: {
+      borderRadius: 0,
+    },
+    activeTabStyle: {
+      borderRadius: 0,
+      borderBottom: "2px solid #26a69a",
+    },
   },
 
   noteStyle: {
-
+    elementStyle: {
+      width: uiSpacing.noteWidth,
+      margin: spacing["2"],
+    },
+    backgroundStyle: {
+      minHeight: uiSpacing.noteMinHeight,
+      maxHeight: uiSpacing.noteMaxHeight,
+      width: uiSpacing.noteWidth,
+      margin: 0,
+      zIndex: 0,
+      overflow: "hidden",
+      cursor: "pointer",
+    },
+    contentStyle: {
+      margin: 0,
+      fontSize: 12,
+      padding: spacing["2"],
+      paddingTop: spacing["4"],
+      lineHeight: "15px",
+    },
+    iconStyle: {
+      margin: spacing["1"],
+    },
+    tagUlStyle: {
+      margin: 0,
+      marginLeft: spacing["2"],
+    },
+    tagLiStyle: {
+      display: "inline-block",
+      listStyleType: "none",
+      marginRight: spacing["2"],
+    },
+    tagStyle: {
+      height: spacing["4"],
+      width: spacing["4"],
+      padding: 0,
+      margin: 0,
+      borderRadius: 1,
+      boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
+    },
   },
 
   detailStyle: {
