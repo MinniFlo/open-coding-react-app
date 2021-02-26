@@ -1,24 +1,10 @@
 import React from "react";
 import '../style/App.css'
 import AddButton from "./Layout/AddButton";
-import {colors, spacing} from "../style/style";
+import {colors, addMenuStyle} from "../style/style";
 
 
-const menuStyle = {
-  margin: spacing["3"],
-  paddingTop: spacing["3"],
-  width: "300px",
-  position: "fixed",
-}
-
-const textFieldStyle = {
-  margin: spacing["2"],
-  color: "#333"
-}
-
-const buttonStyle = {
-  margin: spacing["2"],
-}
+const {backgroundStyle, textFieldStyle, elementStyle} = addMenuStyle
 
 export default class NoteCreator extends React.Component {
   constructor(props) {
@@ -53,14 +39,14 @@ export default class NoteCreator extends React.Component {
     return (
       <>
         {this.state.open ?
-          <div className={"card " + colors.background + colors.text} style={menuStyle}>
-            <h6 style={buttonStyle}>Notizzettel erstellen</h6>
+          <div className={"card " + colors.background + colors.text} style={backgroundStyle}>
+            <h6 style={elementStyle}>Notizzettel erstellen</h6>
             <form onSubmit={this.onSubmit}>
               <div className="input-field" style={textFieldStyle}>
-                <textarea id="content" className="materialize-textarea"/>
+                <textarea id="content" onChange={this.handleChange} className="materialize-textarea"/>
                 <label htmlFor="content">Content</label>
               </div>
-              <button className="btn waves-effect waves-light" style={buttonStyle} type='submit'>
+              <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
                 submit
               </button>
             </form>

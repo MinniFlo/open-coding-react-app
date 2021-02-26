@@ -5,7 +5,7 @@ import {uiSpacing, colors} from "../../style/style";
 const headerStyle = {
   lineHeight: uiSpacing.topBarHeight,
   height: uiSpacing.topBarHeight,
-
+  zIndex: 3,
 }
 
 export default class Header extends React.Component {

@@ -1,5 +1,9 @@
 import React from "react";
 import '../../style/App.css'
+import {colors, detailStyle} from "../../style/style";
+
+
+const {backgroundStyle, textStyle, labelStyle} = detailStyle
 
 export default class DetailNote extends React.Component{
 
@@ -19,9 +23,10 @@ export default class DetailNote extends React.Component{
 
   render() {
     return (
-      <div className='DetailNote'>
-        <p>{this.state.content}</p>
-        <button onClick={this.handleClick}>close</button>
+      <div className={"card " + colors.background + colors.text} style={backgroundStyle}>
+        <span style={labelStyle}>Content:</span>
+        <p style={textStyle}>{this.state.content}</p>
+        <button className="btn waves-effect waves-light" onClick={this.handleClick} style={labelStyle}>close</button>
       </div>
     );
   }

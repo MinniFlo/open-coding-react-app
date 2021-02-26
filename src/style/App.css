@@ -18,34 +18,10 @@ html, body, #root, .App {
 #NoteWrapper {
     height:100%;
     width:100%;
-    display: flex;
-    flex-wrap: wrap;
-
+    position: absolute;
+    top: 65px;
 }
 
-.overlay {
-    position: fixed;
-    z-index: 1;
-}
-
-.overlayButton {
-    border-radius: 60px;
-    background-color: #eee;
-    box-shadow: 0 0 3px #999;
-}
-
-.Note {
-    background-color: lightgray;
-    color: black;
-    text-align: center;
-    height: 5rem;
-    width: 10rem;
-    font-size: 1rem;
-    margin: 1rem;
-    overflow: hidden;
-    position: static;
-    z-index: 0;
-}
 
 .DetailNote {
     background-color: lightgray;

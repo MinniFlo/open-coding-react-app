@@ -7,7 +7,7 @@ const sideBarStyle = {
   height: "100%",
   position: "fixed",
   top: 0,
-  zIndex: 1,
+  zIndex: 2,
 }
 
 export default class SideBar extends React.Component {
