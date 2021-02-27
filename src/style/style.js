@@ -2,8 +2,8 @@ export const {uiSpacing, colors, spacing} = {
   uiSpacing: {
     sideBarWidth: "150px",
     topBarHeight: "50px",
-    noteWidth: "170px",
-    noteMinHeight: "80px",
+    noteWidth: "176px",
+    noteMinHeight: "50px",
     noteMaxHeight: "160px",
   },
   colors: {
@@ -36,10 +36,11 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       position: "fixed",
       top: 0,
       zIndex: 2,
+      overflowY: "auto",
     },
 
     liStyle: {
-      marginLeft: spacing["5"],
+      marginLeft: spacing["3"],
       marginBottom: spacing["2"],
     },
 
@@ -82,9 +83,13 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       position: "fixed",
       zIndex: 2,
     },
-    textFieldStyle: {
+    textFormStyle: {
       margin: spacing["2"],
       marginTop: spacing["5"],
+    },
+    textFieldStyle: {
+      maxHeight: "120px",
+      overflow: "auto",
     },
     elementStyle: {
       margin: spacing["2"]
@@ -131,14 +136,14 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       listStyleType: "none",
       marginRight: spacing["2"],
     },
-    tagStyle: {
-      height: spacing["4"],
-      width: spacing["4"],
-      padding: 0,
-      margin: 0,
-      borderRadius: 1,
-      boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
-    },
+    // tagStyle: {
+    //   height: spacing["4"],
+    //   width: spacing["4"],
+    //   padding: 0,
+    //   margin: 0,
+    //   borderRadius: 1,
+    //   boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
+    // },
   },
 
   detailStyle: {

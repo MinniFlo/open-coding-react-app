@@ -5,27 +5,23 @@ import "../../style/App.css"
 
 const {backgroundStyle, liStyle} = sideBarStyle;
 
-export default class SideBar extends React.Component {
+export default function SideBar(props) {
 
-  constructor(props) {
-    super(props);
-
-    this.labels = props.labels.map((labelObj) =>
+  const labels = props.labels.map((labelObj) => {
+    const colorStyle = {padding: "8px", marginRight: "4px", borderRadius: 2, backgroundColor: labelObj.color};
+    return (
       <li className="row valign-wrapper" key={labelObj.name} style={liStyle}>
-        <div className="col s1" style={{backgroundColor: labelObj.color, padding:"8px", marginRight: "4px", borderRadius:2}} />
-        <span className="col s11">{labelObj.name}</span>
+        <div className="col s1" style={colorStyle}/>
+        <span className="col s11 truncate">{labelObj.name}</span>
       </li>
     );
-  }
+  });
 
-  render() {
-    return (
-      <div className={colors.background + colors.text + " z-depth-2"} style={backgroundStyle}>
-        <ul>
-          {this.labels}
-        </ul>
-      </div>
-    );
-  }
-
+  return (
+    <div className={colors.background + colors.text + " z-depth-2"} style={backgroundStyle}>
+      <ul>
+        {labels}
+      </ul>
+    </div>
+  );
 }

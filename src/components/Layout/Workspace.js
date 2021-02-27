@@ -13,7 +13,7 @@ export default function Workspace(props) {
 
   return (
     <div id="Workspace" style={canvasStyle}>
-      <AddMenu newNote={props.newNote} labels={props.labels}/>
+      <AddMenu newNote={props.newNote} newLabel={props.newLabel} labels={props.labels}/>
       <div id="NoteWrapper" style={noteWrapperStyle}>
         {notes}
       </div>

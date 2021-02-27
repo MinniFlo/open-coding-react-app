@@ -68,7 +68,10 @@ export default class AddMenu extends React.Component {
               <NoteAddMenu
                 toggleOpen={this.toggleOpen}
                 newNote={this.props.newNote}/> :
-              <LabelAddMenu/>
+
+              <LabelAddMenu
+                toggleOpen={this.toggleOpen}
+                newLabel={this.props.newLabel}/>
             }
           </div>
           :

@@ -2,12 +2,12 @@ import React from "react";
 import '../../style/App.css'
 import DetailNote from "./DetailNote";
 import Draggable from 'react-draggable'
-import {colors} from "../../style/style";
+import {colors, spacing} from "../../style/style";
 import {MoreHoriz} from "@material-ui/icons";
 import {noteStyle} from "../../style/style";
 
 
-const {elementStyle, backgroundStyle, contentStyle, iconStyle, tagLiStyle, tagStyle, tagUlStyle} = noteStyle;
+const {elementStyle, backgroundStyle, contentStyle, iconStyle, tagLiStyle, tagUlStyle} = noteStyle;
 
 export default class Note extends React.Component {
 
@@ -17,6 +17,22 @@ export default class Note extends React.Component {
     this.state = {
       detail: false
     }
+
+    this.labels = this.labels = props.labels.map((labelObj) => {
+      const tagStyle = {
+        height: spacing["4"],
+        width: spacing["4"],
+        padding: 0,
+        margin: 0,
+        borderRadius: 1,
+        boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
+        backgroundColor: labelObj.color};
+      return (
+        <li key={labelObj.name} style={tagLiStyle}>
+          <div style={tagStyle}/>
+        </li>
+      );
+    });
 
     this.toggleDetail = this.toggleDetail.bind(this)
   }
@@ -40,9 +56,7 @@ export default class Note extends React.Component {
                 <p style={contentStyle}>{this.props.content}</p>
               </div>
               <ul style={tagUlStyle}>
-                <li style={tagLiStyle}><div className="green lighten-2" style={tagStyle}/></li>
-                <li style={tagLiStyle}><div className="red lighten-2" style={tagStyle}/></li>
-                <li style={tagLiStyle}><div className="blue lighten-2" style={tagStyle}/></li>
+                {this.labels}
               </ul>
             </div>
           </Draggable>

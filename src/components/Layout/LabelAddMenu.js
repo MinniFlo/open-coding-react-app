@@ -1,7 +1,7 @@
 import React from "react";
 import {addMenuStyle} from "../../style/style";
 
-const {textFieldStyle, elementStyle} = addMenuStyle
+const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
 export default class LabelAddMenu extends React.Component {
   constructor(props) {
@@ -23,15 +23,15 @@ export default class LabelAddMenu extends React.Component {
 
   onSubmit() {
     this.toggleOpen();
-    this.props.createSingleNote(this.state.content);
+    this.props.newLabel(this.state.name, "#a55");
   }
 
   render() {
     return (
       <div id="label col s12">
         <form onSubmit={this.onSubmit}>
-          <div className="input-field" style={textFieldStyle}>
-            <textarea id="name" onChange={this.handleChange} className="materialize-textarea"/>
+          <div className="input-field" style={textFormStyle}>
+            <textarea id="name" onChange={this.handleChange} className="materialize-textarea" style={textFieldStyle}/>
             <label htmlFor="name">Name</label>
           </div>
           <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
