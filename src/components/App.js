@@ -44,15 +44,12 @@ class App extends React.Component{
   // creates a single new Note
   newNote(content, labels, comment, x=0, y=0) {
     const noteData = {content: content, labels: this.state.labels, comment: comment, x: x, y: y};
-    const noteList = this.state.notes.concat(noteData);
-    this.setState({notes: noteList});
+    this.setState({notes: [...this.state.notes, noteData]});
   }
 
   newLabel(name, color) {
     const labelData = {name: name, color: color};
-    const labelList = this.state.labels.concat(labelData)
-    this.setState({labels: labelList});
-    console.log(this.state.labels);
+    this.setState({labels: [...this.state.labels, labelData]});
   }
 
   render() {

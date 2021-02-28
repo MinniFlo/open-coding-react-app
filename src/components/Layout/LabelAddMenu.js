@@ -1,44 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import {addMenuStyle} from "../../style/style";
 
 const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
-export default class LabelAddMenu extends React.Component {
-  constructor(props) {
-    super(props);
+export default function LabelAddMenu({toggleOpen, newLabel}) {
 
-    this.state = {
-      open: false,
-      name: '',
-    }
+  const [name, setName] = useState('');
+  const [color, setColor] = useState('');
 
-    this.toggleOpen = props.toggleOpen
-    this.handleChange = this.handleChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  const handleNameChange = e => setName(e.target.value);
+  const handleColorChange = e => setColor(e.target.value);
 
-  handleChange(e) {
-    this.setState({name: e.target.value});
-  }
+  const handleSubmit = () => {
+    newLabel(name, color);
+    setName('');
+    setColor('');
+    toggleOpen();
+  };
 
-  onSubmit() {
-    this.toggleOpen();
-    this.props.newLabel(this.state.name, "#a55");
-  }
-
-  render() {
-    return (
-      <div id="label col s12">
-        <form onSubmit={this.onSubmit}>
-          <div className="input-field" style={textFormStyle}>
-            <textarea id="name" onChange={this.handleChange} className="materialize-textarea" style={textFieldStyle}/>
-            <label htmlFor="name">Name</label>
-          </div>
-          <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
-            submit
-          </button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div id="label col s12">
+      <form onSubmit={handleSubmit}>
+        <div className="input-field" style={textFormStyle}>
+          <textarea id="name" onChange={handleNameChange} className="materialize-textarea" style={textFieldStyle}/>
+          <label htmlFor="name">Name</label>
+        </div>
+        <div className="input-field" style={textFormStyle}>
+          <textarea id="color" onChange={handleColorChange} className="materialize-textarea" style={textFieldStyle}/>
+          <label htmlFor="color">Color</label>
+        </div>
+        <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
+          submit
+        </button>
+      </form>
+    </div>
+  );
 }

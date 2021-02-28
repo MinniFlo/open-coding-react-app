@@ -1,71 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 import {addMenuStyle} from "../../style/style";
 
 const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
-export default class NoteAddMenu extends React.Component {
-  constructor(props) {
-    super(props);
+export default function NoteAddMenu({toggleOpen, newNote}) {
 
-    this.state = {
-      content: '',
-      labels: [],
-      comment: '',
-    }
+  const [content, setContent] = useState('');
+  const [labels, setLabels] = useState([]);
+  const [comment, setComment] = useState('');
 
-    this.toggleOpen = props.toggleOpen;
-    this.handleContentChange = this.handleContentChange.bind(this);
-    this.handleCommentChange = this.handleCommentChange.bind(this);
-    this.handleLabelChange = this.handleLabelChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  const handleContentChange = e => setContent(e.target.value);
+  const handleCommentChange = e => setComment(e.target.value);
+  const handleLabelChange = e => setLabels([ ...labels, e.target.value]);
 
-  handleContentChange(e) {
-    this.setState({content: e.target.value});
-  }
+  const handleSubmit = () => {
+    newNote(content, labels, comment);
+    setContent('');
+    setComment('');
+    setLabels([]);
+    toggleOpen();
+  };
 
-  handleCommentChange(e) {
-    this.setState({comment: e.target.value})
-  }
 
-  handleLabelChange(e) {
-    console.log(e.target);
-  }
-
-  onSubmit() {
-    this.toggleOpen();
-    this.props.newNote(this.state.content,this.state.labels ,this.state.comment);
-  }
-
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <div className="input-field" style={textFormStyle}>
-            <textarea id="content" onChange={this.handleContentChange} className="materialize-textarea" style={textFieldStyle}/>
-            <label htmlFor="content">Content</label>
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="input-field" style={textFormStyle}>
+          <textarea id="content" onChange={handleContentChange} className="materialize-textarea" style={textFieldStyle}/>
+          <label htmlFor="content">Content</label>
+        </div>
+        <div>
+          <div className="row  truncate" onChange={handleLabelChange}>
+            <label className="col s6">
+              <input id="le name" type="checkbox" className="filled-in"/>
+              <span>le name</span>
+            </label>
+            <label className="col s6 grey-text text-darken-4">
+              <input id="se veri long name" type="checkbox" className="filled-in"/>
+              <span>wefwefwef</span>
+            </label>
           </div>
-          <div>
-            <div className="row  truncate" onChange={this.handleLabelChange}>
-              <label className="col s6">
-                <input id="le name" type="checkbox" className="filled-in"/>
-                <span>le name</span>
-              </label>
-              <label className="col s6 grey-text text-darken-4">
-                <input id="se veri long name" type="checkbox" className="filled-in"/>
-                <span>wefwefwef</span>
-              </label>
-            </div>
-          </div>
-          <div className="input-field" style={textFormStyle}>
-            <textarea id="comment" onChange={this.handleCommentChange} className="materialize-textarea" style={textFieldStyle}/>
-            <label htmlFor="comment">Comment</label>
-          </div>
-          <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
-            submit
-          </button>
-        </form>
-      </div>
-      );
-  }
+        </div>
+        <div className="input-field" style={textFormStyle}>
+          <textarea id="comment" onChange={handleCommentChange} className="materialize-textarea" style={textFieldStyle}/>
+          <label htmlFor="comment">Comment</label>
+        </div>
+        <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
+          submit
+        </button>
+      </form>
+    </div>
+  );
 }
