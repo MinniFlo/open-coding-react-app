@@ -1,5 +1,9 @@
 import React, {useState} from "react";
-import {addMenuStyle} from "../../style/style";
+import {addMenuStyle} from "../style/style";
+import {useDispatch} from "react-redux";
+import {labelAdded} from "../features/labelsSlice";
+import {nanoid} from "@reduxjs/toolkit";
+
 
 const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
@@ -8,11 +12,20 @@ export default function LabelAddMenu({toggleOpen, newLabel}) {
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleNameChange = e => setName(e.target.value);
   const handleColorChange = e => setColor(e.target.value);
+  
 
   const handleSubmit = () => {
-    newLabel(name, color);
+    dispatch(labelAdded(
+      {
+        id: nanoid(),
+        name: name,
+        color: color,
+      }
+    ))
     setName('');
     setColor('');
     toggleOpen();

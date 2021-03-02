@@ -1,6 +1,6 @@
 import React from "react";
-import '../../style/App.css'
-import {colors, detailStyle} from "../../style/style";
+import '../style/App.css'
+import {colors, detailStyle} from "../style/style";
 
 
 const {backgroundStyle, textStyle, labelStyle} = detailStyle

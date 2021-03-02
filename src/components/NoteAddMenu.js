@@ -1,5 +1,8 @@
 import React, {useState} from "react";
-import {addMenuStyle} from "../../style/style";
+import {addMenuStyle} from "../style/style";
+import {useDispatch} from "react-redux";
+import {nanoid} from "@reduxjs/toolkit";
+import {noteAdded} from "../features/notesSlice";
 
 const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
@@ -9,12 +12,22 @@ export default function NoteAddMenu({toggleOpen, newNote}) {
   const [labels, setLabels] = useState([]);
   const [comment, setComment] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleContentChange = e => setContent(e.target.value);
   const handleCommentChange = e => setComment(e.target.value);
   const handleLabelChange = e => setLabels([ ...labels, e.target.value]);
 
   const handleSubmit = () => {
-    newNote(content, labels, comment);
+    dispatch(noteAdded(
+      {
+        id: nanoid(),
+        content: content,
+        labels: labels,
+        comment: comment,
+      }
+    ))
+
     setContent('');
     setComment('');
     setLabels([]);

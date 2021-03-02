@@ -1,5 +1,5 @@
 import React from "react";
-import {colors, spacing} from "../../style/style";
+import {colors, spacing} from "../style/style";
 import {Add} from "@material-ui/icons";
 
 

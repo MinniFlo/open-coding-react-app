@@ -1,21 +1,25 @@
 import React, {useState} from "react";
-import '../../style/App.css'
+import '../style/App.css'
 import DetailNote from "./DetailNote";
 import Draggable from 'react-draggable'
-import {colors, spacing} from "../../style/style";
+import {colors, spacing} from "../style/style";
 import {MoreHoriz} from "@material-ui/icons";
-import {noteStyle} from "../../style/style";
+import {noteStyle} from "../style/style";
+import {useSelector} from "react-redux";
+import {selectNoteById} from "../features/notesSlice";
 
 
 const {elementStyle, backgroundStyle, contentStyle, iconStyle, tagLiStyle, tagUlStyle} = noteStyle;
 
-export default function Note(props) {
+export default function Note({id}) {
 
   const [detail, setDetail] = useState(false);
 
+  const note = useSelector(state => selectNoteById(state, id));
+
   const toggleDetail = () => setDetail(!detail);
 
-  const labels  = props.labels.map(labelObj => {
+  const labels  = note.labels.map(labelObj => {
     const tagStyle = {
       height: spacing["4"],
       width: spacing["4"],
@@ -34,7 +38,7 @@ export default function Note(props) {
 
   return (
     <>
-      {detail ? <DetailNote content={props.content} comment={props.comment} toggleDetail={toggleDetail}/> :
+      {detail ? <DetailNote content={note.content} comment={note.comment} toggleDetail={toggleDetail}/> :
         <Draggable>
           <div style={elementStyle}>
             <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
@@ -43,7 +47,7 @@ export default function Note(props) {
                 style={iconStyle}
                 onClick={toggleDetail}
               />
-              <p style={contentStyle}>{props.content}</p>
+              <p style={contentStyle}>{note.content}</p>
             </div>
             <ul style={tagUlStyle}>
               {labels}

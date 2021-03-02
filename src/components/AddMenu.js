@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import AddButton from "./Layout/AddButton";
-import NoteAddMenu from "./Layout/NoteAddMenu";
-import LabelAddMenu from "./Layout/LabelAddMenu";
+import AddButton from "./AddButton";
+import NoteAddMenu from "./NoteAddMenu";
+import LabelAddMenu from "./LabelAddMenu";
 import {colors, addMenuStyle} from "../style/style";
 
 
@@ -36,13 +36,9 @@ export default function AddMenu(props) {
             >Label</button>
           </div>
           {noteTab ?
-            <NoteAddMenu
-              toggleOpen={toggleOpen}
-              newNote={props.newNote}/> :
+            <NoteAddMenu toggleOpen={toggleOpen}/> :
 
-            <LabelAddMenu
-              toggleOpen={toggleOpen}
-              newLabel={props.newLabel}/>
+            <LabelAddMenu toggleOpen={toggleOpen}/>
           }
         </div>
         :

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import M from "materialize-css";
-import {uiSpacing, colors} from "../../style/style";
+import {uiSpacing, colors} from "../style/style";
 
 const headerStyle = {
   lineHeight: uiSpacing.topBarHeight,
