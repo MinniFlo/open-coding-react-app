@@ -79,7 +79,7 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
   addMenuStyle: {
     backgroundStyle: {
       margin: spacing["3"],
-      width: "300px",
+      width: "400px",
       position: "fixed",
       zIndex: 2,
     },

@@ -31,7 +31,7 @@ export const {
 export const selectLabelIds = createSelector(
   selectLabels,
   labels => labels.map(labels => labels.id)
-)
+);
 
 
 

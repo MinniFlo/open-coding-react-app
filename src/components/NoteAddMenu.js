@@ -3,20 +3,33 @@ import {addMenuStyle} from "../style/style";
 import {useDispatch} from "react-redux";
 import {nanoid} from "@reduxjs/toolkit";
 import {noteAdded} from "../features/notesSlice";
+import {useSelector} from "react-redux";
+import {selectLabelIds} from "../features/labelsSlice";
+import AddLabelField from "./AddLabelField";
 
 const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
-export default function NoteAddMenu({toggleOpen, newNote}) {
+export default function NoteAddMenu({toggleOpen}) {
 
   const [content, setContent] = useState('');
   const [labels, setLabels] = useState([]);
   const [comment, setComment] = useState('');
 
   const dispatch = useDispatch();
+  const labelIds = useSelector(selectLabelIds);
 
   const handleContentChange = e => setContent(e.target.value);
   const handleCommentChange = e => setComment(e.target.value);
-  const handleLabelChange = e => setLabels([ ...labels, e.target.value]);
+  const handleLabelSelect = (label, add) => {
+    if (add === true) {
+      setLabels([ ...labels, label]);
+    } else {
+      const labelId = label.id
+      const newLabels = labels.filter(label => label.id !== labelId);
+      setLabels(newLabels);
+    }
+  }
+
 
   const handleSubmit = () => {
     dispatch(noteAdded(
@@ -34,6 +47,10 @@ export default function NoteAddMenu({toggleOpen, newNote}) {
     toggleOpen();
   };
 
+  const selectLabelFields = labelIds.map(id =>
+    <AddLabelField key={id} id={id} handleLabelSelect={handleLabelSelect}/>
+  )
+
 
   return (
     <div>
@@ -43,15 +60,8 @@ export default function NoteAddMenu({toggleOpen, newNote}) {
           <label htmlFor="content">Content</label>
         </div>
         <div>
-          <div className="row  truncate" onChange={handleLabelChange}>
-            <label className="col s6">
-              <input id="le name" type="checkbox" className="filled-in"/>
-              <span>le name</span>
-            </label>
-            <label className="col s6 grey-text text-darken-4">
-              <input id="se veri long name" type="checkbox" className="filled-in"/>
-              <span>wefwefwef</span>
-            </label>
+          <div style={{display: "grid", gridGap: "8px", padding: "8px", gridTemplateColumns: "120px 120px 120px"}}>
+            {selectLabelFields}
           </div>
         </div>
         <div className="input-field" style={textFormStyle}>

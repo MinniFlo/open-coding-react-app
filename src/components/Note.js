@@ -19,7 +19,7 @@ export default function Note({id}) {
 
   const toggleDetail = () => setDetail(!detail);
 
-  const labels  = note.labels.map(labelObj => {
+  const labels  = note.labels.map(label => {
     const tagStyle = {
       height: spacing["4"],
       width: spacing["4"],
@@ -27,9 +27,9 @@ export default function Note({id}) {
       margin: 0,
       borderRadius: 1,
       boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
-      backgroundColor: labelObj.color};
+      backgroundColor: label.color};
     return (
-      <li key={labelObj.name} style={tagLiStyle}>
+      <li key={label.id} style={tagLiStyle}>
         <div style={tagStyle}/>
       </li>
     );
