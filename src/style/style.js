@@ -8,7 +8,7 @@ export const {uiSpacing, colors, spacing} = {
   },
   colors: {
     background: " grey lighten-4",
-    canvasBackground: " grey darken-3",
+    backgroundDark: "grey darken-2",
     text: " grey-text text-darken-4",
     accent: " teal lighten-1" //#26a69a
   },
@@ -18,6 +18,7 @@ export const {uiSpacing, colors, spacing} = {
     3: "12px",
     4: "16px",
     5: "20px",
+    6: "20px",
   }
 }
 
@@ -85,7 +86,7 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
     },
     textFormStyle: {
       margin: spacing["2"],
-      marginTop: spacing["5"],
+      marginBottom: spacing["4"],
     },
     textFieldStyle: {
       maxHeight: "120px",
@@ -96,11 +97,44 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
     },
     tabStyle: {
       borderRadius: 0,
+      borderBottom: "2px solid #f5f5f5",
+      marginBottom: spacing["3"]
     },
     activeTabStyle: {
       borderRadius: 0,
       borderBottom: "2px solid #26a69a",
+      marginBottom: spacing["3"],
+      backgroundColor: "#e0e0e0",
     },
+    labelContainerStyle: {
+      margin: spacing["2"],
+      marginBottom: spacing["6"],
+    },
+    labelGridStyle: {
+      display: "grid",
+      gridGap: "8px",
+      paddingTop: "8px",
+      gridTemplateColumns: "115px 115px 115px",
+      maxHeight: "130px",
+      overflow: "auto",
+    },
+    labelItemStyle: {
+      borderBottom: "3px solid #f5f5f5",
+      backgroundColor: "#eee",
+      borderRadius:2,
+      cursor: "pointer"
+    },
+    labelItemActiveStyle: {
+      borderBottom: "3px solid #26a69a",
+      backgroundColor: "#e0e0e0",
+      borderRadius: 2,
+      cursor: "pointer"
+    },
+    textStyle: {
+      marginTop: 0,
+      maxHeight: "120px",
+      overflow: "auto",
+    }
   },
 
   noteStyle: {
@@ -136,30 +170,14 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       listStyleType: "none",
       marginRight: spacing["2"],
     },
-    // tagStyle: {
-    //   height: spacing["4"],
-    //   width: spacing["4"],
-    //   padding: 0,
-    //   margin: 0,
-    //   borderRadius: 1,
-    //   boxShadow: "0 1px 2px rgba(20, 20, 20, 0.5)",
-    // },
   },
 
   detailStyle: {
     backgroundStyle: {
       margin: spacing["3"],
       paddingTop: spacing["3"],
-      width: "300px",
+      width: "400px",
       zIndex: 1,
-    },
-    labelStyle: {
-      margin: spacing["2"],
-      fontWeight: "bold",
-    },
-    textStyle: {
-      margin: spacing["4"],
-      marginTop: 0,
     },
   }
 }

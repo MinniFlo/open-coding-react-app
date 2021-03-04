@@ -42,9 +42,14 @@ export default function LabelAddMenu({toggleOpen, newLabel}) {
           <textarea id="color" onChange={handleColorChange} className="materialize-textarea" style={textFieldStyle}/>
           <label htmlFor="color">Color</label>
         </div>
-        <button className="btn waves-effect waves-light" style={elementStyle} type='submit'>
-          submit
-        </button>
+        <div>
+          <button className="btn waves-effect waves-light grey darken-1" style={elementStyle} onClick={toggleOpen}>
+            back
+          </button>
+          <button className="btn waves-effect waves-light right" style={elementStyle} type='submit'>
+            submit
+          </button>
+        </div>
       </form>
     </div>
   );

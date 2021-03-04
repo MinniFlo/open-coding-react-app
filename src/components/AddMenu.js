@@ -36,7 +36,7 @@ export default function AddMenu(props) {
             >Label</button>
           </div>
           {noteTab ?
-            <NoteAddMenu toggleOpen={toggleOpen}/> :
+            <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} edit={false} /> :
 
             <LabelAddMenu toggleOpen={toggleOpen}/>
           }

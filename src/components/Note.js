@@ -38,7 +38,7 @@ export default function Note({id}) {
 
   return (
     <>
-      {detail ? <DetailNote content={note.content} comment={note.comment} toggleDetail={toggleDetail}/> :
+      {detail ? <DetailNote note={note} toggleDetail={toggleDetail}/> :
         <Draggable>
           <div style={elementStyle}>
             <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
