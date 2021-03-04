@@ -55,12 +55,6 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       top: uiSpacing.topBarHeight,
       left: uiSpacing.sideBarWidth,
     },
-    noteWrapperStyle: {
-      height: "100%",
-      width: "100%",
-      position: "absolute",
-      top: "65px",
-    }
   },
 
   addButtonStyle: {
@@ -141,6 +135,7 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
     elementStyle: {
       width: uiSpacing.noteWidth,
       margin: spacing["2"],
+      position: "absolute",
     },
     backgroundStyle: {
       minHeight: uiSpacing.noteMinHeight,
@@ -170,11 +165,15 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       listStyleType: "none",
       marginRight: spacing["2"],
     },
+    position:{
+      x: 0,
+      y: 65,
+    }
   },
 
   detailStyle: {
     backgroundStyle: {
-      margin: spacing["3"],
+      margin: spacing["2"],
       paddingTop: spacing["3"],
       width: "400px",
       zIndex: 1,

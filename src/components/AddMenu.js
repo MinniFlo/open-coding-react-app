@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import AddButton from "./AddButton";
 import NoteAddMenu from "./NoteAddMenu";
 import LabelAddMenu from "./LabelAddMenu";
-import {colors, addMenuStyle} from "../style/style";
+import {colors, addMenuStyle, noteStyle} from "../style/style";
 
 
 const {backgroundStyle, tabStyle, activeTabStyle} = addMenuStyle
+const {position} = noteStyle;
 
 export default function AddMenu(props) {
 
@@ -36,7 +37,7 @@ export default function AddMenu(props) {
             >Label</button>
           </div>
           {noteTab ?
-            <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} edit={false} /> :
+            <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} possition={position} edit={false} /> :
 
             <LabelAddMenu toggleOpen={toggleOpen}/>
           }

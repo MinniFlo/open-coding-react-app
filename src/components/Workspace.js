@@ -4,9 +4,10 @@ import {workSpaceStyle} from "../style/style";
 import Note from "./Note"
 import {selectNoteIds} from "../features/notesSlice";
 import {useSelector} from "react-redux";
+import Draggable from "react-draggable";
 
 
-const {canvasStyle, noteWrapperStyle} = workSpaceStyle;
+const {canvasStyle} = workSpaceStyle;
 
 export default function Workspace(props) {
   const noteIds = useSelector(selectNoteIds)
@@ -18,9 +19,7 @@ export default function Workspace(props) {
   return (
     <div id="Workspace" style={canvasStyle}>
       <AddMenu />
-      <div id="NoteWrapper" style={noteWrapperStyle}>
-        {notes}
-      </div>
+      {notes}
     </div>
   );
 }

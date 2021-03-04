@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {addMenuStyle} from "../style/style";
+import React, {useState} from "react";
+import {addMenuStyle, noteStyle} from "../style/style";
 import {useDispatch} from "react-redux";
 import {nanoid} from "@reduxjs/toolkit";
 import {noteAdded, noteChanged} from "../features/notesSlice";
 import {useSelector} from "react-redux";
 import {selectLabelIds} from "../features/labelsSlice";
 import AddLabelField from "./AddLabelField";
-import M from "materialize-css";
 
-const {textFormStyle, textFieldStyle, elementStyle, labelContainerStyle, labelGridStyle} = addMenuStyle
+const {textFormStyle, textFieldStyle, elementStyle, labelContainerStyle, labelGridStyle} = addMenuStyle;
+
 
 export default function NoteAddMenu(props) {
 
@@ -33,21 +33,25 @@ export default function NoteAddMenu(props) {
 
   const handleSubmit = () => {
     if (props.edit) {
+      // called in DetailedNote
       dispatch(noteChanged(
         {
           id: props.id,
           content: content,
           labels: labels,
           comment: comment,
+          position: props.position,
         }
       ));
     } else {
+      // called in AddMenu
       dispatch(noteAdded(
         {
           id: nanoid(),
           content: content,
           labels: labels,
           comment: comment,
+          position: props.position,
         }
       ));
     }

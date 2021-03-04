@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import '../style/App.css'
 import DetailNote from "./DetailNote";
-import Draggable from 'react-draggable'
+import Draggable from 'react-draggable';
 import {colors, spacing} from "../style/style";
 import {MoreHoriz} from "@material-ui/icons";
 import {noteStyle} from "../style/style";
-import {useSelector} from "react-redux";
-import {selectNoteById} from "../features/notesSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {noteChanged, selectNoteById} from "../features/notesSlice";
 
 
 const {elementStyle, backgroundStyle, contentStyle, iconStyle, tagLiStyle, tagUlStyle} = noteStyle;
@@ -15,9 +15,22 @@ export default function Note({id}) {
 
   const [detail, setDetail] = useState(false);
 
+
   const note = useSelector(state => selectNoteById(state, id));
+  const dispatch = useDispatch();
+
+  const [currentPosition, setCurrentPosition] = useState(note.position);
 
   const toggleDetail = () => setDetail(!detail);
+  const onStop = (e, position) => {
+    setCurrentPosition(position);
+    dispatch(noteChanged(
+      {
+        ...note,
+        [position]: position,
+      }
+    ))
+  }
 
   const labels  = note.labels.map(label => {
     const tagStyle = {
@@ -35,24 +48,25 @@ export default function Note({id}) {
     );
   });
 
+  const nodeRef = React.useRef(null);
 
   return (
     <>
-      {detail ? <DetailNote note={note} toggleDetail={toggleDetail}/> :
-        <Draggable>
-          <div style={elementStyle}>
-            <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
-              <MoreHoriz
-                className="right"
-                style={iconStyle}
-                onClick={toggleDetail}
-              />
-              <p style={contentStyle}>{note.content}</p>
+      {detail ? <DetailNote note={note} position={currentPosition} toggleDetail={toggleDetail}/> :
+        <Draggable bounds="parent" position={currentPosition} onStop={onStop}>
+            <div style={elementStyle}>
+              <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
+                <MoreHoriz
+                  className="right"
+                  style={iconStyle}
+                  onClick={toggleDetail}
+                />
+                <p style={contentStyle}>{note.content}</p>
+              </div>
+              <ul style={tagUlStyle}>
+                {labels}
+              </ul>
             </div>
-            <ul style={tagUlStyle}>
-              {labels}
-            </ul>
-          </div>
         </Draggable>
       }
     </>
