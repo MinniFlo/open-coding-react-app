@@ -4,7 +4,6 @@ import {workSpaceStyle} from "../style/style";
 import Note from "./Note"
 import {selectNoteIds} from "../features/notesSlice";
 import {useSelector} from "react-redux";
-import Draggable from "react-draggable";
 
 
 const {canvasStyle} = workSpaceStyle;

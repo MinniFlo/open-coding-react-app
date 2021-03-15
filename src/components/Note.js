@@ -6,7 +6,7 @@ import {colors, spacing} from "../style/style";
 import {MoreHoriz} from "@material-ui/icons";
 import {noteStyle} from "../style/style";
 import {useDispatch, useSelector} from "react-redux";
-import {noteChanged, selectNoteById} from "../features/notesSlice";
+import {notePositionChanged, selectNoteById} from "../features/notesSlice";
 
 
 const {elementStyle, backgroundStyle, contentStyle, iconStyle, tagLiStyle, tagUlStyle} = noteStyle;
@@ -23,13 +23,12 @@ export default function Note({id}) {
 
   const toggleDetail = () => setDetail(!detail);
   const onStop = (e, position) => {
-    setCurrentPosition(position);
-    dispatch(noteChanged(
-      {
-        ...note,
-        [position]: position,
-      }
-    ))
+    const newPos = {x: position.x, y: position.y};
+    setCurrentPosition(newPos);
+    dispatch(notePositionChanged({
+      noteId: note.id,
+      position: newPos
+    }));
   }
 
   const labels  = note.labels.map(label => {
@@ -53,8 +52,8 @@ export default function Note({id}) {
   return (
     <>
       {detail ? <DetailNote note={note} position={currentPosition} toggleDetail={toggleDetail}/> :
-        <Draggable bounds="parent" position={currentPosition} onStop={onStop}>
-            <div style={elementStyle}>
+        <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef}>
+            <div style={elementStyle} ref={nodeRef}>
               <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
                 <MoreHoriz
                   className="right"

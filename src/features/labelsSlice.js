@@ -1,7 +1,37 @@
 import {createSlice, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 
 const labelAdapter = createEntityAdapter();
-const initialState = labelAdapter.getInitialState();
+// const initialState = labelAdapter.getInitialState();
+const initialState = {
+  ids: ["a", "b", "c", "d", "e"],
+  entities: {
+    a: {
+      id: "a",
+      name: "Getränk",
+      color: "#a55",
+    },
+    b: {
+      id: "b",
+      name: "Essen",
+      color: "#aa5",
+    },
+    c: {
+      id: "c",
+      name: "Müsli",
+      color: "#a5a",
+    },
+    d: {
+      id: "d",
+      name: "Tee",
+      color: "#5a5",
+    },
+    e: {
+      id: "e",
+      name: "Kaffee",
+      color: "#55a",
+    },
+  }
+}
 
 export const labelsSlice = createSlice({
   name: 'labels',

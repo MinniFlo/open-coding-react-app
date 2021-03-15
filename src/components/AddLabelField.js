@@ -7,9 +7,11 @@ import {addMenuStyle, spacing} from "../style/style";
 const {labelItemActiveStyle, labelItemStyle} = addMenuStyle
 
 export default function AddLabelField(props) {
-  const [selected, setSelected] = useState(props.selected);
+  const {id, isSelected, handleLabelSelect} = props;
 
-  const label = useSelector(state => selectLabelById(state, props.id));
+  const [selected, setSelected] = useState(isSelected);
+
+  const label = useSelector(state => selectLabelById(state, id));
   let colorStyle = {
     padding: spacing["2"],
     borderRadius: 2,
@@ -22,7 +24,7 @@ export default function AddLabelField(props) {
   }
 
   useEffect(() => {
-    props.handleLabelSelect(label, selected);
+    handleLabelSelect(label, selected);
   }, [selected]);
 
   return (

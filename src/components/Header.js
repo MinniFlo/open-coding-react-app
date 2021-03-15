@@ -24,6 +24,10 @@ export default function Header(props) {
     M.Dropdown.init(dropdowns, options);
   });
 
+  const listButtonStyle = {
+    textTransform: "none"
+  }
+
 
   return (
     <>
@@ -31,7 +35,7 @@ export default function Header(props) {
         <nav className={colors.background + colors.text} style={headerStyle}>
           <div className="nav-wrapper row">
             <div className="col s4">
-              <a className={"dropdown-trigger" + colors.text} style={{padding:"16px"}} href="#" data-target="dropdown1">File</a>
+              <button className={"btn-flat dropdown-trigger" + colors.text} style={listButtonStyle} data-target="dropdown1">File</button>
             </div>
             <div className="col s4 truncate" style={{textAlign:"center"}}><span>{props.currentfile}</span></div>
             <div className="col s4" style={{textAlign: "right"}}><span>100%</span></div>
@@ -40,12 +44,12 @@ export default function Header(props) {
       </div>
 
       {/*dropdown structure*/}
-      <ul id="dropdown1" className={"dropdown-content" + colors.background} style={{width: "50px"}}>
-        <li><a className={colors.text} href="#">import</a></li>
-        <li><a className={colors.text} href="#">open</a></li>
-        <li><a className={colors.text} href="#">save</a></li>
-        <li><a className={colors.text} href="#">save as</a></li>
-        <li><a className={colors.text} href="#">export</a></li>
+      <ul id="dropdown1" className={"dropdown-content" + colors.background + colors.text} style={{width: "50px"}}>
+        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>import</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>open</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>save</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>save as</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>export</button></li>
       </ul>
     </>
   );

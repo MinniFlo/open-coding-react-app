@@ -7,7 +7,7 @@ import {nanoid} from "@reduxjs/toolkit";
 
 const {textFormStyle, textFieldStyle, elementStyle} = addMenuStyle
 
-export default function LabelAddMenu({toggleOpen, newLabel}) {
+export default function LabelAddMenu({toggleOpen}) {
 
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
@@ -35,7 +35,7 @@ export default function LabelAddMenu({toggleOpen, newLabel}) {
     <div id="label col s12">
       <form onSubmit={handleSubmit}>
         <div className="input-field" style={textFormStyle}>
-          <textarea id="name" onChange={handleNameChange} className="materialize-textarea" style={textFieldStyle}/>
+          <textarea id="name" onChange={handleNameChange}  autoFocus={true} className="materialize-textarea" style={textFieldStyle}/>
           <label htmlFor="name">Name</label>
         </div>
         <div className="input-field" style={textFormStyle}>

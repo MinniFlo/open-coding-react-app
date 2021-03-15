@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {addMenuStyle, noteStyle} from "../style/style";
+import {addMenuStyle} from "../style/style";
 import {useDispatch} from "react-redux";
 import {nanoid} from "@reduxjs/toolkit";
 import {noteAdded, noteChanged} from "../features/notesSlice";
@@ -25,7 +25,7 @@ export default function NoteAddMenu(props) {
     const labelId = label.id
     const newLabels = labels.filter(label => label.id !== labelId);
     if (add === true) {
-      setLabels([ ...newLabels, label]);
+      setLabels([...newLabels, label]);
     } else {
       setLabels(newLabels);
     }
@@ -65,7 +65,7 @@ export default function NoteAddMenu(props) {
   const selectLabelFields = labelIds.map(id => {
     const selected = labels.filter(label => label.id === id).length !== 0;
     return (
-      <AddLabelField key={id} id={id} selected={selected} handleLabelSelect={handleLabelSelect}/>
+      <AddLabelField key={id} id={id} isSelected={selected} handleLabelSelect={handleLabelSelect}/>
     );
   });
 
@@ -73,7 +73,8 @@ export default function NoteAddMenu(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="input-field" style={textFormStyle}>
-          <textarea id="content" value={content} onChange={handleContentChange} className="materialize-textarea" style={textFieldStyle}/>
+          <textarea id="content" value={content} autoFocus={true} onChange={handleContentChange} className="materialize-textarea"
+                    style={textFieldStyle}/>
           <label className="active" htmlFor="content">Content</label>
         </div>
         <div style={labelContainerStyle}>
@@ -83,11 +84,13 @@ export default function NoteAddMenu(props) {
           </div>
         </div>
         <div className="input-field" style={textFormStyle}>
-          <textarea id="comment" value={comment} onChange={handleCommentChange} className="materialize-textarea" style={textFieldStyle}/>
+          <textarea id="comment" value={comment} onChange={handleCommentChange} className="materialize-textarea"
+                    style={textFieldStyle}/>
           <label className="active" htmlFor="comment">Comment</label>
         </div>
         <div>
-          <button className="btn waves-effect waves-light grey darken-1" style={elementStyle} onClick={props.toggleOpen}>
+          <button className="btn waves-effect waves-light grey darken-1" style={elementStyle}
+                  onClick={props.toggleOpen}>
             back
           </button>
           <button className="btn waves-effect waves-light right" style={elementStyle} type='submit'>

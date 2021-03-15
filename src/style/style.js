@@ -90,15 +90,23 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       margin: spacing["2"]
     },
     tabStyle: {
-      borderRadius: 0,
-      borderBottom: "2px solid #f5f5f5",
-      marginBottom: spacing["3"]
+      borderRadius: 1,
+      borderBottom: "3px solid #e0e0e0",
+      marginBottom: spacing["3"],
+      backgroundColor: "#e0e0e0",
+      fontSize: "1.2em",
+      textAlign: "center",
+      lineHeight: "2",
+      cursor: "pointer",
     },
     activeTabStyle: {
       borderRadius: 0,
-      borderBottom: "2px solid #26a69a",
+      borderBottom: "3px solid #26a69a",
       marginBottom: spacing["3"],
-      backgroundColor: "#e0e0e0",
+      fontSize: "1.2em",
+      textAlign: "center",
+      lineHeight: "2",
+      cursor: "pointer",
     },
     labelContainerStyle: {
       margin: spacing["2"],
@@ -109,7 +117,7 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       gridGap: "8px",
       paddingTop: "8px",
       gridTemplateColumns: "115px 115px 115px",
-      maxHeight: "130px",
+      maxHeight: "128px",
       overflow: "auto",
     },
     labelItemStyle: {
@@ -174,9 +182,9 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
   detailStyle: {
     backgroundStyle: {
       margin: spacing["2"],
-      paddingTop: spacing["3"],
       width: "400px",
       zIndex: 1,
+      position: "absolute",
     },
   }
 }

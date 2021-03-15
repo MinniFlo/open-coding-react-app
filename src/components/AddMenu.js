@@ -8,12 +8,20 @@ import {colors, addMenuStyle, noteStyle} from "../style/style";
 const {backgroundStyle, tabStyle, activeTabStyle} = addMenuStyle
 const {position} = noteStyle;
 
-export default function AddMenu(props) {
+export default function AddMenu() {
 
   const [open, setOpen] = useState(false);
   const [noteTab, setNoteTab] = useState(true);
 
   const toggleOpen = () => setOpen(!open);
+
+  // const onFocusLeave = (e) => {
+  //     if (!e.currentTarget.contains(e.relatedTarget)) {
+  //       console.log(e);
+  //
+  //       toggleOpen();
+  //     }
+  // }
 
   const handleTabs = e => {
     if (e.target.id === "note" && !noteTab) {
@@ -27,17 +35,17 @@ export default function AddMenu(props) {
   return (
     <>
       {open ?
-        <div className={"card " + colors.background + colors.text} style={backgroundStyle}>
-          <div className="row">
-            <button id="note" className="btn-flat col s6" onClick={handleTabs}
+        <div id="addMenu" className={"card " + colors.background + colors.text} style={backgroundStyle}>
+          <div id="tabs" className="row">
+            <div id="note" className="col s6" onClick={handleTabs}
                     style={noteTab ? activeTabStyle: tabStyle}
-            >Note</button>
-            <button id="label" className="btn-flat col s6" onClick={handleTabs}
+            >Note</div>
+            <div id="label" className="col s6" onClick={handleTabs}
                     style={noteTab ? tabStyle: activeTabStyle}
-            >Label</button>
+            >Label</div>
           </div>
           {noteTab ?
-            <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} possition={position} edit={false} /> :
+            <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} position={position} edit={false} /> :
 
             <LabelAddMenu toggleOpen={toggleOpen}/>
           }
