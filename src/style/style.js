@@ -158,11 +158,12 @@ export const {headerStyle, sideBarStyle, workSpaceStyle, addButtonStyle, addMenu
       margin: 0,
       fontSize: 12,
       padding: spacing["2"],
-      paddingTop: spacing["4"],
+      marginTop: "19px",
       lineHeight: "15px",
     },
     iconStyle: {
-      margin: spacing["1"],
+      marginRight: spacing["2"],
+      marginLeft: spacing["2"],
     },
     tagUlStyle: {
       margin: 0,

@@ -3,7 +3,7 @@ import '../style/App.css'
 import DetailNote from "./DetailNote";
 import Draggable from 'react-draggable';
 import {colors, spacing} from "../style/style";
-import {MoreHoriz} from "@material-ui/icons";
+import {MoreHoriz, Attachment} from "@material-ui/icons";
 import {noteStyle} from "../style/style";
 import {useDispatch, useSelector} from "react-redux";
 import {notePositionChanged, selectNoteById} from "../features/notesSlice";
@@ -55,6 +55,7 @@ export default function Note({id}) {
         <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef}>
             <div style={elementStyle} ref={nodeRef}>
               <div className={"card" + colors.background + colors.text} style={backgroundStyle}>
+                {note.comment !== "" ? <Attachment className="left" style={iconStyle}/>:<></>}
                 <MoreHoriz
                   className="right"
                   style={iconStyle}
