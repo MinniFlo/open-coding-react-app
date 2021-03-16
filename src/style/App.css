@@ -4,6 +4,232 @@ html, body, #root, .App {
     padding: 0;
     margin: 0;
     overflow: auto;
-    background-color: #555;
+
+    /* Colors */
+    --canvasColor: #616161;
+    --backgroundColor: #f5f5f5;
+    --darkBackgroundColor: #e0e0e0;
+    --textColor: #21212;
+    --accentColor: #26a69a;
+    --shadow: 0 1px 2px rgba(20, 20, 20, 0.5);
+
+    /* Ui sizes */
+    --headerHeight: 50px;
+    --sideBarWidth: 150px;
+    --noteWidth: 176px;
+    --noteMinHeight: 50px;
+    --noteMaxHeight: 160px;
+
+    /* Spacings */
+
+    --small: 4px;
+    --normal: 8px;
+    --large: 12px;
+
+
+
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
 }
 
+/* Sidebar ------------------------------------------------------*/
+.sideBar {
+    width: var(--sideBarWidth);
+    padding-top: var(--headerHeight);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    overflow: auto;
+}
+
+.sidebarLi {
+    margin-left: var(--large);
+    margin-bottom: var(--normal);
+}
+
+.colorSymbol {
+    padding: var(--normal);
+    margin-right: var(--small);
+    border-radius: 2px;
+}
+
+/* Header ------------------------------------------------------*/
+.header {
+    line-height: var(--headerHeight);
+    height: var(--headerHeight);
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    z-index: 3;
+}
+
+/* canvas ------------------------------------------------------*/
+.canvas {
+    background-color: var(--canvasColor);
+    top: var(--headerHeight);
+    left: var(--sideBarWidth);
+    height: 2000px;
+    width: 2000px;
+    position: absolute;
+}
+
+/* addButton ------------------------------------------------------*/
+.addButton {
+    position: fixed;
+    top: var(--headerHeight);
+    left: var(--sideBarWidth);
+    background-color: var(--accentColor);
+    border-radius: 30px;
+    margin: var(--large);
+    line-height: 0;
+    z-index: 2;
+    box-shadow: var(--shadow);
+}
+
+.addSymbol {
+    padding: var(--small);
+}
+
+/* Note ------------------------------------------------------*/
+
+.note {
+    width: var(--noteWidth);
+    margin: var(--normal);
+    position: absolute;
+}
+
+.noteBackground {
+    min-height: var(--noteMinHeight);
+    max-height: var(--noteMaxHeight);
+    width: var(--noteWidth);
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
+    margin: 0;
+    z-index: 0;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+}
+
+.noteContent {
+    font-size: 12px;
+    padding: var(--normal);
+    margin: 19px 0 0;
+    line-height: 15px;
+}
+
+.noteLabelGrid {
+    display: grid;
+    grid-template-columns: 16px 16px 16px 16px 16px 16px 16px;
+    grid-gap: var(--normal);
+    padding-left: var(--normal);
+    padding-right: var(--normal);
+}
+
+.noteLabelItem {
+    padding: 8px;
+    margin: 0;
+    border-radius: 1px;
+    box-shadow: var(--shadow);
+}
+
+.noteIcon {
+    margin-right: var(--normal);
+    margin-left: var(--normal);
+}
+
+.detailNote {
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    width: 400px;
+    z-index: 1;
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    margin: var(--normal)
+}
+
+.detailNoteIcon {
+    padding: 0;
+    margin-left: var(--large);
+    cursor: pointer;
+    font-size: 25px;
+}
+
+/* Menu ------------------------------------------------------*/
+.menuBackground {
+    margin: var(--large);
+    width: 400px;
+    position: fixed;
+    top: var(--headerHeight);
+    left: var(--sideBarWidth);
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    z-index: 2;
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+}
+
+.menuContent {
+    margin: var(--normal);
+}
+
+.menuTab {
+    border-radius: 2px;
+    border-bottom: 3px solid var(--darkBackgroundColor);
+    margin-bottom: var(--large);
+    background-color: var(--darkBackgroundColor);
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 2;
+    cursor: pointer;
+}
+
+.menuTab.active {
+    border-radius: 0;
+    border-bottom: 3px solid var(--accentColor);
+    background-color: var(--backgroundColor);
+}
+
+.menuHeading {
+    margin: 0 0 25px;
+}
+
+.menuText {
+    margin-top: 0;
+    max-height: 120px;
+    overflow: auto;
+}
+
+/* Label selection ------------------------------------------------------*/
+.labelContainer {
+    margin-bottom: 24px;
+}
+
+.labelGrid {
+    display: grid;
+    grid-gap: var(--normal);
+    padding-top: var(--normal);
+    grid-template-columns: 115px 115px 115px;
+    max-height: 130px;
+    overflow: auto;
+}
+
+.labelGridItem {
+    border-bottom: 3px solid #eee;
+    background-color: #eee;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.labelGridItem.active {
+    border-bottom: 3px solid var(--accentColor);
+    background-color: var(--darkBackgroundColor);
+}
+
+.labelColorIcon {
+    padding: 8px;
+    border-radius: 2px;
+    margin: var(--normal);
+}

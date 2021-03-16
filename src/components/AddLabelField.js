@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {selectLabelById} from "../features/labelsSlice";
 import {addMenuStyle, spacing} from "../style/style";
+import '../style/App.css'
 
 
 const {labelItemActiveStyle, labelItemStyle} = addMenuStyle
@@ -12,12 +13,6 @@ export default function AddLabelField(props) {
   const [selected, setSelected] = useState(isSelected);
 
   const label = useSelector(state => selectLabelById(state, id));
-  let colorStyle = {
-    padding: spacing["2"],
-    borderRadius: 2,
-    backgroundColor: label.color,
-    margin: spacing["2"],
-  };
 
   const handleOnClick = () => {
     setSelected(!selected);
@@ -29,12 +24,11 @@ export default function AddLabelField(props) {
 
   return (
     <div
-      className="valign-wrapper"
+      className={selected ? "labelGridItem active valign-wrapper" : "labelGridItem valign-wrapper"}
       id={label.id}
       onClick={handleOnClick}
-      style={selected ? labelItemActiveStyle : labelItemStyle}
     >
-      <div style={colorStyle}/>
+      <div className="labelColorIcon" style={{backgroundColor: label.color}}/>
       <span className="truncate">{label.name}</span>
     </div>
   );

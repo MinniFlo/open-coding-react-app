@@ -3,6 +3,7 @@ import '../style/App.css';
 import Workspace from "./Workspace";
 import Header from "./Header";
 import SideBar from "./SideBar";
+import AddMenu from "./AddMenu";
 
 
 class App extends React.Component{
@@ -38,6 +39,7 @@ class App extends React.Component{
       <div className="App">
         <Header currentfile={this.state.fileName}/>
         <SideBar />
+        <AddMenu />
         <Workspace />
       </div>
     );

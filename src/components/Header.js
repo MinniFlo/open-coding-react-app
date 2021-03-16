@@ -1,15 +1,9 @@
 import React, {useEffect} from "react";
 import M from "materialize-css";
-import {uiSpacing, colors} from "../style/style";
+import '../style/App.css'
 
-const headerStyle = {
-  lineHeight: uiSpacing.topBarHeight,
-  height: uiSpacing.topBarHeight,
-  zIndex: 3,
-}
 
 export default function Header(props) {
-
 
   useEffect(() => {
     let dropdowns = document.querySelectorAll('.dropdown-trigger');
@@ -24,18 +18,14 @@ export default function Header(props) {
     M.Dropdown.init(dropdowns, options);
   });
 
-  const listButtonStyle = {
-    textTransform: "none"
-  }
-
 
   return (
     <>
       <div className="navbar-fixed">
-        <nav className={colors.background + colors.text} style={headerStyle}>
+        <nav className="header">
           <div className="nav-wrapper row">
             <div className="col s4">
-              <button className={"btn-flat dropdown-trigger" + colors.text} style={listButtonStyle} data-target="dropdown1">File</button>
+              <button className="btn-flat dropdown-trigger" style={{textTransform: "none"}} data-target="dropdown1">File</button>
             </div>
             <div className="col s4 truncate" style={{textAlign:"center"}}><span>{props.currentfile}</span></div>
             <div className="col s4" style={{textAlign: "right"}}><span>100%</span></div>
@@ -44,12 +34,12 @@ export default function Header(props) {
       </div>
 
       {/*dropdown structure*/}
-      <ul id="dropdown1" className={"dropdown-content" + colors.background + colors.text} style={{width: "50px"}}>
-        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>import</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>open</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>save</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>save as</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={listButtonStyle}>export</button></li>
+      <ul id="dropdown1" className="dropdown-content" style={{width: "50px"}}>
+        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>import</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>open</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save as</button></li>
+        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>export</button></li>
       </ul>
     </>
   );

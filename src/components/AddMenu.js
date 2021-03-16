@@ -2,11 +2,10 @@ import React, {useState} from "react";
 import AddButton from "./AddButton";
 import NoteAddMenu from "./NoteAddMenu";
 import LabelAddMenu from "./LabelAddMenu";
-import {colors, addMenuStyle, noteStyle} from "../style/style";
+import '../style/App.css'
 
 
-const {backgroundStyle, tabStyle, activeTabStyle} = addMenuStyle
-const {position} = noteStyle;
+const position = {x: 100, y: 100};
 
 export default function AddMenu() {
 
@@ -35,13 +34,13 @@ export default function AddMenu() {
   return (
     <>
       {open ?
-        <div id="addMenu" className={"card " + colors.background + colors.text} style={backgroundStyle}>
+        <div id="addMenu" className="menuBackground">
           <div id="tabs" className="row">
-            <div id="note" className="col s6" onClick={handleTabs}
-                    style={noteTab ? activeTabStyle: tabStyle}
+            <div id="note" onClick={handleTabs}
+                 className={noteTab ? "menuTab active col s6" : "menuTab col s6"}
             >Note</div>
-            <div id="label" className="col s6" onClick={handleTabs}
-                    style={noteTab ? tabStyle: activeTabStyle}
+            <div id="label" onClick={handleTabs}
+                 className={noteTab ? "menuTab col s6" : "menuTab active col s6"}
             >Label</div>
           </div>
           {noteTab ?

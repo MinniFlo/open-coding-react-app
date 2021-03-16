@@ -6,6 +6,7 @@ import {noteAdded, noteChanged} from "../features/notesSlice";
 import {useSelector} from "react-redux";
 import {selectLabelIds} from "../features/labelsSlice";
 import AddLabelField from "./AddLabelField";
+import '../style/App.css';
 
 const {textFormStyle, textFieldStyle, elementStyle, labelContainerStyle, labelGridStyle} = addMenuStyle;
 
@@ -70,16 +71,16 @@ export default function NoteAddMenu(props) {
   });
 
   return (
-    <div>
+    <div className="menuContent">
       <form onSubmit={handleSubmit}>
         <div className="input-field" style={textFormStyle}>
           <textarea id="content" value={content} autoFocus={true} onChange={handleContentChange} className="materialize-textarea"
                     style={textFieldStyle}/>
           <label className="active" htmlFor="content">Content</label>
         </div>
-        <div style={labelContainerStyle}>
+        <div className="labelContainer">
           <span className="grey-text">Label</span>
-          <div style={labelGridStyle}>
+          <div className="labelGrid">
             {selectLabelFields}
           </div>
         </div>
@@ -89,11 +90,10 @@ export default function NoteAddMenu(props) {
           <label className="active" htmlFor="comment">Comment</label>
         </div>
         <div>
-          <button className="btn waves-effect waves-light grey darken-1" style={elementStyle}
-                  onClick={props.toggleOpen}>
+          <button className="btn waves-effect waves-light grey darken-1" onClick={props.toggleOpen}>
             back
           </button>
-          <button className="btn waves-effect waves-light right" style={elementStyle} type='submit'>
+          <button className="btn waves-effect waves-light right" type='submit'>
             submit
           </button>
         </div>

@@ -1,22 +1,21 @@
 import React from "react";
-import {colors} from "../style/style";
-import {sideBarStyle} from "../style/style";
-import "../style/App.css"
+
 import {useSelector} from "react-redux";
 import {selectLabelIds} from "../features/labelsSlice";
 import TagListItem from "./TagListItem";
+import '../style/App.css'
 
-const {backgroundStyle, liStyle} = sideBarStyle;
+
 
 export default function SideBar() {
 
   const labelIds = useSelector(selectLabelIds);
 
   const listElements = labelIds.map(labelId =>
-    <TagListItem key={labelId} id={labelId} style={liStyle}/>
+    <TagListItem key={labelId} id={labelId}/>
   );
   return (
-    <div className={colors.background + colors.text + " z-depth-2"} style={backgroundStyle}>
+    <div id="sideBar"  className="sideBar">
       <ul>
         {listElements}
       </ul>
