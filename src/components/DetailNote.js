@@ -6,11 +6,13 @@ import {Edit, Delete, LibraryAdd} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
 import {noteDeleted, noteAdded} from "../features/notesSlice";
 import {nanoid} from "@reduxjs/toolkit";
+import PopUp from "./PopUp";
 
 
 export default function DetailNote({note, position ,toggleDetail}) {
 
   const [edit, setEdit] = useState(false);
+  const [popUpOpen, setPopUpOpen] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -30,6 +32,7 @@ export default function DetailNote({note, position ,toggleDetail}) {
     toggleDetail();
     dispatch(noteDeleted(note.id))
   };
+  const togglePopup = () => setPopUpOpen(!popUpOpen);
 
   const labels = note.labels.length === 0 ?
     // if note obtains no labels
@@ -58,7 +61,7 @@ export default function DetailNote({note, position ,toggleDetail}) {
       <div className="detailNote" ref={nodeRef}>
         {edit ?
           <>
-            <h5 className="grey-text menuHeading">Edit Note</h5>
+            <h5 className="grey-text menuHeading menuContent">Edit Note</h5>
             <NoteAddMenu
               id={note.id}
               toggleOpen={toggleEdit}
@@ -67,13 +70,12 @@ export default function DetailNote({note, position ,toggleDetail}) {
               comment={note.comment}
               position={note.position}
               edit={true} />
-
           </> :
 
           <div className="menuContent">
             <div className="row" style={{margin: 0}}>
               <h5 className="grey-text menuHeading left">Note</h5>
-              <Delete className="detailNoteIcon right" onClick={handleDelete}/>
+              <Delete className="detailNoteIcon right" onClick={togglePopup}/>
               <LibraryAdd className="detailNoteIcon right" onClick={handleCopy}/>
               <Edit className="detailNoteIcon right"  onClick={toggleEdit}/>
             </div>
@@ -92,6 +94,7 @@ export default function DetailNote({note, position ,toggleDetail}) {
             <button className="btn waves-effect waves-light grey darken-1" onClick={handleClose}>close</button>
           </div>
         }
+        {popUpOpen && <PopUp onYes={handleDelete} onNo={togglePopup} position={currentPosition}/>}
       </div>
     </Draggable>
 

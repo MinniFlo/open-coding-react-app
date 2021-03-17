@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {addMenuStyle} from "../style/style";
-import {useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {nanoid} from "@reduxjs/toolkit";
 import {noteAdded, noteChanged} from "../features/notesSlice";
-import {useSelector} from "react-redux";
 import {selectLabelIds} from "../features/labelsSlice";
 import AddLabelField from "./AddLabelField";
 import '../style/App.css';
+import M from "materialize-css";
 
-const {textFormStyle, textFieldStyle, elementStyle, labelContainerStyle, labelGridStyle} = addMenuStyle;
+const {textFormStyle, textFieldStyle} = addMenuStyle;
 
 
 export default function NoteAddMenu(props) {
@@ -31,6 +31,12 @@ export default function NoteAddMenu(props) {
       setLabels(newLabels);
     }
   }
+
+  useEffect(() => {
+    document.querySelectorAll('.materialize-textarea').forEach((area) => {
+      M.textareaAutoResize(area);
+    });
+  }, [content, comment])
 
   const handleSubmit = () => {
     if (props.edit) {
@@ -74,7 +80,11 @@ export default function NoteAddMenu(props) {
     <div className="menuContent">
       <form onSubmit={handleSubmit}>
         <div className="input-field" style={textFormStyle}>
-          <textarea id="content" value={content} autoFocus={true} onChange={handleContentChange} className="materialize-textarea"
+          <textarea id="content"
+                    className="materialize-textarea"
+                    value={content}
+                    autoFocus={true}
+                    onChange={handleContentChange}
                     style={textFieldStyle}/>
           <label className="active" htmlFor="content">Content</label>
         </div>
@@ -85,7 +95,10 @@ export default function NoteAddMenu(props) {
           </div>
         </div>
         <div className="input-field" style={textFormStyle}>
-          <textarea id="comment" value={comment} onChange={handleCommentChange} className="materialize-textarea"
+          <textarea id="comment"
+                    className="materialize-textarea"
+                    value={comment}
+                    onChange={handleCommentChange}
                     style={textFieldStyle}/>
           <label className="active" htmlFor="comment">Comment</label>
         </div>
