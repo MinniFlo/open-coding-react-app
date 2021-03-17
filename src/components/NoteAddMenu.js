@@ -39,7 +39,7 @@ export default function NoteAddMenu(props) {
   }, [content, comment])
 
   const handleSubmit = () => {
-    if (props.edit) {
+    if (props.id !== "") {
       // called in DetailedNote
       dispatch(noteChanged(
         {
@@ -89,7 +89,7 @@ export default function NoteAddMenu(props) {
           <label className="active" htmlFor="content">Content</label>
         </div>
         <div className="labelContainer">
-          <span className="grey-text">Label</span>
+          <span className="grey-text">Labels</span>
           <div className="labelGrid">
             {selectLabelFields}
           </div>

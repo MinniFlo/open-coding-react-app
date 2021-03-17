@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {selectLabelById} from "../features/labelsSlice";
-import {addMenuStyle, spacing} from "../style/style";
 import '../style/App.css'
 
-
-const {labelItemActiveStyle, labelItemStyle} = addMenuStyle
 
 export default function AddLabelField(props) {
   const {id, isSelected, handleLabelSelect} = props;

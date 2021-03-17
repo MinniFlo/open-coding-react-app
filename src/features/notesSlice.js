@@ -76,5 +76,5 @@ export const {
 export const selectNoteIds = createSelector(
   selectNotes,
   notes => notes.map(notes => notes.id)
-)
+);
 

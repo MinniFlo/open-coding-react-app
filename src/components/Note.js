@@ -48,9 +48,6 @@ export default function Note({id}) {
                 />
                 <p className="noteContent">{note.content}</p>
               </div>
-              {/*<ul style={tagUlStyle}>*/}
-              {/*  {labels}*/}
-              {/*</ul>*/}
               <div className="noteLabelGrid">
                 {labels}
               </div>
