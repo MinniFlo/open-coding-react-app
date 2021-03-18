@@ -1,6 +1,7 @@
 import {createSlice, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 
 
+
 const labelAdapter = createEntityAdapter();
 // const initialState = labelAdapter.getInitialState();
 const initialState = {
@@ -44,6 +45,16 @@ const initialState = {
   }
 }
 
+const updateParentIds = (labelId, subLabels, entities) => {
+  subLabels.forEach(label => {
+    const parentId = entities[label.id].parentLabelId
+    if (parentId !== "") {
+      entities[parentId].labels = entities[parentId].labels.filter(subLabel => subLabel.id !== label.id);
+    }
+    entities[label.id].parentLabelId=labelId;
+  });
+}
+
 export const labelsSlice = createSlice({
   name: 'labels',
   initialState: initialState,
@@ -51,7 +62,7 @@ export const labelsSlice = createSlice({
     labelAdded(state, action) {
       const {id, labels} = action.payload;
       // set parentLabelId of all subordinate Labels
-      labels.map(label => state.entities[label.id].parentLabelId=id);
+      updateParentIds(id, labels, state.entities);
       // add Label
       labelAdapter.addOne(state, action.payload);
     },
@@ -63,13 +74,7 @@ export const labelsSlice = createSlice({
         state.entities[label.id].parentLabelId = ""
       });
       // set the parentLabelId on all new subordinate Labels
-      labels.forEach(label => {
-        const parentId = state.entities[label.id].parentLabelId
-        if (parentId !== "") {
-          state.entities[parentId].labels = state.entities[parentId].labels.filter(subLabel => subLabel.id !== label.id);
-        }
-        state.entities[label.id].parentLabelId=id;
-      });
+      updateParentIds(id, labels, state.entities);
       // update Label
       labelAdapter.upsertOne(state, action.payload);
     },
@@ -103,9 +108,41 @@ export const {
   selectById: selectLabelById,
 } = labelAdapter.getSelectors(state => state.labels)
 
+
 export const selectLabelIds = createSelector(
   selectLabels,
   labels => labels.map(labels => labels.id)
+);
+
+export const selectParentLabelIds = createSelector(
+  selectLabels,
+  labels => labels.filter(label => label.parentLabelId === "").map(label => label.id)
+);
+
+const selectAllParents = (label, labels) => {
+  const parentId = label.parentLabelId
+  if (parentId !== '') {
+    const parent = labels[parentId];
+    return [parentId, ...selectAllParents(parent, labels)]
+  }
+  return []
+}
+
+export const selectPossibleSubLabels = (labelId) => createSelector(
+  selectLabelIds,
+  state => state.labels.entities,
+  (labelIds, labels) => {
+    if (labelId === "") {
+      return labelIds;
+    }
+    const label = labels[labelId];
+    const parentIds = selectAllParents(label, labels)
+    if (parentIds.length !== 0) {
+      const parentFiltered = labelIds.filter(id => {
+        return parentIds.indexOf(id) === -1;
+      })
+      return parentFiltered.filter(id => id !== label.id);
+    }
+    return labelIds.filter(id => id !== label.id);
+  }
 )
-
-

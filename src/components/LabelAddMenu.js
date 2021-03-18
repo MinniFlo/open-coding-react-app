@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {addMenuStyle} from "../style/style";
 import {useDispatch, useSelector} from "react-redux";
-import {labelAdded, selectLabelIds, labelChanged} from "../features/labelsSlice";
+import {labelAdded, labelChanged, selectPossibleSubLabels} from "../features/labelsSlice";
 import {nanoid} from "@reduxjs/toolkit";
 import '../style/App.css'
 import AddLabelField from "./AddLabelField";
@@ -16,7 +16,7 @@ export default function LabelAddMenu(props) {
   const [labels, setLabels] = useState(props.labels)
 
   const dispatch = useDispatch();
-  const labelIds = useSelector(selectLabelIds);
+  const labelIds = useSelector(selectPossibleSubLabels(props.id));
 
   const handleNameChange = e => setName(e.target.value);
   const handleColorChange = e => setColor(e.target.value);

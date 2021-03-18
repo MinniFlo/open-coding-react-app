@@ -15,7 +15,7 @@ html, body, #root, .App {
 
     /* Ui sizes */
     --headerHeight: 50px;
-    --sideBarWidth: 300px;
+    --sideBarWidth: 180px;
     --noteWidth: 176px;
     --noteMinHeight: 50px;
     --noteMaxHeight: 160px;
