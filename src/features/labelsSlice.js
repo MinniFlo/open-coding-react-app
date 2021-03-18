@@ -48,19 +48,41 @@ export const labelsSlice = createSlice({
   name: 'labels',
   initialState: initialState,
   reducers: {
-    labelAdded: labelAdapter.addOne,
-    labelChanged(state, action) {
-      const {id, name, color, labels} = action.payload;
-      state.entities[id].name = name;
-      state.entities[id].color = color;
-      const oldLabels = state.entities[id].labels
-      oldLabels.map(label => state.entities[label.id].parentLabelId = '');
+    labelAdded(state, action) {
+      const {id, labels} = action.payload;
+      // set parentLabelId of all subordinate Labels
       labels.map(label => state.entities[label.id].parentLabelId=id);
-      state.entities[id].labels = labels;
+      // add Label
+      labelAdapter.addOne(state, action.payload);
+    },
+    labelChanged(state, action) {
+      const {id, labels} = action.payload;
+      // get the old subordinate Labels and remove parentLabelId on all
+      const oldLabels = state.entities[id].labels
+      oldLabels.forEach(label => {
+        state.entities[label.id].parentLabelId = ""
+      });
+      // set the parentLabelId on all new subordinate Labels
+      labels.forEach(label => {
+        const parentId = state.entities[label.id].parentLabelId
+        if (parentId !== "") {
+          state.entities[parentId].labels = state.entities[parentId].labels.filter(subLabel => subLabel.id !== label.id);
+        }
+        state.entities[label.id].parentLabelId=id;
+      });
+      // update Label
+      labelAdapter.upsertOne(state, action.payload);
     },
     labelDeleted(state, action) {
       const {id} = action.payload;
-      state.entities[id].labels.map(label => state.entities[label.id].parentLabelId = '');
+      // remove parentLabelId on all subordinate Labels
+      state.entities[id].labels.forEach(label => state.entities[label.id].parentLabelId = '');
+      // if the Label is a subordinate Label, remove the reference of the parent Label
+      const parentId = state.entities[id].parentLabelId;
+      if (parentId !== "") {
+        state.entities[parentId].labels = state.entities[parentId].labels.filter(subLabel => subLabel.id !== id);
+      }
+      // remove Label
       labelAdapter.removeOne(state, id);
     }
   }
