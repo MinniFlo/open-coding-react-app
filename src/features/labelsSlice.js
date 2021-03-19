@@ -81,11 +81,17 @@ export const labelsSlice = createSlice({
     labelDeleted(state, action) {
       const {id} = action.payload;
       // remove parentLabelId on all subordinate Labels
-      state.entities[id].labels.forEach(label => state.entities[label.id].parentLabelId = '');
+      const label = state.entities[id];
       // if the Label is a subordinate Label, remove the reference of the parent Label
-      const parentId = state.entities[id].parentLabelId;
-      if (parentId !== "") {
-        state.entities[parentId].labels = state.entities[parentId].labels.filter(subLabel => subLabel.id !== id);
+      if (label.parentLabelId !== "") {
+        const parentLabel = state.entities[label.parentLabelId];
+        parentLabel.labels = parentLabel.labels.filter(subLabel => subLabel.id !== id);
+        label.labels.forEach(subLabel => {
+          state.entities[subLabel.id].parentLabelId = label.parentLabelId;
+          parentLabel.labels = [...parentLabel.labels, subLabel];
+        })
+      } else {
+        label.labels.forEach(subLabel => state.entities[subLabel.id].parentLabelId = "")
       }
       // remove Label
       labelAdapter.removeOne(state, id);

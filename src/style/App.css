@@ -173,7 +173,7 @@ html, body, #root, .App {
 }
 
 .menuContent {
-    margin: var(--normal);
+    padding: var(--normal);
 }
 
 .menuTab {
@@ -194,7 +194,7 @@ html, body, #root, .App {
 }
 
 .menuHeading {
-    margin: 0 0 25px;
+    margin: 0;
 }
 
 .menuText {
@@ -233,4 +233,10 @@ html, body, #root, .App {
     padding: 8px;
     border-radius: 2px;
     margin: var(--normal);
+}
+
+/* popup ------------------------------------------------------*/
+.popup {
+    border-bottom: 3px solid var(--accentColor);
+    margin-bottom: var(--large);
 }

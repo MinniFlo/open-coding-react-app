@@ -79,6 +79,7 @@ export default function DetailNote({note, position ,toggleDetail}) {
               <LibraryAdd className="detailNoteIcon right" onClick={handleCopy}/>
               <Edit className="detailNoteIcon right"  onClick={toggleEdit}/>
             </div>
+            {popUpOpen && <PopUp onYes={handleDelete} onNo={togglePopup} text="delete this Note?"/>}
             <div>
               <span className="grey-text">Content</span>
               <p className="menuText">{note.content}</p>
@@ -94,7 +95,6 @@ export default function DetailNote({note, position ,toggleDetail}) {
             <button className="btn waves-effect waves-light grey darken-1" onClick={handleClose}>close</button>
           </div>
         }
-        {popUpOpen && <PopUp onYes={handleDelete} onNo={togglePopup} position={currentPosition}/>}
       </div>
     </Draggable>
 
