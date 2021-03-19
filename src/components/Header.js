@@ -1,6 +1,9 @@
 import React, {useEffect} from "react";
 import M from "materialize-css";
 import '../style/App.css'
+import LoadFileButton from "./LoadFileButton";
+import ImportFileButton from "./ImportFileButton";
+import SaveFileButton from "./SaveFileButton";
 
 
 export default function Header(props) {
@@ -25,7 +28,7 @@ export default function Header(props) {
         <nav className="header">
           <div className="nav-wrapper row">
             <div className="col s4">
-              <button className="btn-flat dropdown-trigger" style={{textTransform: "none"}} data-target="dropdown1">File</button>
+              <button className="btn-flat dropdown-trigger" style={{textTransform: "none"}} data-target="fileDropdown">File</button>
             </div>
             <div className="col s4 truncate" style={{textAlign:"center"}}><span>{props.currentfile}</span></div>
             <div className="col s4" style={{textAlign: "right"}}><span>100%</span></div>
@@ -34,12 +37,12 @@ export default function Header(props) {
       </div>
 
       {/*dropdown structure*/}
-      <ul id="dropdown1" className="dropdown-content" style={{width: "50px"}}>
-        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>import</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>open</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save as</button></li>
-        <li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>export</button></li>
+      <ul id="fileDropdown" className="dropdown-content" style={{width: "50px"}}>
+        <li className="valign-wrapper"><ImportFileButton/></li>
+        <li className="valign-wrapper"><LoadFileButton/></li>
+        <li className="valign-wrapper"><SaveFileButton/></li>
+        {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save as</button></li>*/}
+        {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>export</button></li>*/}
       </ul>
     </>
   );

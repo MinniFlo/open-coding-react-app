@@ -12,7 +12,10 @@ export default function TagListItem({id, indent}) {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [popUpOpen, setPopUpOpen] = useState(false);
-  const toggleEdit = () => setEdit(!edit);
+  const toggleEdit = () => {
+    setPopUpOpen(false);
+    setEdit(!edit);
+  }
   const togglePopup = () => setPopUpOpen(!popUpOpen);
   const handleDelete = () => {
     toggleEdit();
