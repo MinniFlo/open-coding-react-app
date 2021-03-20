@@ -15,7 +15,7 @@ const persistConfig = {
   key: 'root',
   storage: storage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ['notes', 'labels']
+  // blacklist: ['notes', 'labels']
 }
 
 const perReducer = persistReducer(persistConfig, rootReducer);
