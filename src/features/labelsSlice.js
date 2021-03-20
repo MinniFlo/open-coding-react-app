@@ -3,47 +3,47 @@ import {createSlice, createEntityAdapter, createSelector} from "@reduxjs/toolkit
 
 
 const labelAdapter = createEntityAdapter();
-// const initialState = labelAdapter.getInitialState();
-const initialState = {
-  ids: ["a", "b", "c", "d", "e"],
-  entities: {
-    a: {
-      id: "a",
-      name: "Getränk",
-      color: "#a55",
-      parentLabelId: "",
-      labels: [],
-    },
-    b: {
-      id: "b",
-      name: "Essen",
-      color: "#aa5",
-      parentLabelId: "",
-      labels: [],
-    },
-    c: {
-      id: "c",
-      name: "Müsli",
-      color: "#a5a",
-      parentLabelId: "",
-      labels: [],
-    },
-    d: {
-      id: "d",
-      name: "Tee",
-      color: "#5a5",
-      parentLabelId: "",
-      labels: [],
-    },
-    e: {
-      id: "e",
-      name: "Kaffee",
-      color: "#55a",
-      parentLabelId: "",
-      labels: [],
-    },
-  }
-}
+const initialState = labelAdapter.getInitialState();
+// const initialState = {
+//   ids: ["a", "b", "c", "d", "e"],
+//   entities: {
+//     a: {
+//       id: "a",
+//       name: "Getränk",
+//       color: "#a55",
+//       parentLabelId: "",
+//       labels: [],
+//     },
+//     b: {
+//       id: "b",
+//       name: "Essen",
+//       color: "#aa5",
+//       parentLabelId: "",
+//       labels: [],
+//     },
+//     c: {
+//       id: "c",
+//       name: "Müsli",
+//       color: "#a5a",
+//       parentLabelId: "",
+//       labels: [],
+//     },
+//     d: {
+//       id: "d",
+//       name: "Tee",
+//       color: "#5a5",
+//       parentLabelId: "",
+//       labels: [],
+//     },
+//     e: {
+//       id: "e",
+//       name: "Kaffee",
+//       color: "#55a",
+//       parentLabelId: "",
+//       labels: [],
+//     },
+//   }
+// }
 
 const updateParentIds = (labelId, subLabels, entities) => {
   subLabels.forEach(label => {
@@ -95,7 +95,8 @@ export const labelsSlice = createSlice({
       }
       // remove Label
       labelAdapter.removeOne(state, id);
-    }
+    },
+    labelAddMany: labelAdapter.addMany,
   }
 });
 
@@ -103,6 +104,7 @@ export const {
   labelAdded,
   labelChanged,
   labelDeleted,
+  labelAddMany,
 } = labelsSlice.actions;
 
 export default labelsSlice.reducer;

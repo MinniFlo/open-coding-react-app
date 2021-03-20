@@ -39,7 +39,7 @@ export default function Header(props) {
       {/*dropdown structure*/}
       <ul id="fileDropdown" className="dropdown-content" style={{width: "50px"}}>
         <li className="valign-wrapper"><ImportFileButton/></li>
-        <li className="valign-wrapper"><LoadFileButton/></li>
+        <li className="valign-wrapper"><LoadFileButton persistor={props.persistor}/></li>
         <li className="valign-wrapper"><SaveFileButton/></li>
         {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save as</button></li>*/}
         {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>export</button></li>*/}

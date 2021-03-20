@@ -14,30 +14,12 @@ class App extends React.Component{
       fileName: "unknown-document",
       zoom: 1
     };
-
-    // this.handleData = this.handleData.bind(this);
   }
-
-  // converts Data from DataImporter into Array and calls function createNotes
-  // handleData(e) {
-  //   const data = e.target.result.split('\n');
-  //   console.log(data);
-  //   this.createNotes(data);
-  // }
-  //
-  // // creates all Note Components and writes it to state
-  // createNotes(contentList) {
-  //   const notesList = contentList.map((content) =>
-  //     <Note key={content} content = {content} />
-  //   );
-  //   this.setState({notes: notesList});
-  // }
-
 
   render() {
     return (
       <div className="App">
-        <Header currentfile={this.state.fileName}/>
+        <Header currentfile={this.state.fileName} persistor={this.props.persistor}/>
         <SideBar />
         <AddMenu />
         <Workspace />

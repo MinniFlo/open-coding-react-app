@@ -14,9 +14,14 @@ export default class DataImporter extends React.Component {
     let file = this.fileInput.current.files[0];
     let reader = new FileReader();
 
-    reader.onloadend = (e) => this.props.handleData(e);
+    reader.onloadend = (e) => this.handleData(e);
 
     reader.readAsText(file);
+  }
+
+  handleData(e) {
+    const data = e.target.result.split('\n');
+    console.log(data);
   }
 
   render() {

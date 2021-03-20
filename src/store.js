@@ -6,10 +6,17 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
 
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   notes: notesReducer,
   labels: labelsReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'CLEAR_STATE') {
+    state = undefined;
+  }
+  return appReducer(state, action);
+}
 
 const persistConfig = {
   key: 'root',

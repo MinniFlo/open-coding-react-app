@@ -5,7 +5,7 @@ import {selectNotes} from "../features/notesSlice";
 
 
 
-export default function SaveFileButton(props) {
+export default function SaveFileButton() {
 
   const [downloadUrl, setDownloadUrl] = useState("");
   const doDownload = useRef(null);
@@ -13,12 +13,9 @@ export default function SaveFileButton(props) {
   const labels = useSelector(selectLabels);
   const notes = useSelector(selectNotes);
 
-  const exampleLabels = [{name: "blablub"}, {name: "bla"}, {name: "blub"}];
-  const exampleNotes = [{content: "jaja", comment: "ja"}, {content: "ney ney", comment: "ja"}, {content: "NEIN", comment: "JA"}];
-
   const createCsvData = (labels, notes) => {
     const rowStructure= {meta: "", id: "", content: "", comment: "", color: "", x: "", y: ""}
-    labels.forEach(label => rowStructure[label.name] = "");
+    labels.forEach(label => rowStructure[label.id] = "");
 
     let data = [Object.keys(rowStructure)];
     //labels
@@ -28,7 +25,7 @@ export default function SaveFileButton(props) {
       row.id = label.id;
       row.content = label.name;
       row.color = label.color;
-      label.labels.forEach(label => row[label.name] = label.name);
+      label.labels.forEach(label => row[label.id] = label.id);
       data = [...data, Object.values(row)];
     })
     //notes
@@ -40,7 +37,7 @@ export default function SaveFileButton(props) {
       row.comment = note.comment;
       row.x = note.position.x;
       row.y = note.position.y;
-      note.labels.forEach(label => row[label.name] = label.name)
+      note.labels.forEach(label => row[label.id] = label.id)
       data = [...data, Object.values(row)];
     })
     return data
@@ -56,7 +53,7 @@ export default function SaveFileButton(props) {
       row.forEach((value, i) => {
         const inner_str = value !== null ? value.toString() : "";
         let result = inner_str.replace(/"/g, '""');
-        if (result.search(/([",\n])/g) >= 0) {
+        if (result.search(/([,\n])/g) >= 0) {
           result = '"' + result + '"'
         }
         if (i > 0) {
@@ -74,13 +71,16 @@ export default function SaveFileButton(props) {
     const csvStr = createCsvStr(data);
     const blob = new Blob([csvStr]);
     const fileDownloadUrl = URL.createObjectURL(blob);
+    // download ist triggered on fileDownloadUrl change in useEffect
     setDownloadUrl(fileDownloadUrl);
   }
 
   useEffect(() => {
     if (downloadUrl !== "") {
       doDownload.current.click();
+      // free space
       URL.revokeObjectURL(downloadUrl);
+      // clear state
       setDownloadUrl("")
     }
   },[downloadUrl]);
