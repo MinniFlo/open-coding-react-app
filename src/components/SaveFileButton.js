@@ -5,7 +5,7 @@ import {selectNotes} from "../features/notesSlice";
 
 
 
-export default function SaveFileButton() {
+export default function SaveFileButton(props) {
 
   const [downloadUrl, setDownloadUrl] = useState("");
   const doDownload = useRef(null);
@@ -82,13 +82,14 @@ export default function SaveFileButton() {
       URL.revokeObjectURL(downloadUrl);
       // clear state
       setDownloadUrl("")
+      props.toggleDrop();
     }
   },[downloadUrl]);
 
   return (
     <>
       <button
-        className="btn-flat"
+        className="btn-flat dropDownBtn"
         onClick={download}
         style={{textTransform: "none"}}
       >save</button>

@@ -1,4 +1,6 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
+import '../style/App.css';
+import {readString} from "react-papaparse";
 
 
 export default function ImportFileButton(props) {
@@ -7,22 +9,28 @@ export default function ImportFileButton(props) {
 
   const onClick = () => {
     fileInput.current.click();
-    console.log("open file ...")
   }
 
   const handleFile = () => {
     let file = fileInput.current.files[0];
     let reader = new FileReader();
 
-    reader.onloadend = (e) => console.log(e.target.result.split('\n'));
+    reader.onloadend = (e) => convertFile(e.target.result);
 
     reader.readAsText(file);
+  }
+
+
+  const convertFile = (fileData) => {
+    const dataParseObj = readString(fileData, {header: true ,skipEmptyLines: true});
+    console.log(dataParseObj);
+    props.toggleDrop();
   }
 
   return (
     <>
       <button
-        className="btn-flat"
+        className="btn-flat dropDownBtn"
         onClick={onClick}
         style={{textTransform: "none"}}
       >import</button>
@@ -31,7 +39,9 @@ export default function ImportFileButton(props) {
         type="file"
         ref={fileInput}
         onChange={handleFile}
-        style={{display: "none"}}/>
+        style={{display: "none"}}
+      />
+
     </>
 
   );

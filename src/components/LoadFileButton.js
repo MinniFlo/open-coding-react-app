@@ -1,8 +1,8 @@
 import React, {useRef} from "react";
 import {useDispatch} from "react-redux";
 import {readString} from "react-papaparse";
-import {labelAddLabels, labelAddMany} from "../features/labelsSlice";
-import {noteAddLabels, noteAddMany} from "../features/notesSlice";
+import {labelAddMany} from "../features/labelsSlice";
+import {noteAddMany} from "../features/notesSlice";
 
 export default function LoadFileButton(props) {
 
@@ -79,16 +79,15 @@ export default function LoadFileButton(props) {
     // transform labels and notes obj to arrays for dispatching
     notes = Object.values(notes);
     labels = Object.values(labels);
-    console.log("notes:")
-    console.log(notes)
     dispatch(labelAddMany(labels));
     dispatch(noteAddMany(notes));
+    props.toggleDrop();
   }
 
   return (
     <>
       <button
-        className="btn-flat"
+        className="btn-flat dropDownBtn"
         onClick={onClick}
         style={{textTransform: "none"}}
       >open</button>

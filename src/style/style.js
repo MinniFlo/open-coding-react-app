@@ -17,9 +17,6 @@ export const {uiSpacing, colors, spacing} = {
   }
 }
 
-const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 21)
-export const customId = () => nanoid();
-
 export const {addMenuStyle} = {
 
   addMenuStyle: {
@@ -32,3 +29,6 @@ export const {addMenuStyle} = {
     },
   },
 }
+
+const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 21)
+export const customId = () => nanoid();
