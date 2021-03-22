@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {addMenuStyle} from "../style/style";
 import { useDispatch, useSelector } from "react-redux";
-import {nanoid} from "@reduxjs/toolkit";
+import {customId} from "../style/style";
 import {noteAdded, noteChanged} from "../features/notesSlice";
 import {selectLabelIds} from "../features/labelsSlice";
 import AddLabelField from "./AddLabelField";
@@ -54,7 +54,7 @@ export default function NoteAddMenu(props) {
       // called in AddMenu
       dispatch(noteAdded(
         {
-          id: nanoid(),
+          id: customId(),
           content: content,
           labels: labels,
           comment: comment,

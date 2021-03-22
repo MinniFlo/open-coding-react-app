@@ -64,6 +64,7 @@ export const {
   noteDeleted,
   notePositionChanged,
   noteAddMany,
+  noteAddLabels,
 } = notesSlice.actions;
 
 export default notesSlice.reducer;

@@ -1,3 +1,5 @@
+import {customAlphabet} from "nanoid";
+
 export const {uiSpacing, colors, spacing} = {
   colors: {
     background: " grey lighten-4",
@@ -14,6 +16,9 @@ export const {uiSpacing, colors, spacing} = {
     6: "20px",
   }
 }
+
+const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 21)
+export const customId = () => nanoid();
 
 export const {addMenuStyle} = {
 

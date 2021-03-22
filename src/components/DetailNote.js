@@ -5,7 +5,7 @@ import Draggable from "react-draggable";
 import {Edit, Delete, LibraryAdd} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
 import {noteDeleted, noteAdded} from "../features/notesSlice";
-import {nanoid} from "@reduxjs/toolkit";
+import {customId} from "../style/style";
 import PopUp from "./PopUp";
 
 
@@ -21,7 +21,7 @@ export default function DetailNote({note, position ,toggleDetail}) {
   const handleCopy = () => {
     toggleDetail();
     dispatch(noteAdded(
-      {id: nanoid(),
+      {id: customId(),
         content: note.content,
         labels: note.labels,
         comment: note.comment,

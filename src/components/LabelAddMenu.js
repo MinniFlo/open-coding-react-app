@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {addMenuStyle} from "../style/style";
 import {useDispatch, useSelector} from "react-redux";
 import {labelAdded, labelChanged, selectPossibleSubLabels} from "../features/labelsSlice";
-import {nanoid} from "@reduxjs/toolkit";
+import {customId} from "../style/style";
 import '../style/App.css'
 import AddLabelField from "./AddLabelField";
 
@@ -44,7 +44,7 @@ export default function LabelAddMenu(props) {
     } else {
       dispatch(labelAdded(
       {
-        id: nanoid(),
+        id: customId(),
         name: name,
         color: color,
         parentLabelId: "",

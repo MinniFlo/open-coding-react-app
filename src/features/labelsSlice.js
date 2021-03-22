@@ -105,6 +105,7 @@ export const {
   labelChanged,
   labelDeleted,
   labelAddMany,
+  labelAddLabels,
 } = labelsSlice.actions;
 
 export default labelsSlice.reducer;

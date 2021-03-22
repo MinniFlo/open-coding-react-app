@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.6.2",
     "fontsource-roboto": "^4.0.0",
     "materialize-css": "^1.0.0-rc.2",
+    "nanoid": "^3.1.22",
     "npm": "^7.5.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
