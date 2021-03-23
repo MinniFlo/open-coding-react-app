@@ -1,5 +1,5 @@
 import React from "react";
-import TagListItem from "./TagListItem";
+import LabelListItem from "./LabelListItem";
 import {useSelector} from "react-redux";
 
 
@@ -20,7 +20,7 @@ export default function NestedLabelList({labelIds, indent}) {
     const nestedList = createNestedList(label);
     return (
       <div key={label.id}>
-        <TagListItem key={label.id} id={label.id} indent={indent}/>
+        <LabelListItem key={label.id} id={label.id} indent={indent}/>
         {nestedList && nestedList}
       </div>
     );

@@ -6,6 +6,7 @@ import {readString} from "react-papaparse";
 export default function ImportFileButton(props) {
 
   const fileInput = useRef(null);
+  const [data, setData] = useState([])
 
   const onClick = () => {
     fileInput.current.click();
@@ -22,10 +23,15 @@ export default function ImportFileButton(props) {
 
 
   const convertFile = (fileData) => {
-    const dataParseObj = readString(fileData, {header: true ,skipEmptyLines: true});
-    console.log(dataParseObj);
-    props.toggleDrop();
+    setData(readString(fileData, {skipEmptyLines: true}).data);
   }
+
+  useEffect(() => {
+    if (data.length !== 0) {
+      props.getImportData(data);
+      props.toggleDrop(false);
+    }
+  },[data])
 
   return (
     <>

@@ -34,7 +34,7 @@ export default function Header(props) {
       {dropDownOpen &&
         <div>
           <ul className="dropDown">
-            <li><ImportFileButton toggleDrop={toggleDrop}/></li>
+            <li><ImportFileButton toggleDrop={toggleDrop} getImportData={props.getImportData}/></li>
             <li><LoadFileButton toggleDrop={toggleDrop}/></li>
             <li><SaveFileButton toggleDrop={toggleDrop}/></li>
             {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save as</button></li>*/}

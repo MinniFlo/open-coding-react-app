@@ -7,7 +7,7 @@ import {Delete} from "@material-ui/icons";
 import PopUp from "./PopUp";
 
 
-export default function TagListItem({id, indent}) {
+export default function LabelListItem({id, indent}) {
   const label = useSelector(state => selectLabelById(state, id));
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);

@@ -9,15 +9,26 @@ import ImportMenu from "./ImportMenu";
 
 function App(props){
 
-  const [importOpen, setImportOpen] = useState(false)
+  const [importOpen, setImportOpen] = useState(false);
+  const [data, setData] = useState([]);
+
+  const handleSetImportOpen = (boolean) => {
+    setImportOpen(boolean)
+  }
+
+  const getImportData = (data) => {
+    setData(data);
+    console.log(data);
+    setImportOpen(true);
+  }
 
   return (
     <div className="App">
-      <Header currentfile="unknown-document"/>
+      <Header currentfile="unknown-document" getImportData={getImportData}/>
       <SideBar />
       <AddMenu />
       <Workspace />
-      {importOpen && ImportMenu}
+      {importOpen && <ImportMenu setImportOpen={handleSetImportOpen} data={data}/>}
     </div>
   );
 }
