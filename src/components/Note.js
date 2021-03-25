@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import '../style/App.css'
 import DetailNote from "./DetailNote";
 import Draggable from 'react-draggable';
-import {MoreHoriz, Attachment} from "@material-ui/icons";
+import {MoreHoriz, Attachment, Comment} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {notePositionChanged, selectNoteById} from "../features/notesSlice";
 
@@ -41,7 +41,7 @@ export default function Note({id}) {
         <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef}>
             <div className="note" ref={nodeRef}>
               <div className="noteBackground">
-                {note.comment !== "" ? <Attachment className="noteIcon left"/>:<></>}
+                {note.comment !== "" && <Comment className="noteIcon comment left"/>}
                 <MoreHoriz
                   className="noteIcon right"
                   onClick={toggleDetail}

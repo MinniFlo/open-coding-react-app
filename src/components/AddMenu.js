@@ -35,13 +35,13 @@ export default function AddMenu() {
     <>
       {open ?
         <div id="addMenu" className="menuBackground">
-          <div id="tabs" className="row">
-            <div id="note" onClick={handleTabs}
-                 className={noteTab ? "menuTab active col s6" : "menuTab col s6"}
-            >Note</div>
+          <div id="tabs" className="row" style={{marginBottom: 0}}>
             <div id="label" onClick={handleTabs}
                  className={noteTab ? "menuTab col s6" : "menuTab active col s6"}
             >Label</div>
+            <div id="note" onClick={handleTabs}
+                 className={noteTab ? "menuTab active col s6" : "menuTab col s6"}
+            >Note</div>
           </div>
           {noteTab ?
             <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} position={position}/> :

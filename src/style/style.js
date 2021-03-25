@@ -1,12 +1,7 @@
 import {customAlphabet} from "nanoid";
 
-export const {uiSpacing, colors, spacing} = {
-  colors: {
-    background: " grey lighten-4",
-    backgroundDark: "grey darken-2",
-    text: " grey-text text-darken-4",
-    accent: " teal lighten-1" //#26a69a
-  },
+export const {spacing} = {
+
   spacing: {
     1: "4px",
     2: "8px",

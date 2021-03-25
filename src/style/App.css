@@ -155,6 +155,11 @@ html, body, #root, .App {
     margin-left: var(--normal);
 }
 
+.noteIcon.comment {
+    font-size: 18px;
+    margin-top: var(--small)
+}
+
 .detailNote {
     background-color: var(--backgroundColor);
     color: var(--textColor);
@@ -186,11 +191,38 @@ html, body, #root, .App {
     box-shadow: var(--shadow);
 }
 
-
-.menuBackground.import {
-
+.menuContent {
+    padding: var(--normal);
 }
 
+.menuTab {
+    border-radius: 2px;
+    border-bottom: 3px solid var(--darkBackgroundColor);
+    /*margin-bottom: var(--normal);*/
+    background-color: var(--darkBackgroundColor);
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 2;
+    cursor: pointer;
+}
+
+.menuTab.active {
+    border-radius: 0;
+    border-bottom: 3px solid var(--accentColor);
+    background-color: var(--backgroundColor);
+}
+
+.menuHeading {
+    margin: 0;
+}
+
+.menuText {
+    margin-top: 0;
+    max-height: 120px;
+    overflow: auto;
+}
+
+/* Import menu ------------------------------------------------------*/
 .importTableWrapper {
     max-width: calc(100vw - var(--sideBarWidth) - 5*var(--normal));
     overflow: auto;
@@ -220,37 +252,6 @@ html, body, #root, .App {
 .importTableCell.Header {
     font-weight: bold;
     border-bottom: 2px solid var(--lightTextColor);
-}
-
-.menuContent {
-    padding: var(--normal);
-}
-
-.menuTab {
-    border-radius: 2px;
-    border-bottom: 3px solid var(--darkBackgroundColor);
-    margin-bottom: var(--large);
-    background-color: var(--darkBackgroundColor);
-    font-size: 1.2em;
-    text-align: center;
-    line-height: 2;
-    cursor: pointer;
-}
-
-.menuTab.active {
-    border-radius: 0;
-    border-bottom: 3px solid var(--accentColor);
-    background-color: var(--backgroundColor);
-}
-
-.menuHeading {
-    margin: 0;
-}
-
-.menuText {
-    margin-top: 0;
-    max-height: 120px;
-    overflow: auto;
 }
 
 /* Label selection ------------------------------------------------------*/

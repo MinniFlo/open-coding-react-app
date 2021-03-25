@@ -88,6 +88,16 @@ export default function NoteAddMenu(props) {
                     style={textFieldStyle}/>
           <label className="active" htmlFor="content">Content</label>
         </div>
+
+        {/*<label>Content</label>*/}
+        {/*<textarea*/}
+        {/*  value={content}*/}
+        {/*  onChange={handleContentChange}*/}
+        {/*  autoFocus={true}*/}
+        {/*  rows={4}*/}
+        {/*  cols={40}*/}
+        {/*/>*/}
+
         <div className="labelContainer">
           <span className="grey-text">Labels</span>
           <div className="labelGrid">
