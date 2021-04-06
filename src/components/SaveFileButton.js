@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {useSelector} from "react-redux";
 import {selectLabels} from "../features/labelsSlice";
 import {selectNotes} from "../features/notesSlice";
-
+import {saveStructure} from "../style/style";
 
 
 export default function SaveFileButton(props) {
@@ -14,7 +14,7 @@ export default function SaveFileButton(props) {
   const notes = useSelector(selectNotes);
 
   const createCsvData = (labels, notes) => {
-    const rowStructure= {meta: "", id: "", content: "", comment: "", color: "", x: "", y: ""}
+    const rowStructure= saveStructure
     labels.forEach(label => rowStructure[label.id] = "");
 
     let data = [Object.keys(rowStructure)];

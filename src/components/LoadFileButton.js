@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {readString} from "react-papaparse";
 import {labelAddMany} from "../features/labelsSlice";
 import {noteAddMany} from "../features/notesSlice";
+import {saveStructure} from "../style/style";
 
 export default function LoadFileButton(props) {
 
@@ -25,8 +26,20 @@ export default function LoadFileButton(props) {
   }
 
   const checkFile = (file, result) => {
+    const resultHeader = result.replace(/\n/g, "").split(',', 7);
     if (file.type === "text/csv") {
-      parseData(result);
+      let isSaveState = true
+      const saveStateStructure = Object.keys(saveStructure)
+      resultHeader.forEach((ele, i) => {
+        if (ele !== saveStateStructure[i]) {
+          isSaveState = false;
+        }
+      })
+      if (isSaveState) {
+        parseData(result);
+      } else {
+        console.log("This File needs to be imported");
+      }
     } else {
       console.log("Invalid file type!");
       props.toggleDrop();
