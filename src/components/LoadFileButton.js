@@ -26,20 +26,24 @@ export default function LoadFileButton(props) {
   }
 
   const checkFile = (file, result) => {
-    const resultHeader = result.replace(/\n/g, "").split(',', 7);
+
     if (file.type === "text/csv") {
+      // validates the header structure of the csv-table
+      const resultHeader = result.replace(/\n/g, "").split(',', 7);
       let isSaveState = true
       const saveStateStructure = Object.keys(saveStructure)
-      resultHeader.forEach((ele, i) => {
-        if (ele !== saveStateStructure[i]) {
+      resultHeader.forEach((ele) => {
+        if (saveStateStructure.indexOf(ele) === -1) {
           isSaveState = false;
         }
       })
+
       if (isSaveState) {
         parseData(result);
       } else {
         console.log("This File needs to be imported");
       }
+
     } else {
       console.log("Invalid file type!");
       props.toggleDrop();
