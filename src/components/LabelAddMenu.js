@@ -5,6 +5,7 @@ import {labelAdded, labelChanged, selectPossibleSubLabels} from "../features/lab
 import {customId} from "../style/style";
 import '../style/App.css'
 import AddLabelField from "./AddLabelField";
+import ColorPicker from '@mapbox/react-colorpickr'
 
 
 const {textFormStyle, textFieldStyle} = addMenuStyle
@@ -19,7 +20,8 @@ export default function LabelAddMenu(props) {
   const labelIds = useSelector(selectPossibleSubLabels(props.id));
 
   const handleNameChange = e => setName(e.target.value);
-  const handleColorChange = e => setColor(e.target.value);
+  // const handleColorChange = e => setColor(e.target.value);
+  const handleColorChange = color => console.log(color);
   const handleLabelSelect = (label, add) => {
     const labelId = label.id;
     const newLabels = labels.filter(label => label.id !== labelId);
@@ -77,14 +79,17 @@ export default function LabelAddMenu(props) {
                     style={textFieldStyle}/>
           <label htmlFor="name">Name</label>
         </div>
-        <div className="input-field" style={textFormStyle}>
-          <textarea id="color"
-                    className="materialize-textarea"
-                    value={color}
-                    onChange={handleColorChange}
-                    style={textFieldStyle}/>
-          <label htmlFor="color">Color</label>
+        <div>
+          <ColorPicker onChange={handleColorChange}/>
         </div>
+        {/*<div className="input-field" style={textFormStyle}>*/}
+        {/*  <textarea id="color"*/}
+        {/*            className="materialize-textarea"*/}
+        {/*            value={color}*/}
+        {/*            onChange={handleColorChange}*/}
+        {/*            style={textFieldStyle}/>*/}
+        {/*  <label htmlFor="color">Color</label>*/}
+        {/*</div>*/}
         <div className="labelContainer">
           <span className="grey-text">Subordinate Labels</span>
           <div className="labelGrid">

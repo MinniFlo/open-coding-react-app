@@ -43,9 +43,9 @@ export default function SaveFileButton(props) {
     return data
   }
 
-  // nach dem Beispiel auf
-  // https://javascript.plainenglish.io/how-to-create-download-and-upload-files-in-react-apps-80893da4247a
-  // besucht am 20.03.21 15Uhr
+  // nach dem Beispiel auf:
+  //  https://javascript.plainenglish.io/how-to-create-download-and-upload-files-in-react-apps-80893da4247a
+  //  besucht am 20.03.21 15Uhr
   // implementiert
   const createCsvStr = (data) => {
     let csvStr = "";

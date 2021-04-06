@@ -19,11 +19,19 @@ export default function LoadFileButton(props) {
     let file = fileInput.current.files[0];
     let reader = new FileReader();
     // on file read finish call the parse function
-    reader.onloadend = (e) => parseData(e.target.result);
+    reader.onloadend = (e) => checkFile(file, e.target.result);
     // read the file
     reader.readAsText(file);
   }
 
+  const checkFile = (file, result) => {
+    if (file.type === "text/csv") {
+      parseData(result);
+    } else {
+      console.log("Invalid file type!");
+      props.toggleDrop();
+    }
+  }
 
   const parseData = data => {
     const dataParseObj = readString(data, {header: true ,skipEmptyLines: true});
@@ -56,6 +64,7 @@ export default function LoadFileButton(props) {
         }
       }
     });
+
     // set label references
     dataObj.forEach(obj => {
       const labelIds = Object.keys(labels).filter(id => obj[id] !== "");
@@ -96,7 +105,7 @@ export default function LoadFileButton(props) {
         type="file"
         ref={fileInput}
         onChange={handleFile}
-        accept=".csv, .xlsx, .ods"
+        accept=".csv"
         style={{display: "none"}}/>
     </>
 

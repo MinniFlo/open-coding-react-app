@@ -16,11 +16,19 @@ export default function ImportFileButton(props) {
     let file = fileInput.current.files[0];
     let reader = new FileReader();
 
-    reader.onloadend = (e) => convertFile(e.target.result);
+    reader.onloadend = (e) => checkFile(file, e.target.result);
 
     reader.readAsText(file);
   }
 
+  const checkFile = (file, result) => {
+    if (file.type === "text/csv") {
+      convertFile(result);
+    } else {
+      console.log("Invalid file type!");
+      props.toggleDrop();
+    }
+  }
 
   const convertFile = (fileData) => {
     setData(readString(fileData, {skipEmptyLines: true}).data);
@@ -45,6 +53,7 @@ export default function ImportFileButton(props) {
         type="file"
         ref={fileInput}
         onChange={handleFile}
+        accept=".csv"
         style={{display: "none"}}
       />
 

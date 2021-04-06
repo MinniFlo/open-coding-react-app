@@ -27,5 +27,5 @@ export const {addMenuStyle} = {
 
 const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 21)
 export const customId = () => nanoid();
-const hexColor = customAlphabet("456789abcd", 6);
+const hexColor = customAlphabet("23456789abcd", 6);
 export const genColor = () => "#" + hexColor();

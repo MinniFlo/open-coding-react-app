@@ -263,8 +263,8 @@ html, body, #root, .App {
     display: grid;
     grid-gap: var(--normal);
     padding-top: var(--normal);
-    grid-template-columns: 115px 115px 115px;
-    max-height: 130px;
+    grid-template-columns: 115px 115px 115px 115px;
+    max-height: 210px;
     overflow: auto;
 }
 
