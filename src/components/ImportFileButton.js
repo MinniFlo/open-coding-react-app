@@ -21,7 +21,6 @@ export default function ImportFileButton(props) {
 
   const checkFile = (file, result) => {
     if (file.type === "text/csv") {
-      console.log(file)
       convertFile(result);
     } else {
       console.log("Invalid file type!");

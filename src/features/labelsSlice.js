@@ -1,49 +1,9 @@
 import {createSlice, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 
 
-
 const labelAdapter = createEntityAdapter();
 const initialState = labelAdapter.getInitialState();
-// const initialState = {
-//   ids: ["a", "b", "c", "d", "e"],
-//   entities: {
-//     a: {
-//       id: "a",
-//       name: "Getränk",
-//       color: "#a55",
-//       parentLabelId: "",
-//       labels: [],
-//     },
-//     b: {
-//       id: "b",
-//       name: "Essen",
-//       color: "#aa5",
-//       parentLabelId: "",
-//       labels: [],
-//     },
-//     c: {
-//       id: "c",
-//       name: "Müsli",
-//       color: "#a5a",
-//       parentLabelId: "",
-//       labels: [],
-//     },
-//     d: {
-//       id: "d",
-//       name: "Tee",
-//       color: "#5a5",
-//       parentLabelId: "",
-//       labels: [],
-//     },
-//     e: {
-//       id: "e",
-//       name: "Kaffee",
-//       color: "#55a",
-//       parentLabelId: "",
-//       labels: [],
-//     },
-//   }
-// }
+
 
 const updateParentIds = (labelId, subLabels, entities) => {
   subLabels.forEach(label => {
@@ -79,6 +39,7 @@ export const labelsSlice = createSlice({
       labelAdapter.upsertOne(state, action.payload);
     },
     labelDeleted(state, action) {
+      console.log("in label slice")
       const {id} = action.payload;
       // remove parentLabelId on all subordinate Labels
       const label = state.entities[id];
@@ -93,6 +54,8 @@ export const labelsSlice = createSlice({
       } else {
         label.labels.forEach(subLabel => state.entities[subLabel.id].parentLabelId = "")
       }
+      // remove Label reference in Note objects
+
       // remove Label
       labelAdapter.removeOne(state, id);
     },

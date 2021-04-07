@@ -15,12 +15,12 @@ export default function ImportMenuColumn(props) {
 
   // eslint-disable-next-line array-callback-return
   const table = props.data.map((ele, i) => {
-    if (i < 10) {
+    if (i < 11) {
       return (
         <p key={ele + i} className={i===0?"importTableCell Header truncate" : "importTableCell truncate"}>
           {ele===""?"-":ele}
         </p>);
-    } else if (i === 10) {
+    } else if (i === 11) {
       return (
         <p key={ele + i} className="importTableCell truncate">
           ...

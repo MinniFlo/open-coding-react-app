@@ -37,8 +37,6 @@ export default function ImportMenu(props) {
   );
 
   const importData = () => {
-    console.log(data);
-    console.log(columnMeaning);
     let labels = {};
     data[0].forEach((name, i) => {
       if (columnMeaning[i] === "label-tag") {
@@ -90,9 +88,6 @@ export default function ImportMenu(props) {
     labels = Object.values(labels);
     notes = Object.values(notes);
 
-    console.log(labels);
-    console.log(notes);
-
     dispatch(labelAddMany(labels));
     dispatch(noteAddMany(notes));
 
@@ -103,6 +98,7 @@ export default function ImportMenu(props) {
 
   return (
     <div className="menuBackground import ">
+      <h5 className="grey-text menuHeading menuContent">{"Importing File: " + props.fileName}</h5>
       <div className="importTableWrapper">
         <div className="importTable">
           {columns}

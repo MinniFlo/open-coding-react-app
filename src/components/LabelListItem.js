@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {labelDeleted, selectLabelById} from "../features/labelsSlice";
+import {noteLabelDeleted} from "../features/notesSlice";
 import '../style/App.css'
 import LabelAddMenu from "./LabelAddMenu";
 import {Delete} from "@material-ui/icons";
@@ -19,7 +20,8 @@ export default function LabelListItem({id, indent}) {
   const togglePopup = () => setPopUpOpen(!popUpOpen);
   const handleDelete = () => {
     toggleEdit();
-    dispatch(labelDeleted({id: id}))
+    dispatch(labelDeleted({id: id}));
+    dispatch(noteLabelDeleted({id: id}));
   }
 
 

@@ -20,6 +20,7 @@ function App(props){
   }
 
   const getImportData = (data, fileName) => {
+    console.log(fileName)
     setData(data);
     setFileName(fileName);
     setImportOpen(true);

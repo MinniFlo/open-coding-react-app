@@ -49,7 +49,6 @@ export default function LoadFileButton(props) {
 
   const parseData = data => {
     const dataParseObj = readString(data, {header: true ,skipEmptyLines: true});
-    console.log(dataParseObj);
     const dataObj = dataParseObj.data;
     let labels = {};
     let notes = {};
