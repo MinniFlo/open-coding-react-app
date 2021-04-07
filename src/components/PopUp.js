@@ -4,10 +4,10 @@ import '../style/App.css'
 
 export default function PopUp(props) {
   return(
-    <div className="row valign-wrapper popup">
-      <p className="left" style={{margin: 0, marginRight: "16px"}}>{props.text}</p>
-      <button className="btn-flat right" onClick={props.onNo}>no</button>
-      <button className="btn-flat right" onClick={props.onYes}>yes</button>
+    <div className="popup">
+      <p className="popup-text">{props.text}</p>
+      <button className="btn-flat left darken-1" onClick={props.onNo}>no</button>
+      <button className="btn-flat right darken-1" onClick={props.onYes}>yes</button>
     </div>
   );
 }

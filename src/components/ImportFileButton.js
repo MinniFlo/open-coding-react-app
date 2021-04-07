@@ -15,14 +15,13 @@ export default function ImportFileButton(props) {
   const handleFile = () => {
     let file = fileInput.current.files[0];
     let reader = new FileReader();
-
     reader.onloadend = (e) => checkFile(file, e.target.result);
-
     reader.readAsText(file);
   }
 
   const checkFile = (file, result) => {
     if (file.type === "text/csv") {
+      console.log(file)
       convertFile(result);
     } else {
       console.log("Invalid file type!");
@@ -36,9 +35,10 @@ export default function ImportFileButton(props) {
 
   useEffect(() => {
     if (data.length !== 0) {
-      props.getImportData(data);
-      props.toggleDrop(false);
+      props.getImportData(data, fileInput.current.files[0].name);
+      props.toggleDrop();
     }
+  // eslint-disable-next-line
   },[data])
 
   return (

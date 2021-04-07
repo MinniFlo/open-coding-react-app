@@ -84,6 +84,7 @@ export default function SaveFileButton(props) {
       setDownloadUrl("")
       props.toggleDrop();
     }
+  // eslint-disable-next-line
   },[downloadUrl]);
 
   return (

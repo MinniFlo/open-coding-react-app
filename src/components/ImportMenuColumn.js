@@ -10,8 +10,10 @@ export default function ImportMenuColumn(props) {
 
   useEffect( () => {
     props.updateColumnMeaning(selectValue, props.index);
+  // eslint-disable-next-line
   }, [selectValue])
 
+  // eslint-disable-next-line array-callback-return
   const table = props.data.map((ele, i) => {
     if (i < 10) {
       return (

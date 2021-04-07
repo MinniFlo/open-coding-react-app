@@ -17,6 +17,7 @@ export default function AddLabelField(props) {
 
   useEffect(() => {
     handleLabelSelect(label, selected);
+  // eslint-disable-next-line
   }, [selected]);
 
   return (

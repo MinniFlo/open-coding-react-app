@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import '../style/App.css'
 import DetailNote from "./DetailNote";
 import Draggable from 'react-draggable';
-import {MoreHoriz, Attachment, Comment} from "@material-ui/icons";
+import {MoreHoriz, Comment} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {notePositionChanged, selectNoteById} from "../features/notesSlice";
 

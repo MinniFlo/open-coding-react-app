@@ -52,6 +52,7 @@ export default function ImportMenu(props) {
     
     let notes = {};
     data.forEach((row, j) => {
+      // skip the Header row
       if (j === 0) {
         return;
       }
@@ -61,14 +62,14 @@ export default function ImportMenu(props) {
         switch (columnMeaning[i]) {
           case "content": {
             if (ele !== "") {
-              newNote.content = ele;
+              newNote.content = newNote.content + "- " + ele;
             } else {
               validNote = false
             }
             break
           } case "comment": {
             if (ele !== "") {
-              newNote.comment = ele;
+              newNote.comment = newNote.comment + "- " + ele;
             }
             break
           } case "label-tag": {
@@ -77,7 +78,7 @@ export default function ImportMenu(props) {
             }
             break
           }default: {
-            console.log("content ignored: " + columnMeaning[i]);
+            console.log("col ignored: " + columnMeaning[i]);
           }
         }
       })

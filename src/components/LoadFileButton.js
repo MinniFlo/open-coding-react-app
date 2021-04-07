@@ -15,18 +15,14 @@ export default function LoadFileButton(props) {
   }
 
   const handleFile = () => {
-    // props.persistor.purge();
     dispatch({type: 'CLEAR_STATE', payload: {}});
     let file = fileInput.current.files[0];
     let reader = new FileReader();
-    // on file read finish call the parse function
     reader.onloadend = (e) => checkFile(file, e.target.result);
-    // read the file
     reader.readAsText(file);
   }
 
   const checkFile = (file, result) => {
-
     if (file.type === "text/csv") {
       // validates the header structure of the csv-table
       const resultHeader = result.replace(/\n/g, "").split(',', 7);
@@ -39,9 +35,10 @@ export default function LoadFileButton(props) {
       })
 
       if (isSaveState) {
+        //valid header
         parseData(result);
       } else {
-        console.log("This File needs to be imported");
+        console.log("This File needs to be Imported")
       }
 
     } else {
@@ -84,6 +81,7 @@ export default function LoadFileButton(props) {
 
     // set label references
     dataObj.forEach(obj => {
+      // get all label ids that are referenced in table row
       const labelIds = Object.keys(labels).filter(id => obj[id] !== "");
       switch (obj.meta) {
         case "label": {
@@ -105,8 +103,10 @@ export default function LoadFileButton(props) {
     // transform labels and notes obj to arrays for dispatching
     notes = Object.values(notes);
     labels = Object.values(labels);
+    // dispatching
     dispatch(labelAddMany(labels));
     dispatch(noteAddMany(notes));
+    // close drop down menu
     props.toggleDrop();
   }
 

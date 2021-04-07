@@ -287,7 +287,22 @@ html, body, #root, .App {
 }
 
 /* popup ------------------------------------------------------*/
+
 .popup {
-    border-bottom: 3px solid var(--accentColor);
-    margin-bottom: var(--large);
+    background-color: var(--backgroundColor);
+    box-shadow: var(--shadow);
+    position: fixed;
+    z-index: 7;
+    width: 250px;
+    padding: var(--normal);
+    margin-top: 40vh;
+    margin-left: calc(50vw - 125px);
+
+}
+
+.popup-text {
+    display: flex;
+    align-content: center;
+    margin-top: var(--normal);
+    margin-bottom: var(--normal);
 }
