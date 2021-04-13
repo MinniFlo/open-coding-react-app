@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from 'redux'
 import notesReducer from './features/notesSlice'
 import labelsReducer from './features/labelsSlice'
+import navigationReducer from "./features/navigationSlice";
 import { persistStore, persistReducer} from "redux-persist"
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
@@ -9,6 +10,7 @@ import storage from 'redux-persist/lib/storage'
 const appReducer = combineReducers({
   notes: notesReducer,
   labels: labelsReducer,
+  navigation: navigationReducer
 });
 
 const rootReducer = (state, action) => {

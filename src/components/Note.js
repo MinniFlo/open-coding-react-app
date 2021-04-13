@@ -13,6 +13,7 @@ export default function Note({id}) {
 
 
   const note = useSelector(state => selectNoteById(state, id));
+  const scale = useSelector( state => state.navigation.scale);
   const dispatch = useDispatch();
 
   const [currentPosition, setCurrentPosition] = useState(note.position);
@@ -29,7 +30,7 @@ export default function Note({id}) {
 
   const labels  = note.labels.map(label => {
     return (
-      <div key={label.id} className="noteLabelItem" style={{backgroundColor: label.color}}/>
+      <div key={label.id} id="note" className="noteLabelItem" style={{backgroundColor: label.color}}/>
     );
   });
 
@@ -38,17 +39,17 @@ export default function Note({id}) {
   return (
     <>
       {detail ? <DetailNote note={note} position={currentPosition} toggleDetail={toggleDetail}/> :
-        <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef}>
-            <div className="note" ref={nodeRef}>
-              <div className="noteBackground">
+        <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef} scale={scale}>
+            <div id="note" className="note" ref={nodeRef}>
+              <div id="note" className="noteBackground">
                 {note.comment !== "" && <Comment className="noteIcon comment left"/>}
                 <MoreHoriz
                   className="noteIcon right"
                   onClick={toggleDetail}
                 />
-                <p className="noteContent">{note.content}</p>
+                <p id="note" className="noteContent">{note.content}</p>
               </div>
-              <div className="noteLabelGrid">
+              <div id="note" className="noteLabelGrid">
                 {labels}
               </div>
             </div>

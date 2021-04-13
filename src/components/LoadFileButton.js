@@ -124,7 +124,7 @@ export default function LoadFileButton(props) {
         onChange={handleFile}
         accept=".csv"
         style={{display: "none"}}/>
-      <PopUp text="test" onYes={()=>console.log("yes")} onNo={()=>console.log("no")}/>
+      {/*<PopUp text="test" onYes={()=>console.log("yes")} onNo={()=>console.log("no")}/>*/}
     </>
 
   );
