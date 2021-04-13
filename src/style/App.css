@@ -99,7 +99,7 @@ html, body, #root, .App {
     border-radius: 30px;
     margin: var(--large);
     line-height: 0;
-    z-index: 1;
+    z-index: 2;
     box-shadow: var(--shadow);
 }
 
@@ -164,7 +164,6 @@ html, body, #root, .App {
 .detailNote {
     background-color: var(--backgroundColor);
     color: var(--textColor);
-    width: 400px;
     z-index: 1;
     position: absolute;
     border-radius: 2px;
@@ -289,15 +288,33 @@ html, body, #root, .App {
 
 /* popup ------------------------------------------------------*/
 
+.popup-menu {
+    background-color: var(--backgroundColor);
+    display: flex;
+    width: 100%;
+}
+
 .popup {
     background-color: var(--backgroundColor);
     box-shadow: var(--shadow);
     position: fixed;
     z-index: 7;
     width: 250px;
+    top: 0;
+    left: 0;
     padding: var(--normal);
+    margin-top: 30vh;
+    margin-left: calc(50vw - 125px);
+}
 
-
+.popup-dim {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    background-color: #00000044;
 }
 
 .popup-text {
@@ -305,4 +322,5 @@ html, body, #root, .App {
     align-content: center;
     margin-top: var(--normal);
     margin-bottom: var(--normal);
+
 }

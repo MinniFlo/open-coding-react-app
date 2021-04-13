@@ -55,14 +55,11 @@ export default function ImportMenu(props) {
         return;
       }
       const newNote = {id: "", content: "", labels: [], comment: "", position: {x: (j%12) * 185, y: Math.floor(j/12) * 180}};
-      let validNote = true
       row.forEach((ele, i) => {
         switch (columnMeaning[i]) {
           case "content": {
             if (ele !== "") {
               newNote.content = newNote.content + "- " + ele;
-            } else {
-              validNote = false
             }
             break
           } case "comment": {
@@ -80,7 +77,7 @@ export default function ImportMenu(props) {
           }
         }
       })
-      if (validNote) {
+      if (newNote.content !== "") {
         newNote.id = customId();
         notes[newNote.id] = newNote;
       }

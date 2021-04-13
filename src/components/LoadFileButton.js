@@ -4,6 +4,7 @@ import {readString} from "react-papaparse";
 import {labelAddMany} from "../features/labelsSlice";
 import {noteAddMany} from "../features/notesSlice";
 import {saveStructure} from "../style/style";
+import PopUp from "./PopUp";
 
 export default function LoadFileButton(props) {
 
@@ -15,7 +16,6 @@ export default function LoadFileButton(props) {
   }
 
   const handleFile = () => {
-    dispatch({type: 'CLEAR_STATE', payload: {}});
     let file = fileInput.current.files[0];
     let reader = new FileReader();
     reader.onloadend = (e) => checkFile(file, e.target.result);
@@ -36,6 +36,7 @@ export default function LoadFileButton(props) {
 
       if (isSaveState) {
         //valid header
+        dispatch({type: 'CLEAR_STATE', payload: {}});
         parseData(result);
       } else {
         console.log("This File needs to be Imported")
@@ -123,6 +124,7 @@ export default function LoadFileButton(props) {
         onChange={handleFile}
         accept=".csv"
         style={{display: "none"}}/>
+      <PopUp text="test" onYes={()=>console.log("yes")} onNo={()=>console.log("no")}/>
     </>
 
   );

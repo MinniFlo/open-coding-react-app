@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import {addMenuStyle} from "../style/style";
 import {useDispatch, useSelector} from "react-redux";
 import {labelAdded, labelChanged, selectPossibleSubLabels} from "../features/labelsSlice";
-import {customId} from "../style/style";
+import {customId, genColor} from "../style/style";
 import '../style/App.css'
 import AddLabelField from "./AddLabelField";
-import ColorPicker from '@mapbox/react-colorpickr'
+// import ColorPicker from '@mapbox/react-colorpickr'
 
 
 const {textFormStyle, textFieldStyle} = addMenuStyle
@@ -13,7 +13,7 @@ const {textFormStyle, textFieldStyle} = addMenuStyle
 export default function LabelAddMenu(props) {
 
   const [name, setName] = useState(props.name);
-  const [color, setColor] = useState(props.color);
+  const [color, setColor] = useState(props.color === "" ? genColor() : props.color);
   const [labels, setLabels] = useState(props.labels)
 
   const dispatch = useDispatch();
@@ -79,17 +79,17 @@ export default function LabelAddMenu(props) {
                     style={textFieldStyle}/>
           <label htmlFor="name">Name</label>
         </div>
-        <div>
-          <ColorPicker onChange={handleColorChange}/>
-        </div>
-        {/*<div className="input-field" style={textFormStyle}>*/}
-        {/*  <textarea id="color"*/}
-        {/*            className="materialize-textarea"*/}
-        {/*            value={color}*/}
-        {/*            onChange={handleColorChange}*/}
-        {/*            style={textFieldStyle}/>*/}
-        {/*  <label htmlFor="color">Color</label>*/}
+        {/*<div>*/}
+        {/*  <ColorPicker onChange={handleColorChange}/>*/}
         {/*</div>*/}
+        <div className="input-field" style={textFormStyle}>
+          <textarea id="color"
+                    className="materialize-textarea"
+                    value={color}
+                    onChange={handleColorChange}
+                    style={textFieldStyle}/>
+          <label htmlFor="color">Color</label>
+        </div>
         <div className="labelContainer">
           <span className="grey-text">Subordinate Labels</span>
           <div className="labelGrid">

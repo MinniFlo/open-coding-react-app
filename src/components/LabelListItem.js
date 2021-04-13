@@ -42,7 +42,7 @@ export default function LabelListItem({id, indent}) {
           <h5 className="grey-text menuHeading left">Edit Label</h5>
           <Delete className="detailNoteIcon right" onClick={togglePopup}/>
         </div>
-        {popUpOpen && <PopUp onYes={handleDelete} onNo={togglePopup} text="delete this Note?"/>}
+        {popUpOpen && <PopUp onYes={handleDelete} onNo={togglePopup} text="delete this Label?"/>}
         <LabelAddMenu toggleOpen={toggleEdit} id={label.id} name={label.name} color={label.color} labels={label.labels}/>
       </div>
       }
