@@ -1,10 +1,15 @@
-import {useCallback, useState, useRef} from "react";
+import {useCallback, useState, useRef, useEffect} from "react";
+import {useSelector} from "react-redux";
+
 
 const ORIGIN = Object.freeze({x: 0, y: 0});
 
-export default function usePan() {
+export default function usePan(canvasRef) {
   const [panState, setPanState] = useState(ORIGIN);
   const lastPointRef = useRef(ORIGIN);
+  const scale = useSelector(state => state.navigation.scale);
+
+  const canvasDim = useDimension(canvasRef);
 
   const pan = useCallback((e) => {
     const lastPoint = lastPointRef.current;
@@ -16,15 +21,33 @@ export default function usePan() {
         x: lastPoint.x - point.x,
         y: lastPoint.y - point.y
       }
-      const panX = panState.x + delta.x
-      const panY = panState.y + delta.y
+      let panX = panState.x + delta.x
+      let panY = panState.y + delta.y
+
+      const maxOffsetX = canvasDim.x - canvasDim.x*0.1/scale;
+      const maxOffsetY = canvasDim.y - canvasDim.y*0.1/scale;
+
+      if (panX < 0) {
+        panX = 0;
+      }
+      else if (panX/scale > maxOffsetX) {
+        panX = maxOffsetX*scale;
+      }
+
+      if (panY < 0) {
+        panY = 0;
+      }
+      else if (panY/scale > maxOffsetY) {
+        panY = maxOffsetY*scale;
+      }
+
       return {
-        x: panX > 0 ? panX : 0,
-        y: panY > 0 ? panY : 0
+        x: panX,
+        y: panY,
       }
     })
 
-  }, [lastPointRef]);
+  }, [canvasDim.x, canvasDim.y, scale]);
 
   const endPan = useCallback(() => {
     document.removeEventListener('mousemove', pan);
@@ -38,4 +61,19 @@ export default function usePan() {
   }, [endPan, pan])
 
   return [panState, startPan];
+}
+
+function useDimension(ref) {
+  const [dim, setDim] = useState({x:0, y:0});
+
+  useEffect(() => {
+    if (ref.current !== null){
+      setDim({
+        x: ref.current.clientWidth,
+        y: ref.current.clientHeight,
+      })
+    }
+  }, [ref, setDim])
+
+  return dim;
 }

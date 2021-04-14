@@ -89,8 +89,8 @@ html, body, #root, .App {
 
 .canvas {
     background-color: var(--canvasColor);
-    height: 10000px;
-    width: 10000px;
+    height: calc((100vh - var(--headerHeight)) * 10);
+    width: calc((100vw - var(--sideBarWidth)) * 10);
     position: absolute;
 }
 

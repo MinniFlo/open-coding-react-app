@@ -28,7 +28,7 @@ export default function Header(props) {
                 onClick={toggleDrop}>File</button>
             </div>
             <div className="col s4 truncate" style={{textAlign:"center"}}><span>{props.currentfile}</span></div>
-            <div className="col s4" style={{textAlign: "right"}}><span>{Math.floor(100*scale) + '%'}</span></div>
+            <div className="col s4" style={{textAlign: "right"}}><span>{Math.floor(100*scale + 0.5) + '%'}</span></div>
           </div>
         </nav>
       </div>

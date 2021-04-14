@@ -9,9 +9,10 @@ import usePan from "../misc/pan_logic";
 
 export default function Workspace(props) {
   const noteIds = useSelector(selectNoteIds)
-  const [offset, startPan] = usePan();
-  const [buffer, setBuffer] = useState({x:0, y:0});
   const scaleRef = useRef(null);
+  const canvasRef = useRef(null);
+  const [offset, startPan] = usePan(canvasRef);
+  const [buffer, setBuffer] = useState({x:0, y:0});
   const scale = useScale(scaleRef);
 
   const notes = noteIds.map((id) =>
@@ -38,7 +39,7 @@ export default function Workspace(props) {
     <div id="scaleWrapper" className="scaleWrapper" ref={scaleRef} style={{
       transform: 'scale(' + scale + ')',
     }}>
-      <div id="canvas" className="canvas" onMouseDown={handleDrag} style={{
+      <div id="canvas" className="canvas" ref={canvasRef} onMouseDown={handleDrag} style={{
         transform: 'translate('+ -offset.x/scale +'px, '+ -offset.y/scale +'px)',
         top: buffer.y,
         left: buffer.x,

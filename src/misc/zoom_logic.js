@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback} from "react";
 import {useDispatch} from "react-redux";
 import {scaleChanged} from "../features/navigationSlice";
 
-const MIN_SCALE = 0.2;
+const MIN_SCALE = 0.1;
 const MAX_SCALE = 2;
 
 
