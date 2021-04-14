@@ -3,7 +3,7 @@ html, body, #root, .App {
     width: 100%;
     padding: 0;
     margin: 0;
-    overflow: auto;
+    overflow: hidden;
 
     /* Colors */
     --canvasColor: #616161;
@@ -81,12 +81,16 @@ html, body, #root, .App {
 }
 
 /* canvas ------------------------------------------------------*/
-.canvas {
-    background-color: var(--canvasColor);
+.scaleWrapper{
+    position: absolute;
     top: var(--headerHeight);
     left: var(--sideBarWidth);
-    height: 2000px;
-    width: 2000px;
+}
+
+.canvas {
+    background-color: var(--canvasColor);
+    height: 10000px;
+    width: 10000px;
     position: absolute;
 }
 

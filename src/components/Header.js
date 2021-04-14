@@ -3,11 +3,13 @@ import '../style/App.css'
 import LoadFileButton from "./LoadFileButton";
 import ImportFileButton from "./ImportFileButton";
 import SaveFileButton from "./SaveFileButton";
+import {useSelector} from "react-redux";
 
 
 export default function Header(props) {
 
   const [dropDownOpen, setDropDownOpen] = useState(false);
+  const scale = useSelector(state => state.navigation.scale);
 
   const toggleDrop = () => {
     setDropDownOpen(!dropDownOpen);
@@ -26,7 +28,7 @@ export default function Header(props) {
                 onClick={toggleDrop}>File</button>
             </div>
             <div className="col s4 truncate" style={{textAlign:"center"}}><span>{props.currentfile}</span></div>
-            <div className="col s4" style={{textAlign: "right"}}><span>100%</span></div>
+            <div className="col s4" style={{textAlign: "right"}}><span>{Math.floor(100*scale) + '%'}</span></div>
           </div>
         </nav>
       </div>

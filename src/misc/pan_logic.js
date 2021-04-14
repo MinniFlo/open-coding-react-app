@@ -16,13 +16,15 @@ export default function usePan() {
         x: lastPoint.x - point.x,
         y: lastPoint.y - point.y
       }
+      const panX = panState.x + delta.x
+      const panY = panState.y + delta.y
       return {
-        x: panState.x + delta.x,
-        y: panState.y + delta.y
+        x: panX > 0 ? panX : 0,
+        y: panY > 0 ? panY : 0
       }
     })
 
-  }, [lastPointRef, panState.x, panState.y]);
+  }, [lastPointRef]);
 
   const endPan = useCallback(() => {
     document.removeEventListener('mousemove', pan);
