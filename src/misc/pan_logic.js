@@ -1,5 +1,7 @@
 import {useCallback, useState, useRef, useEffect} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useDimension} from "./hooks";
+import {offsetChanged} from "../features/navigationSlice";
 
 
 const ORIGIN = Object.freeze({x: 0, y: 0});
@@ -8,8 +10,9 @@ export default function usePan(canvasRef) {
   const [panState, setPanState] = useState(ORIGIN);
   const lastPointRef = useRef(ORIGIN);
   const scale = useSelector(state => state.navigation.scale);
+  const dispatch = useDispatch();
 
-  const canvasDim = useDimension(canvasRef);
+  const [canvasDim, maxOffset] = useDimension(canvasRef);
 
   const pan = useCallback((e) => {
     const lastPoint = lastPointRef.current;
@@ -24,21 +27,18 @@ export default function usePan(canvasRef) {
       let panX = panState.x + delta.x
       let panY = panState.y + delta.y
 
-      const maxOffsetX = canvasDim.x - canvasDim.x*0.1/scale;
-      const maxOffsetY = canvasDim.y - canvasDim.y*0.1/scale;
-
       if (panX < 0) {
         panX = 0;
       }
-      else if (panX/scale > maxOffsetX) {
-        panX = maxOffsetX*scale;
+      else if (panX/scale > maxOffset.x) {
+        panX = maxOffset.x*scale;
       }
 
       if (panY < 0) {
         panY = 0;
       }
-      else if (panY/scale > maxOffsetY) {
-        panY = maxOffsetY*scale;
+      else if (panY/scale > maxOffset.y) {
+        panY = maxOffset.y*scale;
       }
 
       return {
@@ -47,7 +47,7 @@ export default function usePan(canvasRef) {
       }
     })
 
-  }, [canvasDim.x, canvasDim.y, scale]);
+  }, [maxOffset.x, maxOffset.y, scale]);
 
   const endPan = useCallback(() => {
     document.removeEventListener('mousemove', pan);
@@ -60,20 +60,10 @@ export default function usePan(canvasRef) {
     lastPointRef.current = {x:e.pageX, y:e.pageY};
   }, [endPan, pan])
 
-  return [panState, startPan];
-}
-
-function useDimension(ref) {
-  const [dim, setDim] = useState({x:0, y:0});
-
   useEffect(() => {
-    if (ref.current !== null){
-      setDim({
-        x: ref.current.clientWidth,
-        y: ref.current.clientHeight,
-      })
-    }
-  }, [ref, setDim])
+    dispatch(offsetChanged({offset: panState}))
+  }, [dispatch, panState])
 
-  return dim;
+  return startPan;
 }
+
