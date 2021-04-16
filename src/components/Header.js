@@ -17,7 +17,7 @@ export default function Header(props) {
 
   return (
     <>
-      <div className="navbar-fixed" style={{zIndex: 4}}>
+      <div className="navbar-fixed" style={{zIndex: 4, height: "50px"}}>
         <nav className="header">
           <div className="nav-wrapper row">
             <div className="col s4">

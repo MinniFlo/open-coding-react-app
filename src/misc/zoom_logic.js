@@ -31,10 +31,12 @@ export default function useScale() {
   },[])
 
   const handler = useCallback(e => {
-    updateScale({
-      direction: e.deltaY < 0 ? 'up' : 'down',
-      interval: 0.05,
-    })
+    if (e.target.id === "canvas" || e.target.id === "note") {
+      updateScale({
+        direction: e.deltaY < 0 ? 'up' : 'down',
+        interval: 0.05,
+      })
+    }
   }, [updateScale]);
 
   useEffect(() => {

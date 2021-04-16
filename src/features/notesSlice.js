@@ -21,7 +21,7 @@ export const notesSlice = createSlice({
       state.ids.forEach(id => {
         state.entities[id].labels = state.entities[id].labels.filter(label => label.id !== labelId)
       });
-    }
+    },
   }
 });
 

@@ -11,7 +11,7 @@ export default function SideBar() {
 
   return (
     <div id="sideBar"  className="sideBar" >
-        <NestedLabelList labelIds={labelIds} indent={1}/>
+        <NestedLabelList labelIds={labelIds} indent={0}/>
     </div>
   );
 }

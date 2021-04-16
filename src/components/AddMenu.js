@@ -46,7 +46,7 @@ export default function AddMenu() {
           {noteTab ?
             <NoteAddMenu toggleOpen={toggleOpen} id={""} content={""} labels={[]} comment={""} position={position}/> :
 
-            <LabelAddMenu toggleOpen={toggleOpen} id={""} name={""} color={""} labels={[]}/>
+            <LabelAddMenu toggleOpen={toggleOpen} id={""} name={""} color={""} labels={[]} highlight={false}/>
           }
         </div>
         :

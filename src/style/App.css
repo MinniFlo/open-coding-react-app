@@ -33,6 +33,7 @@ html, body, #root, .App {
 /* Sidebar ------------------------------------------------------*/
 .sideBar {
     width: var(--sideBarWidth);
+    padding: var(--normal);
     padding-top: var(--headerHeight);
     background-color: var(--backgroundColor);
     box-shadow: var(--shadow);
@@ -44,9 +45,24 @@ html, body, #root, .App {
 }
 
 .sidebarLi {
-    margin-left: var(--large);
-    margin-bottom: var(--normal);
+    margin-left: var(--normal);
+    margin-bottom: var(--large);
     cursor: pointer;
+}
+
+.liContent {
+    border-bottom: 3px solid var(--backgroundColor);
+    background-color: var(--backgroundColor);
+    border-radius: 2px;
+    overflow: hidden;
+    width: 100%;
+    padding-left: var(--normal);
+    padding-right: var(--normal);
+}
+
+.liContent.active{
+    border-bottom: 3px solid var(--accentColor);
+    background-color: var(--darkBackgroundColor);
 }
 
 .colorSymbol {
@@ -103,7 +119,7 @@ html, body, #root, .App {
     border-radius: 30px;
     margin: var(--large);
     line-height: 0;
-    z-index: 2;
+    z-index: 1;
     box-shadow: var(--shadow);
 }
 

@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {labelDeleted, selectLabelById} from "../features/labelsSlice";
+import {labelDeleted, selectLabelById, labelToggleHighlight} from "../features/labelsSlice";
 import {noteLabelDeleted} from "../features/notesSlice";
 import '../style/App.css'
 import LabelAddMenu from "./LabelAddMenu";
-import {Delete} from "@material-ui/icons";
+import {Delete, MoreVert} from "@material-ui/icons";
 import PopUp from "./PopUp";
 
 
@@ -18,12 +18,12 @@ export default function LabelListItem({id, indent}) {
     setEdit(!edit);
   }
   const togglePopup = () => setPopUpOpen(!popUpOpen);
+  const toggleHighlight = () => dispatch(labelToggleHighlight({id: id}));
   const handleDelete = () => {
     toggleEdit();
     dispatch(labelDeleted({id: id}));
     dispatch(noteLabelDeleted({id: id}));
   }
-
 
   return (
     <>
@@ -31,10 +31,14 @@ export default function LabelListItem({id, indent}) {
         className="valign-wrapper sidebarLi"
         id={label.id}
         style={{marginLeft: 16 * indent + "px"}}
-        onDoubleClick={toggleEdit}
       >
-        <div className="colorSymbol" style={{backgroundColor: label.color}}/>
-        <span className="truncate">{label.name}</span>
+        <div className={label.highlight ? "valign-wrapper liContent active" : "valign-wrapper liContent"}
+             onClick={toggleHighlight}
+        >
+          <div className="colorSymbol" style={{backgroundColor: label.color}}/>
+          <span className="truncate">{label.name}</span>
+        </div>
+        <MoreVert className="right-align" onClick={toggleEdit} style={{marginRight: "4px"}}/>
       </li>
       {edit &&
       <div className="menuBackground">
@@ -43,7 +47,12 @@ export default function LabelListItem({id, indent}) {
           <Delete className="detailNoteIcon right" onClick={togglePopup}/>
         </div>
         {popUpOpen && <PopUp onYes={handleDelete} onNo={togglePopup} text="delete this Label?"/>}
-        <LabelAddMenu toggleOpen={toggleEdit} id={label.id} name={label.name} color={label.color} labels={label.labels}/>
+        <LabelAddMenu toggleOpen={toggleEdit}
+                      id={label.id}
+                      name={label.name}
+                      color={label.color}
+                      labels={label.labels}
+                      highlight={label.highlight}/>
       </div>
       }
     </>

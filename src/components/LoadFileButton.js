@@ -56,7 +56,7 @@ export default function LoadFileButton(props) {
     dataObj.forEach(obj => {
       switch (obj.meta) {
         case "label": {
-          const newLabel = {id: "", name: "", color: "", parentLabelId: "", labels: []};
+          const newLabel = {id: "", name: "", color: "", parentLabelId: "", labels: [], highlight: false};
           newLabel.id = obj.id;
           newLabel.name = obj.content;
           newLabel.color = obj.color;

@@ -41,6 +41,7 @@ export default function LabelAddMenu(props) {
           name: name,
           color: color,
           labels: labels,
+          highlight: props.highlight,
         }
       ));
     } else {
@@ -51,6 +52,7 @@ export default function LabelAddMenu(props) {
         color: color,
         parentLabelId: "",
         labels: labels,
+        highlight: props.highlight,
       }
     ));}
 

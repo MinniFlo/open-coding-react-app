@@ -40,7 +40,7 @@ export default function ImportMenu(props) {
     let labels = {};
     data[0].forEach((name, i) => {
       if (columnMeaning[i] === "label-tag") {
-        const newLabel = {id: "", name: "", color: "", parentLabelId: "", labels: []};
+        const newLabel = {id: "", name: "", color: "", parentLabelId: "", labels: [], highlight: false};
         newLabel.id = customId();
         newLabel.name = name;
         newLabel.color = genColor();
@@ -54,7 +54,8 @@ export default function ImportMenu(props) {
       if (j === 0) {
         return;
       }
-      const newNote = {id: "", content: "", labels: [], comment: "", position: {x: (j%12) * 185, y: Math.floor(j/12) * 180}};
+      const newNote = {id: "", content: "", labels: [], comment: "",
+        position: {x: (j%12) * 185 + 500, y: Math.floor(j/12) * 180 + 500}};
       row.forEach((ele, i) => {
         switch (columnMeaning[i]) {
           case "content": {
