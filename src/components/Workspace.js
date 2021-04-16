@@ -39,7 +39,7 @@ export default function Workspace(props) {
 
 
   const handleDrag = (e) => {
-    if (e.target.id !== "note") {
+    if (e.target.id === "canvas") {
       startPan(e);
     }
   };

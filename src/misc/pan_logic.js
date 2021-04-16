@@ -12,7 +12,7 @@ export default function usePan(canvasRef) {
   const scale = useSelector(state => state.navigation.scale);
   const dispatch = useDispatch();
 
-  const [canvasDim, maxOffset] = useDimension(canvasRef);
+  const [, maxOffset] = useDimension(canvasRef);
 
   const pan = useCallback((e) => {
     const lastPoint = lastPointRef.current;
