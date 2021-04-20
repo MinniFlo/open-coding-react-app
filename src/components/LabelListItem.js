@@ -21,8 +21,8 @@ export default function LabelListItem({id, indent}) {
   const toggleHighlight = () => dispatch(labelToggleHighlight({id: id}));
   const handleDelete = () => {
     toggleEdit();
-    dispatch(labelDeleted({id: id}));
     dispatch(noteLabelDeleted({id: id}));
+    dispatch(labelDeleted({id: id}));
   }
 
   return (

@@ -21,13 +21,12 @@ export default function LabelAddMenu(props) {
 
   const handleNameChange = e => setName(e.target.value);
   const handleColorChange = e => setColor(e.target.value);
-  const handleLabelSelect = (label, add) => {
-    const labelId = label.id;
-    const newLabels = labels.filter(label => label.id !== labelId);
+  const handleLabelSelect = (labelId, add) => {
+    const newLabelIds = labels.filter(id => id !== labelId);
     if (add === true) {
-      setLabels([...newLabels, label]);
+      setLabels([...newLabelIds, labelId]);
     } else {
-      setLabels(newLabels);
+      setLabels(newLabelIds);
     }
   }
   
@@ -61,7 +60,7 @@ export default function LabelAddMenu(props) {
   };
 
   const structureLabels = (labelIds) => {
-    const selectedIds = labelIds.filter(id => labels.map(label => label.id).indexOf(id) !== -1);
+    const selectedIds = labelIds.filter(id => labels.indexOf(id) !== -1);
     const unselectedIds = labelIds.filter(id => selectedIds.indexOf(id) === -1);
     const selectedReturn = selectedIds.map((id) =>
       <AddLabelField key={id} id={id} isSelected={true} handleLabelSelect={handleLabelSelect}/>)

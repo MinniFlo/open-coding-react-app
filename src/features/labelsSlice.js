@@ -5,11 +5,12 @@ const labelAdapter = createEntityAdapter();
 const initialState = labelAdapter.getInitialState();
 
 
-const updateParentIds = (labelId, subLabels, entities) => {
+const updateParentIds = (labelId, subLabelIds, entities) => {
+  const subLabels = subLabelIds.map(id => entities[id]);
   subLabels.forEach(label => {
     const parentId = entities[label.id].parentLabelId
     if (parentId !== "") {
-      entities[parentId].labels = entities[parentId].labels.filter(subLabel => subLabel.id !== label.id);
+      entities[parentId].labels = entities[parentId].labels.filter(id => id !== label.id);
     }
     entities[label.id].parentLabelId=labelId;
   });
@@ -30,8 +31,8 @@ export const labelsSlice = createSlice({
       const {id, labels} = action.payload;
       // get the old subordinate Labels and remove parentLabelId on all
       const oldLabels = state.entities[id].labels
-      oldLabels.forEach(label => {
-        state.entities[label.id].parentLabelId = ""
+      oldLabels.forEach(id => {
+        state.entities[id].parentLabelId = ""
       });
       // set the parentLabelId on all new subordinate Labels
       updateParentIds(id, labels, state.entities);
@@ -45,16 +46,14 @@ export const labelsSlice = createSlice({
       // if the Label is a subordinate Label, remove the reference of the parent Label
       if (label.parentLabelId !== "") {
         const parentLabel = state.entities[label.parentLabelId];
-        parentLabel.labels = parentLabel.labels.filter(subLabel => subLabel.id !== id);
-        label.labels.forEach(subLabel => {
-          state.entities[subLabel.id].parentLabelId = label.parentLabelId;
-          parentLabel.labels = [...parentLabel.labels, subLabel];
+        parentLabel.labels = parentLabel.labels.filter(subId => subId !== id);
+        label.labels.forEach( subId => {
+          state.entities[subId].parentLabelId = parentLabel.id;
+          parentLabel.labels = [...parentLabel.labels, subId];
         })
       } else {
-        label.labels.forEach(subLabel => state.entities[subLabel.id].parentLabelId = "")
+        label.labels.forEach(subId => state.entities[subId].parentLabelId = "")
       }
-      // remove Label reference in Note objects
-
       // remove Label
       labelAdapter.removeOne(state, id);
     },
@@ -90,6 +89,13 @@ export const selectLabelIds = createSelector(
   labels => labels.map(labels => labels.id)
 );
 
+export const selectLabelsById = (labelIds) => createSelector(
+  state => state.labels.entities,
+  (entities) => {
+    return labelIds.map(id => entities[id]);
+  }
+)
+
 export const selectParentLabelIds = createSelector(
   selectLabels,
   labels => labels.filter(label => label.parentLabelId === "").map(label => label.id)
@@ -114,9 +120,7 @@ export const selectPossibleSubLabels = (labelId) => createSelector(
     const label = labels[labelId];
     const parentIds = selectAllParentIds(label, labels)
     if (parentIds.length !== 0) {
-      const parentFiltered = labelIds.filter(id => {
-        return parentIds.indexOf(id) === -1;
-      })
+      const parentFiltered = labelIds.filter(id => parentIds.indexOf(id) === -1)
       return parentFiltered.filter(id => id !== label.id);
     }
     return labelIds.filter(id => id !== label.id);
@@ -126,8 +130,8 @@ export const selectPossibleSubLabels = (labelId) => createSelector(
 const selectAllChildrenIds = (label, labels) => {
   if (label.labels.length > 0) {
     let childrenList = [];
-    label.labels.forEach(subLabel => {
-      const currentLabel = labels[subLabel.id];
+    label.labels.forEach(subId => {
+      const currentLabel = labels[subId];
       childrenList = [...childrenList, currentLabel.id, ...selectAllChildrenIds(currentLabel, labels)];
     })
     return childrenList;
@@ -137,12 +141,12 @@ const selectAllChildrenIds = (label, labels) => {
 
 export const selectHighlightIds = createSelector(
   state => state.labels.entities,
-  state => state.labels.ids,
-  (labels, labelIds) => {
-    const highlightParentIds = labelIds.filter(id => labels[id].highlight !== false);
+  selectLabelIds,
+  (entities, labels) => {
+    const highlightParentIds = labels.filter(id => entities[id].highlight !== false);
     let childrenIds = []
     highlightParentIds.forEach(id => {
-      childrenIds = [...selectAllChildrenIds(labels[id], labels)]
+      childrenIds = [...selectAllChildrenIds(entities[id], entities)]
     })
     return [...highlightParentIds, ...childrenIds];
     }

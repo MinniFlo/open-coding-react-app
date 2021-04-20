@@ -22,13 +22,12 @@ export default function NoteAddMenu(props) {
 
   const handleContentChange = e => setContent(e.target.value);
   const handleCommentChange = e => setComment(e.target.value);
-  const handleLabelSelect = (label, add) => {
-    const labelId = label.id
-    const newLabels = labels.filter(label => label.id !== labelId);
+  const handleLabelSelect = (labelId, add) => {
+    const newLabelIds = labels.filter(id => id !== labelId);
     if (add === true) {
-      setLabels([...newLabels, label]);
+      setLabels([...newLabelIds, labelId]);
     } else {
-      setLabels(newLabels);
+      setLabels(newLabelIds);
     }
   }
 
@@ -69,12 +68,18 @@ export default function NoteAddMenu(props) {
     props.toggleOpen();
   };
 
-  const selectLabelFields = labelIds.map(id => {
-    const selected = labels.filter(label => label.id === id).length !== 0;
-    return (
-      <AddLabelField key={id} id={id} isSelected={selected} handleLabelSelect={handleLabelSelect}/>
-    );
-  });
+  const structureLabels = (labelIds) => {
+    const selectedIds = labelIds.filter(id => labels.indexOf(id) !== -1);
+    const unselectedIds = labelIds.filter(id => selectedIds.indexOf(id) === -1);
+    const selectedReturn = selectedIds.map((id) =>
+      <AddLabelField key={id} id={id} isSelected={true} handleLabelSelect={handleLabelSelect}/>)
+    const unSelectedReturn = unselectedIds.map((id) =>
+      <AddLabelField key={id} id={id} isSelected={false} handleLabelSelect={handleLabelSelect}/>)
+    return [...selectedReturn, ...unSelectedReturn];
+  }
+
+  const selectLabelFields = structureLabels(labelIds);
+
 
   return (
     <div className="menuContent">
@@ -88,16 +93,6 @@ export default function NoteAddMenu(props) {
                     style={textFieldStyle}/>
           <label className="active" htmlFor="content">Content</label>
         </div>
-
-        {/*<label>Content</label>*/}
-        {/*<textarea*/}
-        {/*  value={content}*/}
-        {/*  onChange={handleContentChange}*/}
-        {/*  autoFocus={true}*/}
-        {/*  rows={4}*/}
-        {/*  cols={40}*/}
-        {/*/>*/}
-
         <div className="labelContainer">
           <span className="grey-text">Labels</span>
           <div className="labelGrid">

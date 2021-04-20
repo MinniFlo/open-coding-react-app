@@ -87,13 +87,13 @@ export default function LoadFileButton(props) {
         case "label": {
           const label = labels[obj.id];
           labelIds.forEach(id => {
-            label.labels = [...label.labels, labels[id]];
+            label.labels = [...label.labels, id];
             labels[id].parentLabelId = label.id;
           })
           break;
         } case "note": {
           const note = notes[obj.id];
-          labelIds.forEach(id => note.labels = [...note.labels, labels[id]]);
+          labelIds.forEach(id => note.labels = [...note.labels, id]);
           break;
         } default: {
           console.log("unexpected meta field");

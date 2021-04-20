@@ -19,7 +19,7 @@ export const notesSlice = createSlice({
     noteLabelDeleted(state, action) {
       const labelId = action.payload.id;
       state.ids.forEach(id => {
-        state.entities[id].labels = state.entities[id].labels.filter(label => label.id !== labelId)
+        state.entities[id].labels = state.entities[id].labels.filter(id => id !== labelId)
       });
     },
   }

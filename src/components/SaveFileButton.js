@@ -26,7 +26,7 @@ export default function SaveFileButton(props) {
       row.id = label.id;
       row.content = label.name;
       row.color = label.color;
-      label.labels.forEach(label => row[label.id] = label.id);
+      label.labels.forEach(id => row[id] = id);
       data = [...data, Object.values(row)];
     })
     //notes
@@ -38,7 +38,7 @@ export default function SaveFileButton(props) {
       row.comment = note.comment;
       row.x = note.position.x;
       row.y = note.position.y;
-      note.labels.forEach(label => row[label.id] = label.id)
+      note.labels.forEach(id => row[id] = id)
       data = [...data, Object.values(row)];
     })
     return data

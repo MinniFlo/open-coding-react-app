@@ -70,7 +70,7 @@ export default function ImportMenu(props) {
             break
           } case "label-tag": {
             if (ele !== "") {
-              newNote.labels = [...newNote.labels, labels[i]]
+              newNote.labels = [...newNote.labels, labels[i].id]
             }
             break
           }default: {

@@ -53,7 +53,7 @@ export default function DetailNote({note, position ,toggleDetail}) {
               labels={note.labels}
               comment={note.comment}
               position={note.position}
-              edit={true} />
+            />
 
         {/*  <div className="menuContent">*/}
         {/*    <div className="row" style={{margin: 0}}>*/}

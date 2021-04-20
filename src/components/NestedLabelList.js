@@ -1,16 +1,16 @@
 import React from "react";
 import LabelListItem from "./LabelListItem";
 import {useSelector} from "react-redux";
+import {selectLabelsById} from "../features/labelsSlice";
 
 
 export default function NestedLabelList({labelIds, indent}) {
 
-  const labels = useSelector((state) => labelIds.map(id => state.labels.entities[id]))
+  const labels = useSelector(selectLabelsById(labelIds));
   const createNestedList = (label) => {
     if (label.labels.length !== 0) {
-      const nestedLabelIds = label.labels.map(subLabel => subLabel.id);
       return (
-        <NestedLabelList key={label.id + "-sub"} labelIds={nestedLabelIds} indent={indent + 1}/>
+        <NestedLabelList key={label.id + "-sub"} labelIds={label.labels} indent={indent + 1}/>
       );
     }
     return null;

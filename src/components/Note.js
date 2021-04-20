@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import {MoreHoriz, Comment} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {notePositionChanged, selectNoteById} from "../features/notesSlice";
-import {selectHighlightIds} from "../features/labelsSlice";
+import {selectHighlightIds, selectLabelsById} from "../features/labelsSlice";
 
 
 export default function Note({id}) {
@@ -15,6 +15,7 @@ export default function Note({id}) {
 
 
   const note = useSelector(state => selectNoteById(state, id));
+  const noteLabels = useSelector(selectLabelsById(note.labels));
   const scale = useSelector( state => state.navigation.scale);
   const highlightedLabels = useSelector(selectHighlightIds);
   const dispatch = useDispatch();
@@ -36,8 +37,8 @@ export default function Note({id}) {
       setHighlighted(true);
     } else {
       let highlight = false
-      note.labels.forEach(label => {
-        if (highlightedLabels.indexOf(label.id) !== -1) {
+      note.labels.forEach(id => {
+        if (highlightedLabels.indexOf(id) !== -1) {
           highlight = true
         }
       })
@@ -45,7 +46,7 @@ export default function Note({id}) {
     }
   }, [highlightedLabels, note.labels])
 
-  const labels  = note.labels.map(label => {
+  const labels = noteLabels.map(label => {
     return (
       <div key={label.id} id="note" className="noteLabelItem" style={{backgroundColor: label.color}}/>
     );
