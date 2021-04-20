@@ -3,6 +3,7 @@ import '../style/App.css'
 import LoadFileButton from "./LoadFileButton";
 import ImportFileButton from "./ImportFileButton";
 import SaveFileButton from "./SaveFileButton";
+import ClearButton from "./ClearButton";
 import {useSelector} from "react-redux";
 
 
@@ -39,8 +40,7 @@ export default function Header(props) {
             <li><ImportFileButton toggleDrop={toggleDrop} getImportData={props.getImportData}/></li>
             <li><LoadFileButton toggleDrop={toggleDrop}/></li>
             <li><SaveFileButton toggleDrop={toggleDrop}/></li>
-            {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>save as</button></li>*/}
-            {/*<li className="valign-wrapper"><button className="btn-flat" style={{textTransform: "none"}}>export</button></li>*/}
+            <li><ClearButton toggleDrop={toggleDrop}/></li>
           </ul>
         </div>
       }

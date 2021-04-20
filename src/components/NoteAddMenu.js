@@ -36,7 +36,7 @@ export default function NoteAddMenu(props) {
     document.querySelectorAll('.materialize-textarea').forEach((area) => {
       M.textareaAutoResize(area);
     });
-  }, [content, comment])
+  })
 
   const handleSubmit = () => {
     if (props.id !== "") {

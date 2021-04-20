@@ -20,8 +20,7 @@ export default function LabelAddMenu(props) {
   const labelIds = useSelector(selectPossibleSubLabels(props.id));
 
   const handleNameChange = e => setName(e.target.value);
-  // const handleColorChange = e => setColor(e.target.value);
-  const handleColorChange = color => console.log(color);
+  const handleColorChange = e => setColor(e.target.value);
   const handleLabelSelect = (label, add) => {
     const labelId = label.id;
     const newLabels = labels.filter(label => label.id !== labelId);
@@ -61,13 +60,18 @@ export default function LabelAddMenu(props) {
     props.toggleOpen();
   };
 
-  const selectLabelFields = labelIds.map(id => {
-    if (props.id !== id) {
-      const selected = labels.filter(label => label.id === id).length !== 0;
-      return <AddLabelField key={id} id={id} isSelected={selected} handleLabelSelect={handleLabelSelect}/>
-    }
-    return null;
-  });
+  const structureLabels = (labelIds) => {
+    const selectedIds = labelIds.filter(id => labels.map(label => label.id).indexOf(id) !== -1);
+    const unselectedIds = labelIds.filter(id => selectedIds.indexOf(id) === -1);
+    const selectedReturn = selectedIds.map((id) =>
+      <AddLabelField key={id} id={id} isSelected={true} handleLabelSelect={handleLabelSelect}/>)
+    const unSelectedReturn = unselectedIds.map((id) =>
+      <AddLabelField key={id} id={id} isSelected={false} handleLabelSelect={handleLabelSelect}/>)
+    return [...selectedReturn, ...unSelectedReturn];
+  }
+
+  const selectLabelFields = structureLabels(labelIds);
+
 
   return (
     <div className="menuContent">
@@ -79,7 +83,7 @@ export default function LabelAddMenu(props) {
                     onChange={handleNameChange}
                     autoFocus={true}
                     style={textFieldStyle}/>
-          <label htmlFor="name">Name</label>
+          <label className="active" htmlFor="name">Name</label>
         </div>
         {/*<div>*/}
         {/*  <ColorPicker onChange={handleColorChange}/>*/}
@@ -90,8 +94,10 @@ export default function LabelAddMenu(props) {
                     value={color}
                     onChange={handleColorChange}
                     style={textFieldStyle}/>
-          <label htmlFor="color">Color</label>
+          <label className="active" htmlFor="color">Color</label>
+          <div style={{backgroundColor: color, padding: "4px", boarderRadius: 3}}/>
         </div>
+
         <div className="labelContainer">
           <span className="grey-text">Subordinate Labels</span>
           <div className="labelGrid">

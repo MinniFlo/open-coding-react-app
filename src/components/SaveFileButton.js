@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {selectLabels} from "../features/labelsSlice";
 import {selectNotes} from "../features/notesSlice";
 import {saveStructure} from "../style/style";
+import "../style/App.css"
 
 
 export default function SaveFileButton(props) {

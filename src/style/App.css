@@ -91,9 +91,8 @@ html, body, #root, .App {
 }
 
 .dropDownBtn {
-    text-align: center;
+    text-align: left;
     margin: var(--normal);
-
 }
 
 /* canvas ------------------------------------------------------*/

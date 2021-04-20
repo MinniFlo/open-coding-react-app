@@ -58,13 +58,13 @@ export default function Note({id}) {
       {detail ? <DetailNote note={note} position={currentPosition} toggleDetail={toggleDetail}/> :
         <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef} scale={scale}>
             <div id="note" className="note" ref={nodeRef}>
-              <div className="noteBackground" style={highlighted?{}:{backgroundColor:"#aaa"}}>
+              <div id="note" className="noteBackground" style={highlighted?{}:{backgroundColor:"#aaa"}}>
                 {note.comment !== "" && <Comment className="noteIcon comment left"/>}
                 <MoreHoriz
                   className="noteIcon right"
                   onClick={toggleDetail}
                 />
-                <p className="noteContent">{note.content}</p>
+                <p id="note" className="noteContent">{note.content}</p>
               </div>
               <div className="noteLabelGrid">
                 {labels}

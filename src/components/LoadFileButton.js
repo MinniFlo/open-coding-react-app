@@ -4,6 +4,7 @@ import {readString} from "react-papaparse";
 import {labelAddMany} from "../features/labelsSlice";
 import {noteAddMany} from "../features/notesSlice";
 import {saveStructure} from "../style/style";
+import "../style/App.css"
 
 export default function LoadFileButton(props) {
 
