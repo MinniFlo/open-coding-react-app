@@ -98,8 +98,8 @@ html, body, #root, .App {
 /* canvas ------------------------------------------------------*/
 .scaleWrapper{
     position: absolute;
-    top: var(--headerHeight);
     left: var(--sideBarWidth);
+
 }
 
 .canvas {

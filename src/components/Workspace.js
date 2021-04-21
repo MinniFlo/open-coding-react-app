@@ -14,7 +14,7 @@ export default function Workspace(props) {
   const canvasRef = useRef(null);
   const startPan = usePan(canvasRef);
   const [buffer, setBuffer] = useState({x:0, y:0});
-  useScale(scaleRef);
+  useScale(canvasRef);
   const offset = useSelector(state => state.navigation.offset);
   const scale = useSelector(state => state.navigation.scale);
 

@@ -1,34 +1,37 @@
 import {useState, useEffect, useCallback} from "react";
-import {useDispatch} from "react-redux";
-import {scaleChanged} from "../features/navigationSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {offsetChanged, scaleChanged} from "../features/navigationSlice";
+import {calcMaxOffset, useDimension} from "./hooks";
 
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 2;
 
 
-export default function useScale() {
+export default function useScale(canvasRef) {
+  const [lastScale, setLastScale] = useState(0.7)
   const [scale, setScale] = useState(0.7);
   const dispatch = useDispatch();
+  const dim = useDimension(canvasRef);
+  const offset = useSelector(state => state.navigation.offset)
 
   const updateScale = useCallback(({direction, interval}) => {
-    setScale(currentScale => {
-      let scale;
+    const currentScale = scale;
+    let newScale;
 
-      if (direction === 'up' && currentScale + interval < MAX_SCALE) {
-        scale = currentScale + interval
-      } else if (direction === 'up') {
-        scale = MAX_SCALE
-      } else if (direction === 'down' && currentScale - interval > MIN_SCALE) {
-        scale = currentScale - interval
-      } else if (direction === 'down') {
-        scale = MIN_SCALE
-      } else {
-        scale = currentScale
-      }
-      return scale;
-    })
-
-  },[])
+    if (direction === 'up' && currentScale + interval < MAX_SCALE) {
+      newScale = currentScale + interval
+    } else if (direction === 'up') {
+      newScale = MAX_SCALE
+    } else if (direction === 'down' && currentScale - interval > MIN_SCALE) {
+      newScale = currentScale - interval
+    } else if (direction === 'down') {
+      newScale = MIN_SCALE
+    } else {
+      newScale = currentScale
+    }
+    setLastScale(currentScale)
+    setScale(newScale)
+  })
 
   const handler = useCallback(e => {
      if (e.target.id === "canvas" || e.target.id === "note") {
@@ -49,5 +52,12 @@ export default function useScale() {
 
   useEffect(() => {
     dispatch(scaleChanged({scale: scale}))
-  }, [dispatch, scale])
+    const oldFrame = {x: dim.x*lastScale, y: dim.y*lastScale}
+    const Frame = {x: dim.x*scale, y: dim.y*scale}
+    const delta = {x: (oldFrame.x - Frame.x)/2, y: (oldFrame.y - Frame.y)/2}
+    const adjOffset = {x: offset.x - delta.x, y: offset.y - delta.y}
+    const maxOffset = calcMaxOffset(scale, dim, adjOffset)
+
+    dispatch(offsetChanged({offset: maxOffset}));
+  }, [dim.x, dim.y, dispatch, scale])
 }

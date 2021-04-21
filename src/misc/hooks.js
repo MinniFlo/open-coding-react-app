@@ -3,8 +3,6 @@ import {useSelector} from "react-redux";
 
 export const useDimension = (ref) => {
   const [dim, setDim] = useState({x:0, y:0});
-  const [maxOffset, setMaxOffset] = useState({x:0, y:0});
-  const scale = useSelector(state => state.navigation.scale);
 
   useEffect(() => {
     if (ref.current !== null){
@@ -14,15 +12,33 @@ export const useDimension = (ref) => {
         x: width,
         y: height,
       })
-      setMaxOffset( {
-        x: width - width*0.1/scale,
-        y: height - height*0.1/scale,
-      })
+
     }
-  }, [ref, setDim, scale])
+  }, [ref, setDim])
+  return dim;
+}
 
+export const calcMaxOffset = (scale, dim, adjOffset) => {
+  const maxOffset = {
+    x: dim.x - dim.x * 0.1 / scale,
+    y: dim.y - dim.y * 0.1 / scale,
+  }
 
-  return [dim, maxOffset];
+  if (adjOffset.x < 0) {
+    adjOffset.x = 0;
+  }
+  else if (adjOffset.x/scale > maxOffset.x) {
+    adjOffset.x = maxOffset.x*scale;
+  }
+
+  if (adjOffset.y < 0) {
+    adjOffset.y = 0;
+  }
+  else if (adjOffset.y/scale > maxOffset.y) {
+    adjOffset.y = maxOffset.y*scale;
+  }
+
+  return adjOffset;
 }
 
 export const useLast = (val) => {

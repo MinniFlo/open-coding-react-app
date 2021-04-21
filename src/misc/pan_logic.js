@@ -1,6 +1,6 @@
 import {useCallback, useState, useRef, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useDimension} from "./hooks";
+import {calcMaxOffset, useDimension} from "./hooks";
 import {offsetChanged} from "../features/navigationSlice";
 
 
@@ -10,9 +10,10 @@ export default function usePan(canvasRef) {
   const [panState, setPanState] = useState(ORIGIN);
   const lastPointRef = useRef(ORIGIN);
   const scale = useSelector(state => state.navigation.scale);
+  const offset = useSelector(state => state.navigation.offset);
   const dispatch = useDispatch();
 
-  const [, maxOffset] = useDimension(canvasRef);
+  const dim = useDimension(canvasRef);
 
   const pan = useCallback((e) => {
     const lastPoint = lastPointRef.current;
@@ -24,30 +25,12 @@ export default function usePan(canvasRef) {
         x: lastPoint.x - point.x,
         y: lastPoint.y - point.y
       }
-      let panX = panState.x + delta.x
-      let panY = panState.y + delta.y
-
-      if (panX < 0) {
-        panX = 0;
-      }
-      else if (panX/scale > maxOffset.x) {
-        panX = maxOffset.x*scale;
-      }
-
-      if (panY < 0) {
-        panY = 0;
-      }
-      else if (panY/scale > maxOffset.y) {
-        panY = maxOffset.y*scale;
-      }
-
-      return {
-        x: panX,
-        y: panY,
-      }
+      const currentOffset = {x: panState.x + delta.x, y: panState.y + delta.y};
+      
+      return calcMaxOffset(scale, dim, currentOffset);
     })
 
-  }, [maxOffset.x, maxOffset.y, scale]);
+  }, [dim, scale]);
 
   const endPan = useCallback(() => {
     document.removeEventListener('mousemove', pan);
@@ -63,6 +46,11 @@ export default function usePan(canvasRef) {
   useEffect(() => {
     dispatch(offsetChanged({offset: panState}))
   }, [dispatch, panState])
+
+  useEffect(() => {
+    setPanState(offset);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scale])
 
   return startPan;
 }
