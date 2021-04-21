@@ -26,7 +26,7 @@ export default function usePan(canvasRef) {
         y: lastPoint.y - point.y
       }
       const currentOffset = {x: panState.x + delta.x, y: panState.y + delta.y};
-      
+
       return calcMaxOffset(scale, dim, currentOffset);
     })
 

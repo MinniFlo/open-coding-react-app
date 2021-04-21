@@ -94,7 +94,7 @@ export default function LabelAddMenu(props) {
                     onChange={handleColorChange}
                     style={textFieldStyle}/>
           <label className="active" htmlFor="color">Color</label>
-          <div style={{backgroundColor: color, padding: "4px", boarderRadius: 3}}/>
+          <div style={{backgroundColor: color, height: "8px", borderRadius: "3px"}}/>
         </div>
 
         <div className="labelContainer">

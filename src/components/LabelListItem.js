@@ -4,7 +4,7 @@ import {labelDeleted, selectLabelById, labelToggleHighlight} from "../features/l
 import {noteLabelDeleted} from "../features/notesSlice";
 import '../style/App.css'
 import LabelAddMenu from "./LabelAddMenu";
-import {Delete, MoreVert} from "@material-ui/icons";
+import {Close, Delete, MoreVert} from "@material-ui/icons";
 import PopUp from "./PopUp";
 
 
@@ -38,7 +38,9 @@ export default function LabelListItem({id, indent}) {
           <div className="colorSymbol" style={{backgroundColor: label.color}}/>
           <span className="truncate">{label.name}</span>
         </div>
-        <MoreVert className="right-align" onClick={toggleEdit} style={{marginRight: "4px"}}/>
+        {edit ? <Close className="right-align" onClick={toggleEdit} style={{marginRight: "4px"}}/> :
+          <MoreVert className="right-align" onClick={toggleEdit} style={{marginRight: "4px"}}/>
+        }
       </li>
       {edit &&
       <div className="menuBackground">

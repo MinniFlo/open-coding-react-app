@@ -31,7 +31,7 @@ export default function useScale(canvasRef) {
     }
     setLastScale(currentScale)
     setScale(newScale)
-  })
+  }, [scale])
 
   const handler = useCallback(e => {
      if (e.target.id === "canvas" || e.target.id === "note") {
@@ -59,5 +59,6 @@ export default function useScale(canvasRef) {
     const maxOffset = calcMaxOffset(scale, dim, adjOffset)
 
     dispatch(offsetChanged({offset: maxOffset}));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dim.x, dim.y, dispatch, scale])
 }
