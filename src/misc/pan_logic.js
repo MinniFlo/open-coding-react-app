@@ -1,7 +1,7 @@
 import {useCallback, useState, useRef, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {calcMaxOffset, useDimension} from "./hooks";
 import {offsetChanged} from "../features/navigationSlice";
+import {useDimension, calcMaxOffset} from "./functionatitys";
 
 
 const ORIGIN = Object.freeze({x: 0, y: 0});

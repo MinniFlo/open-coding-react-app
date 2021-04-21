@@ -1,4 +1,5 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
+import {customAlphabet} from "nanoid";
 
 
 export const useDimension = (ref) => {
@@ -41,14 +42,20 @@ export const calcMaxOffset = (scale, dim, adjOffset) => {
   return adjOffset;
 }
 
-export const useLast = (val) => {
-  const lastRef = useRef(null);
-  const returnRef = useRef(null);
+const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 21)
+export const customId = () => nanoid();
 
-  useEffect(() => {
-    returnRef.current = lastRef.current;
-    lastRef.current = val;
-  }, [val])
+const hexColor = customAlphabet("23456789abcd", 6);
+export const genColor = () => "#" + hexColor();
 
-  return returnRef.current !== null ? returnRef.current : val;
-}
+// export const useLast = (val) => {
+//   const lastRef = useRef(null);
+//   const returnRef = useRef(null);
+//
+//   useEffect(() => {
+//     returnRef.current = lastRef.current;
+//     lastRef.current = val;
+//   }, [val])
+//
+//   return returnRef.current !== null ? returnRef.current : val;
+// }

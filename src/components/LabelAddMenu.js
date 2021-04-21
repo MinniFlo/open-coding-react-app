@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {addMenuStyle} from "../style/style";
 import {useDispatch, useSelector} from "react-redux";
 import {labelAdded, labelChanged, selectPossibleSubLabels} from "../features/labelsSlice";
-import {customId, genColor} from "../style/style";
+import {customId, genColor} from "../misc/functionatitys";
 import '../style/App.css'
 import AddLabelField from "./AddLabelField";
 // import ColorPicker from '@mapbox/react-colorpickr'

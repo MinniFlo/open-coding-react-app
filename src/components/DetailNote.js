@@ -5,7 +5,7 @@ import Draggable from "react-draggable";
 import {Delete, LibraryAdd} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
 import {noteDeleted, noteAdded} from "../features/notesSlice";
-import {customId} from "../style/style";
+import {customId} from "../misc/functionatitys";
 import PopUp from "./PopUp";
 
 

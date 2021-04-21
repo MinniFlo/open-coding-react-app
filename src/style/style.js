@@ -1,4 +1,3 @@
-import {customAlphabet} from "nanoid";
 
 export const {spacing} = {
 
@@ -27,7 +26,4 @@ export const {addMenuStyle} = {
 
 export const saveStructure = {meta: "", id: "", content: "", comment: "", color: "", x: "", y: ""}
 
-const nanoid = customAlphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 21)
-export const customId = () => nanoid();
-const hexColor = customAlphabet("23456789abcd", 6);
-export const genColor = () => "#" + hexColor();
+

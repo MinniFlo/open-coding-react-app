@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {offsetChanged, scaleChanged} from "../features/navigationSlice";
-import {calcMaxOffset, useDimension} from "./hooks";
+import {calcMaxOffset, useDimension} from "./functionatitys";
 
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 2;

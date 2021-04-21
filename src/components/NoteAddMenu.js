@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {addMenuStyle} from "../style/style";
 import { useDispatch, useSelector } from "react-redux";
-import {customId} from "../style/style";
+import {customId} from "../misc/functionatitys";
 import {noteAdded, noteChanged} from "../features/notesSlice";
 import {selectLabelIds} from "../features/labelsSlice";
 import AddLabelField from "./AddLabelField";

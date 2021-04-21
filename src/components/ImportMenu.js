@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import ImportMenuColumn from "./ImportMenuColumn";
-import {customId, genColor} from "../style/style";
+import {customId, genColor} from "../misc/functionatitys";
 import {useDispatch} from "react-redux";
 import {labelAddMany} from "../features/labelsSlice";
 import {noteAddMany} from "../features/notesSlice";
