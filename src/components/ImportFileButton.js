@@ -20,7 +20,7 @@ export default function ImportFileButton(props) {
   }
 
   const checkFile = (file, result) => {
-    if (file.type === "text/csv") {
+    if (file.name.includes(".csv")) {
       convertFile(result);
     } else {
       console.log(file)

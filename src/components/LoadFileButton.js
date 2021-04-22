@@ -23,7 +23,7 @@ export default function LoadFileButton(props) {
   }
 
   const checkFile = (file, result) => {
-    if (file.type === "text/csv") {
+    if (file.name.includes(".csv")) {
       // validates the header structure of the csv-table
       const resultHeader = result.replace(/\n/g, "").split(',', 7);
       let isSaveState = true
