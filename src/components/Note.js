@@ -36,12 +36,8 @@ export default function Note({id}) {
     if (highlightedLabels.length === 0) {
       setHighlighted(true);
     } else {
-      let highlight = false
-      note.labels.forEach(id => {
-        if (highlightedLabels.indexOf(id) !== -1) {
-          highlight = true
-        }
-      })
+      console.log(highlightedLabels)
+      const highlight = note.labels.filter(id => highlightedLabels.indexOf(id) !== -1).length !== 0;
       setHighlighted(highlight);
     }
   }, [highlightedLabels, note.labels])

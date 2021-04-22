@@ -143,10 +143,10 @@ export const selectHighlightIds = createSelector(
   state => state.labels.entities,
   selectLabelIds,
   (entities, labels) => {
-    const highlightParentIds = labels.filter(id => entities[id].highlight !== false);
+    const highlightParentIds = labels.filter(id => entities[id].highlight === true);
     let childrenIds = []
     highlightParentIds.forEach(id => {
-      childrenIds = [...selectAllChildrenIds(entities[id], entities)]
+      childrenIds = [...childrenIds, ...selectAllChildrenIds(entities[id], entities)]
     })
     return [...highlightParentIds, ...childrenIds];
     }
