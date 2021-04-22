@@ -52,13 +52,27 @@ export default function useScale(canvasRef) {
 
   useEffect(() => {
     dispatch(scaleChanged({scale: scale}))
-    const oldFrame = {x: dim.x*lastScale, y: dim.y*lastScale}
-    const Frame = {x: dim.x*scale, y: dim.y*scale}
-    const delta = {x: (oldFrame.x - Frame.x)/2, y: (oldFrame.y - Frame.y)/2}
-    const adjOffset = {x: offset.x - delta.x, y: offset.y - delta.y}
-    const maxOffset = calcMaxOffset(scale, dim, adjOffset)
-
-    dispatch(offsetChanged({offset: maxOffset}));
+    // const oldFrame = {x: 0.1*dim.x*lastScale, y: 0.1*dim.y*lastScale}
+    // const Frame = {x: 0.1*dim.x*scale, y: 0.1*dim.y*scale}
+    // const delta = {x: (oldFrame.x - Frame.x)*2, y: (oldFrame.y - Frame.y)*2}
+    // console.log(delta)
+    // const adjOffset = {x: offset.x - delta.x, y: offset.y - delta.y}
+    // const maxOffset = calcMaxOffset(scale, dim, adjOffset)
+    // dispatch(offsetChanged({offset: maxOffset}));
+    // if (dim.x !== 0 && dim.y !== 0 && dim) {
+    //   const relativePos = {
+    //     x: (offset.x + 0.05*dim.x/lastScale)/dim.x*lastScale,
+    //     y: (offset.y + 0.05*dim.y/lastScale)/dim.y*lastScale
+    //   }
+    //   const newOffset = {
+    //     x: relativePos.x*dim.x*scale,// - 0.05*dim.x/scale,
+    //     y: relativePos.y*dim.y*scale// - 0.05*dim.y/scale,
+    //   }
+    //   const adjustedOffset = calcMaxOffset(scale, dim, newOffset);
+    //   dispatch(offsetChanged({offset: adjustedOffset}));
+    // }
+    const adjustedOffset = calcMaxOffset(scale, dim, offset);
+    dispatch(offsetChanged({offset: adjustedOffset}));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dim.x, dim.y, dispatch, scale])
 }

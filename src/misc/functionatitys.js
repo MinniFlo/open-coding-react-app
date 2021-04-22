@@ -19,11 +19,13 @@ export const useDimension = (ref) => {
   return dim;
 }
 
-export const calcMaxOffset = (scale, dim, adjOffset) => {
+export const calcMaxOffset = (scale, dim, offset) => {
   const maxOffset = {
     x: dim.x - dim.x * 0.1 / scale,
     y: dim.y - dim.y * 0.1 / scale,
   }
+
+  let adjOffset = {...offset};
 
   if (adjOffset.x < 0) {
     adjOffset.x = 0;
