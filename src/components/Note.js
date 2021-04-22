@@ -36,7 +36,6 @@ export default function Note({id}) {
     if (highlightedLabels.length === 0) {
       setHighlighted(true);
     } else {
-      console.log(highlightedLabels)
       const highlight = note.labels.filter(id => highlightedLabels.indexOf(id) !== -1).length !== 0;
       setHighlighted(highlight);
     }

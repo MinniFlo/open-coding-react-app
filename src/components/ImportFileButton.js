@@ -23,6 +23,7 @@ export default function ImportFileButton(props) {
     if (file.type === "text/csv") {
       convertFile(result);
     } else {
+      console.log(file)
       console.log("Invalid file type!");
       props.toggleDrop();
     }
