@@ -1,21 +1,17 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef} from "react";
 import {customAlphabet} from "nanoid";
 
 
 export const useDimension = (ref) => {
-  const [dim, setDim] = useState({x:0, y:0});
-
+  const dim = useRef({x:0, y:0});
   useEffect(() => {
+    console.log(ref)
     if (ref.current !== null){
       const width = ref.current.clientWidth;
       const height = ref.current.clientHeight;
-      setDim({
-        x: width,
-        y: height,
-      })
-
+      dim.current = {x: width, y: height,}
     }
-  }, [ref, setDim])
+  }, [ref])
   return dim;
 }
 

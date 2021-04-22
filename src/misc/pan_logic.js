@@ -13,10 +13,12 @@ export default function usePan(canvasRef) {
   const offset = useSelector(state => state.navigation.offset);
   const dispatch = useDispatch();
 
-  const dim = useDimension(canvasRef);
+  const dimRef = useDimension(canvasRef);
 
   const pan = useCallback((e) => {
+
     const lastPoint = lastPointRef.current;
+    // const point = e.center;
     const point = {x: e.pageX, y: e.pageY};
     lastPointRef.current = point;
 
@@ -27,20 +29,25 @@ export default function usePan(canvasRef) {
       }
       const currentOffset = {x: panState.x + delta.x, y: panState.y + delta.y};
 
-      return calcMaxOffset(scale, dim, currentOffset);
+      return calcMaxOffset(scale, dimRef.current, currentOffset);
     })
 
-  }, [dim, scale]);
+  }, [dimRef, scale]);
 
   const endPan = useCallback(() => {
     document.removeEventListener('mousemove', pan);
     document.removeEventListener('mouseup', endPan);
+    document.removeEventListener('pan', pan);
+    document.removeEventListener('panend', endPan);
   }, [pan])
 
   const startPan = useCallback((e) => {
     document.addEventListener('mousemove', pan);
     document.addEventListener('mouseup', endPan);
-    lastPointRef.current = {x:e.pageX, y:e.pageY};
+    // document.addEventListener('pan', pan);
+    // document.addEventListener('panend', endPan);
+    // lastPointRef.current = e.center;
+    lastPointRef.current = {x: e.pageX, y: e.pageY}
   }, [endPan, pan])
 
   useEffect(() => {
@@ -52,6 +59,6 @@ export default function usePan(canvasRef) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scale])
 
-  return startPan;
+  return [startPan, pan];
 }
 

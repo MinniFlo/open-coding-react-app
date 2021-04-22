@@ -8,10 +8,10 @@ const MAX_SCALE = 2;
 
 
 export default function useScale(canvasRef) {
-  const [lastScale, setLastScale] = useState(0.7)
+  const [, setLastScale] = useState(0.7)
   const [scale, setScale] = useState(0.7);
   const dispatch = useDispatch();
-  const dim = useDimension(canvasRef);
+  const dimRef = useDimension(canvasRef);
   const offset = useSelector(state => state.navigation.offset)
 
   const updateScale = useCallback(({direction, interval}) => {
@@ -71,8 +71,8 @@ export default function useScale(canvasRef) {
     //   const adjustedOffset = calcMaxOffset(scale, dim, newOffset);
     //   dispatch(offsetChanged({offset: adjustedOffset}));
     // }
-    const adjustedOffset = calcMaxOffset(scale, dim, offset);
+    const adjustedOffset = calcMaxOffset(scale, dimRef.current, offset);
     dispatch(offsetChanged({offset: adjustedOffset}));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dim.x, dim.y, dispatch, scale])
+    // eslint-disable-next-line react-hooks/exhaustive-deps,no-sparse-arrays
+  }, [dispatch, scale])
 }

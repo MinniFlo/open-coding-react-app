@@ -6,6 +6,8 @@ import {MoreHoriz, Comment} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {notePositionChanged, selectNoteById} from "../features/notesSlice";
 import {selectHighlightIds, selectLabelsById} from "../features/labelsSlice";
+import {noteDraggedChanged} from "../features/navigationSlice";
+import HammerComponent from "react-hammerjs";
 
 
 export default function Note({id}) {
@@ -22,7 +24,10 @@ export default function Note({id}) {
 
   const [currentPosition, setCurrentPosition] = useState(note.position);
 
-  const toggleDetail = () => setDetail(!detail);
+  const toggleDetail = () => {
+    setDetail(!detail)
+    dispatch(noteDraggedChanged({noteDragged: false}))
+  };
   const onStop = (e, position) => {
     const newPos = {x: position.x, y: position.y};
     setCurrentPosition(newPos);
@@ -30,6 +35,10 @@ export default function Note({id}) {
       noteId: note.id,
       position: newPos
     }));
+    dispatch(noteDraggedChanged({noteDragged: false}))
+  }
+  const onStart = () => {
+    dispatch(noteDraggedChanged({noteDragged: true}))
   }
 
   useEffect(() => {
@@ -52,14 +61,13 @@ export default function Note({id}) {
   return (
     <>
       {detail ? <DetailNote note={note} position={currentPosition} toggleDetail={toggleDetail}/> :
-        <Draggable bounds="parent" position={currentPosition} onStop={onStop} nodeRef={nodeRef} scale={scale}>
+        <Draggable bounds="parent" position={currentPosition} onStart={onStart} onStop={onStop} nodeRef={nodeRef} scale={scale}>
             <div id="note" className="note" ref={nodeRef}>
               <div id="note" className="noteBackground" style={highlighted?{}:{backgroundColor:"#aaa"}}>
                 {note.comment !== "" && <Comment className="noteIcon comment left"/>}
-                <MoreHoriz
-                  className="noteIcon right"
-                  onClick={toggleDetail}
-                />
+                <HammerComponent onTap={toggleDetail}>
+                  <MoreHoriz className="noteIcon right" onClick={toggleDetail}/>
+                </HammerComponent>
                 <p id="note" className="noteContent">{note.content}</p>
               </div>
               <div className="noteLabelGrid">

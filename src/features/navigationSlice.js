@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
   scale: 1,
   offset: {x:0, y:0},
+  noteDragged: false
 }
 
 
@@ -17,12 +18,16 @@ export const notesSlice = createSlice({
     scaleChanged(state, action) {
       state.scale = action.payload.scale;
     },
+    noteDraggedChanged(state, action) {
+      state.noteDragged = action.payload.noteDragged;
+    }
   }
 });
 
 export const {
   offsetChanged,
   scaleChanged,
+  noteDraggedChanged,
 } = notesSlice.actions;
 
 export default notesSlice.reducer;

@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef, useState} from "react";
+import React, {useRef} from "react";
 import Note from "./Note"
 import {selectNoteIds} from "../features/notesSlice";
 import {useSelector} from "react-redux";
@@ -12,9 +12,10 @@ export default function Workspace(props) {
   const noteIds = useSelector(selectNoteIds)
   const scaleRef = useRef(null);
   const canvasRef = useRef(null);
-  const startPan = usePan(canvasRef);
-  const [buffer, setBuffer] = useState({x:0, y:0});
+  const [startPan,] = usePan(canvasRef);
   useScale(canvasRef);
+
+  // const noteDragged = useSelector(state => state.navigation.noteDragged)
   const offset = useSelector(state => state.navigation.offset);
   const scale = useSelector(state => state.navigation.scale);
 
@@ -25,39 +26,36 @@ export default function Workspace(props) {
   const adjOffsetX = -offset.x/scale;
   const adjOffsetY = -offset.y/scale;
 
-  useLayoutEffect(() => {
-    const height = scaleRef.current?.clientHeight ?? 0;
-    const width = scaleRef.current?.clientWidth ?? 0;
-
-    setBuffer({
-      x: (width - width / scale) / 2,
-      y: (height - height / scale) / 2,
-    })
-  }, [scale, setBuffer])
-
-
-
-
-  const handleDrag = (e) => {
+  const handleMouseDown = (e) => {
     if (e.target.id === "canvas") {
       startPan(e);
     }
-  };
+  }
+
+
+  // const handlePanStart = (e) => {
+  //   if (e.target.id === "canvas") {
+  //     startPan(e);
+  //   }
+  // };
+  //
+  // const handlePan = (e) => {
+  //   if (!noteDragged) {
+  //     calcPan(e);
+  //   }
+  // };
 
   return (
     <div id="scaleWrapper" className="scaleWrapper" ref={scaleRef} style={{
       transform: 'scale(' + scale + ')',
     }}>
-      <div id="canvas" className="canvas" ref={canvasRef} onMouseDown={handleDrag} style={{
-        transform: 'translate('+ adjOffsetX +'px, '+ adjOffsetY +'px)',
-        top: buffer.y,
-        left: buffer.x,
-        bottom: buffer.y,
-        right: buffer.x,
-      }}>
-
-        {notes}
-      </div>
+      {/*<HammerComponent onPanStart={handlePanStart} onPan={handlePan} onPinch={(e) => console.log(e)}>*/}
+        <div id="canvas" className="canvas" ref={canvasRef} onMouseDown={handleMouseDown} style={{
+          transform: 'translate('+ adjOffsetX +'px, '+ adjOffsetY +'px)'}}
+        >
+          {notes}
+        </div>
+      {/*</HammerComponent>*/}
     </div>
   );
 }
