@@ -5,7 +5,6 @@ import {customAlphabet} from "nanoid";
 export const useDimension = (ref) => {
   const dim = useRef({x:0, y:0});
   useEffect(() => {
-    console.log(ref)
     if (ref.current !== null){
       const width = ref.current.clientWidth;
       const height = ref.current.clientHeight;

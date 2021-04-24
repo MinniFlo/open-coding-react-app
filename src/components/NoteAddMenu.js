@@ -61,7 +61,6 @@ export default function NoteAddMenu(props) {
         }
       ));
     }
-
     setContent('');
     setComment('');
     setLabels([]);
@@ -111,7 +110,9 @@ export default function NoteAddMenu(props) {
           <button className="btn waves-effect waves-light grey darken-1" onClick={props.toggleOpen}>
             back
           </button>
-          <button className="btn waves-effect waves-light right" type='submit'>
+          <button className={content!==""?"btn waves-effect waves-light right":
+            "btn waves-effect waves-light right disabled"}
+                  type='submit' >
             submit
           </button>
         </div>

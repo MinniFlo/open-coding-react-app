@@ -44,19 +44,20 @@ export default function LabelAddMenu(props) {
       ));
     } else {
       dispatch(labelAdded(
-      {
-        id: customId(),
-        name: name,
-        color: color,
-        parentLabelId: "",
-        labels: labels,
-        highlight: props.highlight,
-      }
-    ));}
+        {
+          id: customId(),
+          name: name,
+          color: color,
+          parentLabelId: "",
+          labels: labels,
+          highlight: props.highlight,
+        }
+      ));}
 
     setName('');
     setColor('');
     props.toggleOpen();
+
   };
 
   const structureLabels = (labelIds) => {
@@ -107,7 +108,9 @@ export default function LabelAddMenu(props) {
           <button className="btn waves-effect waves-light grey darken-1" onClick={props.toggleOpen}>
             back
           </button>
-          <button className="btn waves-effect waves-light right" type='submit'>
+          <button className={name!==""?"btn waves-effect waves-light right":
+            "btn waves-effect waves-light right disabled"}
+                  type='submit'>
             submit
           </button>
         </div>
