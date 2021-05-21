@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {notePositionChanged, selectNoteById} from "../features/notesSlice";
 import {selectHighlightIds, selectLabelsById} from "../features/labelsSlice";
 import {noteDraggedChanged} from "../features/navigationSlice";
-import HammerComponent from "react-hammerjs";
 
 
 export default function Note({id}) {
@@ -65,9 +64,7 @@ export default function Note({id}) {
             <div id="note" className="note" ref={nodeRef}>
               <div id="note" className="noteBackground" style={highlighted?{}:{backgroundColor:"#aaa"}}>
                 {note.comment !== "" && <Comment className="noteIcon comment left"/>}
-                <HammerComponent onTap={toggleDetail}>
-                  <MoreHoriz className="noteIcon right" onClick={toggleDetail}/>
-                </HammerComponent>
+                <MoreHoriz className="noteIcon right" onClick={toggleDetail}/>
                 <p id="note" className="noteContent">{note.content}</p>
               </div>
               <div className="noteLabelGrid">

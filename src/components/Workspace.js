@@ -49,13 +49,11 @@ export default function Workspace(props) {
     <div id="scaleWrapper" className="scaleWrapper" ref={scaleRef} style={{
       transform: 'scale(' + scale + ')',
     }}>
-      {/*<HammerComponent onPanStart={handlePanStart} onPan={handlePan} onPinch={(e) => console.log(e)}>*/}
-        <div id="canvas" className="canvas" ref={canvasRef} onMouseDown={handleMouseDown} style={{
-          transform: 'translate('+ adjOffsetX +'px, '+ adjOffsetY +'px)'}}
-        >
-          {notes}
-        </div>
-      {/*</HammerComponent>*/}
+      <div id="canvas" className="canvas" ref={canvasRef} onMouseDown={handleMouseDown} style={{
+        transform: 'translate('+ adjOffsetX +'px, '+ adjOffsetY +'px)'}}
+      >
+        {notes}
+      </div>
     </div>
   );
 }
