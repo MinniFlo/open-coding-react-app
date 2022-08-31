@@ -25,6 +25,9 @@ To create an optimized build run `npm run build`. The app will be build to the `
 - react-papaparse
 - nanoid
 - react-hammerjs
+- materialize-css
+- @material-ui/icons
+- @fontsource/roboto
 
 
 
