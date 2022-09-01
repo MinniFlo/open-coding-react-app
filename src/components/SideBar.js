@@ -1,3 +1,4 @@
+import React from "react";
 import NestedLabelList from "./NestedLabelList";
 import '../style/App.css'
 import { selectParentLabelIds } from "../features/labelsSlice";
