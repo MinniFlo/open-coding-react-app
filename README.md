@@ -12,7 +12,7 @@ The app features:
 
 
 ## Running the App
-The app was written with NodeJS version 5.14.0, but it may also work with newer version.
+The app was written with NodeJS version 5.14.0, but it works up to NodeJS version 16.
 
 In the project directory, run `npm install`, to install all the needed packages. Afterwards you can run the app with `npm start` in development mode. You can access it in the browser on [http://localhost:3000](http://localhost:3000).
 
